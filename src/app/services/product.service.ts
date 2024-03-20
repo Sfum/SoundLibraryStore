@@ -9,9 +9,9 @@ export class ProductService {
 
   constructor(private firestore: AngularFirestore) {}
 
-  getProductCollection(): Observable<any[]> {
+  getProducts(): Observable<any[]> {
     return this.firestore.collection('products').valueChanges();
   }
 
-  products$ = this.getProductCollection()
+  products$ = this.getProducts()
 }
