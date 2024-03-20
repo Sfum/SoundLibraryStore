@@ -1,3 +1,10 @@
-<div *ngIf="product">
-  {{product.product_name}}
+<div class="product-card">
+  <img [src]="product.product_image" alt="Product Image" class="product-image">
+  <div class="product-details">
+    <h2 class="product-name">{{ product.product_name }}</h2>
+    <h3 class="product-title">{{ product.product_title | slice:0:60 }}...</h3>
+    <p class="product-description">{{ product.product_description | slice:0:100 }}...</p>
+    <p class="supplier-id">Provider: {{ product.supplierId }}</p>
+    <button mat-raised-button>Buy</button>
+  </div>
 </div>

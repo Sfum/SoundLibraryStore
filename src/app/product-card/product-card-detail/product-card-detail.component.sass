@@ -1,0 +1,42 @@
+.product-card
+  display: flex
+  flex-direction: column
+  border: 1px solid #e0e0e0
+  border-radius: 8px
+  overflow: hidden
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+  transition: all 0.3s ease
+  width: 260px
+  height: 530px
+
+  &:hover
+    transform: translateY(-5px)
+
+  .product-image
+    width: 220px
+    height: 220px
+    object-fit: cover
+    margin: 20px
+
+  .product-details
+    padding: 0 20px 20px 20px
+
+    .product-name
+      font-size: 18px
+      font-weight: bold
+      color: #333
+      margin-bottom: 8px
+
+    .product-title
+      font-size: 16px
+      color: #666
+      margin-bottom: 8px
+
+    .product-description
+      font-size: 14px
+      color: #999
+      margin-bottom: 8px
+
+    .supplier-id
+      font-size: 14px
+      color: #777

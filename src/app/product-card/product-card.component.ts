@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductCardDetailComponent} from "./product-card-detail/product-card-detail.component";
 import {Product} from "../models/product";
 import {Observable} from "rxjs";
 import {ProductService} from "../services/product.service";
