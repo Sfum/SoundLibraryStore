@@ -21,6 +21,8 @@ import {ProductCardComponent} from "./product-card/product-card.component";
 import {ProductCardDetailComponent} from "./product-card/product-card-detail/product-card-detail.component";
 import {MatButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
+import {NavigationBarComponent} from "./shared/navigation-bar/navigation-bar.component";
+import {LogoBarComponent} from "./shared/logo-bar/logo-bar.component";
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import {MatIcon} from "@angular/material/icon";
     FormsModule,
     MatButton,
     MatIcon,
+    NavigationBarComponent,
+    LogoBarComponent,
 
   ],
   providers: [
