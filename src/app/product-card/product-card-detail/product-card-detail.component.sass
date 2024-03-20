@@ -1,42 +1,57 @@
 .product-card
-  display: flex
-  flex-direction: column
+  display: grid
+  grid-template-rows: 260px 410px
   border: 1px solid #e0e0e0
   border-radius: 8px
   overflow: hidden
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
   transition: all 0.3s ease
   width: 260px
-  height: 530px
+  height: 450px
 
   &:hover
     transform: translateY(-5px)
 
   .product-image
+    grid-row: 1/2
     width: 220px
     height: 220px
     object-fit: cover
     margin: 20px
 
   .product-details
+    grid-row: 2/3
+    display: grid
+    grid-template-rows: 30px 70px 30px
     padding: 0 20px 20px 20px
 
     .product-name
+      grid-row: 1/2
       font-size: 18px
       font-weight: bold
       color: #333
       margin-bottom: 8px
 
+
     .product-title
+      grid-row: 2/3
       font-size: 16px
       color: #666
       margin-bottom: 8px
-
-    .product-description
-      font-size: 14px
-      color: #999
-      margin-bottom: 8px
+      line-height: 16px
 
     .supplier-id
+      grid-row: 3/4
       font-size: 14px
       color: #777
+
+    .button_group
+      grid-row: 4/5
+      display: flex
+
+      .button
+        height: 35px
+        margin-right: 10px
+
+.icon
+  margin: 20px

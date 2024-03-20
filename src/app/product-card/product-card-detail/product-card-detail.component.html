@@ -1,10 +1,13 @@
 <div class="product-card">
   <img [src]="product.product_image" alt="Product Image" class="product-image">
   <div class="product-details">
-    <h2 class="product-name">{{ product.product_name }}</h2>
-    <h3 class="product-title">{{ product.product_title | slice:0:60 }}...</h3>
-    <p class="product-description">{{ product.product_description | slice:0:100 }}...</p>
-    <p class="supplier-id">Provider: {{ product.supplierId }}</p>
-    <button mat-raised-button>Buy</button>
+    <h2 class="product-name font-primary">{{ product.product_name }}</h2>
+    <h3 class="product-title font-secondary">{{ product.product_title | slice:0:100 }}...</h3>
+    <p class="supplier-id font-small">Brand: {{ product.supplierId }}</p>
+    <div class="button_group">
+    <button class="button" mat-raised-button><mat-icon class="icon">shopping_cart</mat-icon></button>
+    <button class="button" mat-raised-button><mat-icon class="icon">list</mat-icon></button>
+    <button class="button" mat-raised-button><mat-icon class="icon">favorite</mat-icon></button>
+    </div>
   </div>
 </div>

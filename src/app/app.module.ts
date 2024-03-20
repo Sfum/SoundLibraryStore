@@ -20,6 +20,7 @@ import {CommonModule} from "@angular/common";
 import {ProductCardComponent} from "./product-card/product-card.component";
 import {ProductCardDetailComponent} from "./product-card/product-card-detail/product-card-detail.component";
 import {MatButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {MatButton} from "@angular/material/button";
     AppRoutingModule,
     FormsModule,
     MatButton,
+    MatIcon,
 
   ],
   providers: [
