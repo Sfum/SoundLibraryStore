@@ -23,13 +23,14 @@ import {MatButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {NavigationBarComponent} from "./shared/navigation-bar/navigation-bar.component";
 import {LogoBarComponent} from "./shared/logo-bar/logo-bar.component";
+import {BrandDetailComponent} from "./product-card/brand-detail/brand-detail.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductCardComponent,
-    ProductCardDetailComponent
-
+    ProductCardDetailComponent,
+    BrandDetailComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +54,8 @@ import {LogoBarComponent} from "./shared/logo-bar/logo-bar.component";
     provideAnimationsAsync()
   ],
   exports: [
-    ProductCardComponent
+    ProductCardComponent,
+    BrandDetailComponent
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -32,7 +32,5 @@ export class ProductCardComponent implements OnInit {
     this.brandCollection$ = this.brandService.brands$
     this.genreCollection$ = this.genreService.genres$
     this.typeCollection$ = this.typeService.types$
-
   }
-
 }

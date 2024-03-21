@@ -10,6 +10,6 @@ import {Brand} from "../../models/brand";
 export class ProductCardDetailComponent {
 
   @Input() product!: Product
-  @Input() brand!: Brand
+
 
 }
