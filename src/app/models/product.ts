@@ -3,6 +3,6 @@ export interface Product {
   product_name: string,
   product_title: string,
   product_description: string,
-  supplierId: number,
+  brandId: number,
   product_image: string,
 }

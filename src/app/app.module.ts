@@ -23,14 +23,42 @@ import {MatButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {NavigationBarComponent} from "./shared/navigation-bar/navigation-bar.component";
 import {LogoBarComponent} from "./shared/logo-bar/logo-bar.component";
-import {BrandDetailComponent} from "./product-card/brand-detail/brand-detail.component";
+
+import {HomeComponent} from "./home/home.component";
+import {GenresComponent} from "./genres/genres.component";
+import {BrandsComponent} from "./brands/brands.component";
+import {BundlesComponent} from "./bundles/bundles.component";
+import {FormatsComponent} from "./formats/formats.component";
+
+import {ProductAddComponent} from "./product-add/product-add.component";
+import {ProductEditComponent} from "./product-edit/product-edit.component";
+import {ProductPageComponent} from "./product-page/product-page.component";
+
+import {ProviderComponent} from "./provider/provider.component";
+import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
+import {WishlistComponent} from "./wishlist/wishlist.component";
+import {BrandDetailComponent} from "./brands/brand-detail/brand-detail.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductCardComponent,
     ProductCardDetailComponent,
-    BrandDetailComponent
+    BrandDetailComponent,
+    HomeComponent,
+    NavigationBarComponent,
+    LogoBarComponent,
+    BrandsComponent,
+    GenresComponent,
+    BundlesComponent,
+    FormatsComponent,
+    ProductAddComponent,
+    ProductEditComponent,
+    ProductPageComponent,
+    ProviderComponent,
+    ShoppingCartComponent,
+    BrandDetailComponent,
+    WishlistComponent
   ],
   imports: [
     CommonModule,
@@ -46,8 +74,6 @@ import {BrandDetailComponent} from "./product-card/brand-detail/brand-detail.com
     FormsModule,
     MatButton,
     MatIcon,
-    NavigationBarComponent,
-    LogoBarComponent,
 
   ],
   providers: [
@@ -55,7 +81,9 @@ import {BrandDetailComponent} from "./product-card/brand-detail/brand-detail.com
   ],
   exports: [
     ProductCardComponent,
-    BrandDetailComponent
+    BrandDetailComponent,
+    NavigationBarComponent,
+    LogoBarComponent
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

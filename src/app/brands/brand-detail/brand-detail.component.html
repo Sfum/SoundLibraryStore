@@ -1,0 +1,8 @@
+<div>
+  <h3>{{ brand.brand_name }} Products</h3>
+  <ul>
+    <li *ngFor="let product of getBrandProducts()">
+      {{ product.product_name }}
+    </li>
+  </ul>
+</div>

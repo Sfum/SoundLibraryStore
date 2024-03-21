@@ -11,13 +11,19 @@ import {SignupComponent} from "./auth/signup/signup.component";
 import {GenresComponent} from "./genres/genres.component";
 import {FormatsComponent} from "./formats/formats.component";
 import {BundlesComponent} from "./bundles/bundles.component";
+import {ProviderComponent} from "./provider/provider.component";
+import {BrandsComponent} from "./brands/brands.component";
+import {HomeComponent} from "./home/home.component";
 // import {AuthGuard} from "@angular/fire/auth-guard";
 
 const routes: Routes = [
-  {path: '', component: AppComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
   {path: 'genres', component: GenresComponent},
   {path: 'formats', component: FormatsComponent},
+  {path: 'brands', component: BrandsComponent},
   {path: 'bundles', component: BundlesComponent},
+  {path: 'provider', component: ProviderComponent},
   {path: 'product/:id', component: AppComponent},
   {path: 'view/:productId', component: ProductPageComponent},
   {path: 'edit/:productId', component: ProductEditComponent},
