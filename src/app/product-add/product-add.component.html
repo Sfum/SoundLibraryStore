@@ -1,2 +1,28 @@
 <app-navigation-bar></app-navigation-bar>
-<p>product-add works!</p>
+<div class="container margin-auto font-primary">Add New Product</div>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+  <label for="productName" class="font-secondary">Product Name:</label>
+  <input type="text" id="productName" formControlName="product_name" required>
+
+  <label for="productTitle" class="font-secondary">Short:</label>
+  <input type="text" id="productTitle" formControlName="product_title" required>
+
+  <label for="productDescription" class="font-secondary">Product Description:</label>
+  <textarea id="productDescription" formControlName="product_description" required></textarea>
+
+  <label for="brandId" class="font-small">Brand:</label>
+  <input type="number" id="brandId" formControlName="brandId" required>
+
+  <label for="genreId" class="font-small">Genre:</label>
+  <input type="number" id="genreId" formControlName="genreId" required>
+
+  <label for="productImage" class="font-small">Product Image URL:</label>
+  <input type="text" id="productImage" formControlName="product_image" required>
+
+  <button type="submit" mat-raised-button>Add Product</button>
+<!--          [disabled]="productForm.invalid"-->
+
+</form>
+

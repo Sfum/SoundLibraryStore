@@ -11,7 +11,7 @@ export class ProductService {
   constructor(private firestore: AngularFirestore) {}
 
   getProducts(): Observable<any[]> {
-    return this.firestore.collection('products').valueChanges();
+    return this.firestore.collection('products',).valueChanges();
   }
 
   products$ = this.getProducts()
@@ -25,6 +25,25 @@ export class ProductService {
         return throwError('Something went wrong while fetching the product');
       })
     );
+  }
+
+  addProduct(product: Product): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.firestore.collection('products')
+        .add(product)
+        .then(ref => {
+          product.id = +ref.id;
+          this.firestore.collection('products')
+            .doc(ref.id).update({id: ref.id})
+            .then(() => {
+              resolve()
+            }).catch(error => {
+            reject(error);
+          });
+        }).catch(error => {
+        reject(error);
+      });
+    });
   }
 
 }

@@ -9,19 +9,25 @@ import {ProductService} from "../services/product.service";
   styleUrl: './product-page.component.sass'
 })
 export class ProductPageComponent implements OnInit {
+  getId: any;
   product!: Product | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-  ) { }
+  ) {
+    this.getId = this.route.snapshot.paramMap.get('id');
+  }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const productId = params['productId'];
+    const productId = this.route.snapshot.params['id'];
+
+    if (productId) {
       this.productService.getProduct(productId).subscribe(product => {
         this.product = product;
       });
-    });
+    }
+
   }
+
 }

@@ -4,6 +4,7 @@ import {Product} from "../../models/product";
 
 @Component({
   selector: 'app-brand-detail',
+
   templateUrl: './brand-detail.component.html',
   styleUrl: './brand-detail.component.sass'
 })
