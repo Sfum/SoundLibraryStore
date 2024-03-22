@@ -4,5 +4,6 @@ export interface Product {
   product_title: string,
   product_description: string,
   brandId: number,
+  genreId: number,
   product_image: string,
 }

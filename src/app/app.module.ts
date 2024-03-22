@@ -38,6 +38,8 @@ import {ProviderComponent} from "./provider/provider.component";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {WishlistComponent} from "./wishlist/wishlist.component";
 import {BrandDetailComponent} from "./brands/brand-detail/brand-detail.component";
+import {GenreDetailComponent} from "./genres/genre-detail/genre-detail.component";
+import {MatCard} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -58,7 +60,8 @@ import {BrandDetailComponent} from "./brands/brand-detail/brand-detail.component
     ProviderComponent,
     ShoppingCartComponent,
     BrandDetailComponent,
-    WishlistComponent
+    WishlistComponent,
+    GenreDetailComponent
   ],
   imports: [
     CommonModule,
@@ -74,6 +77,7 @@ import {BrandDetailComponent} from "./brands/brand-detail/brand-detail.component
     FormsModule,
     MatButton,
     MatIcon,
+    MatCard,
 
   ],
   providers: [

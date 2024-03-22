@@ -17,15 +17,14 @@ import {HomeComponent} from "./home/home.component";
 // import {AuthGuard} from "@angular/fire/auth-guard";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
+  {path: '', redirectTo: '', pathMatch: 'full'},
+  {path: '', component: HomeComponent},
   {path: 'genres', component: GenresComponent},
   {path: 'formats', component: FormatsComponent},
   {path: 'brands', component: BrandsComponent},
   {path: 'bundles', component: BundlesComponent},
   {path: 'provider', component: ProviderComponent},
-  {path: 'product/:id', component: AppComponent},
-  {path: 'view/:productId', component: ProductPageComponent},
+  {path: 'products/:productId', component: ProductPageComponent},
   {path: 'edit/:productId', component: ProductEditComponent},
   {path: 'create-product', component: ProductAddComponent},
   {path: 'login', component: LoginComponent},

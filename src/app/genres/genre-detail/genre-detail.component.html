@@ -1,0 +1,13 @@
+<mat-card class="container_main">
+  <h2>{{ genre?.genre_name }}</h2>
+  <h4>{{ genre?.genre_description }}</h4>
+  <div class="container">
+    <div class="product-card">
+      <img class="image"
+           [src]="product.product_image"
+           *ngFor="let product of getGenreProducts()"
+           alt="Product Image" width="80px" height="80px">
+    </div>
+  </div>
+</mat-card>
+

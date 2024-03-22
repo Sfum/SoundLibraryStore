@@ -1,3 +1,5 @@
 <app-navigation-bar></app-navigation-bar>
 <app-logo-bar></app-logo-bar>
-<p>genres works!</p>
+<app-genre-detail
+  *ngFor="let genre of genres$ | async" [genre]="genre"
+  [products]="products$ | async"></app-genre-detail>

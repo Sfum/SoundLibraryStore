@@ -1,8 +1,11 @@
-<div>
-  <h3>{{ brand.brand_name }} Products</h3>
-  <ul>
-    <li *ngFor="let product of getBrandProducts()">
-      {{ product.product_name }}
-    </li>
-  </ul>
-</div>
+<mat-card class="container mat-elevation-z24">
+  <div class="brand-info">
+    <h2 class="font-primary">{{ brand?.brand_name }}</h2>
+    <h4 class="font-secondary">{{ brand?.brand_description }}</h4>
+  </div>
+  <div class="product-card">
+    <a *ngFor="let product of getBrandProducts()" [href]="'/products/' + product.id">
+      <img class="image" [src]="product.product_image" alt="Product Image" width="80px" height="80px">
+    </a>
+  </div>
+</mat-card>

@@ -1,2 +1,28 @@
 <app-navigation-bar></app-navigation-bar>
-<p>product-page works!</p>
+
+
+  <mat-card *ngIf="product" class="product-card__right mat-elevation-z20">
+    <div>
+      <div class="product-card__shell">
+        <div class="product-card-bottom__wrapper">
+          <div class="product-card__left">
+            <img class="product-card__image" [src]="product.product_image" width="130px" height="130px">
+          </div>
+          <div class="product-card__right">
+            <span class="font-primary">{{ product.product_name | slice:0:23 }}...</span>
+            <hr class="product-card__line">
+            <span class="font-secondary">{{ product.product_description | slice:0:120 }}</span>
+            <hr class="product-card__line">
+            <span class="font-secondary">{{ product.brandId }}</span>
+            <hr class="product-card__line">
+            <div class="icon__list">
+              <mat-icon class="icon">shopping_cart</mat-icon>
+              <mat-icon class="icon">favorite</mat-icon>
+              <mat-icon class="icon">list</mat-icon>
+              <mat-icon class="icon">phone</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card>
