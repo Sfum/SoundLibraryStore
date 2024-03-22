@@ -28,7 +28,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productCollection$ = this.productService.products$
+    this.productCollection$ = this.productService.productsArrayFiltered$
     this.brandCollection$ = this.brandService.brands$
     this.genreCollection$ = this.genreService.genres$
     this.typeCollection$ = this.typeService.types$

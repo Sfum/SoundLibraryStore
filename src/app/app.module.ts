@@ -40,6 +40,9 @@ import {WishlistComponent} from "./wishlist/wishlist.component";
 import {BrandDetailComponent} from "./brands/brand-detail/brand-detail.component";
 import {GenreDetailComponent} from "./genres/genre-detail/genre-detail.component";
 import {MatCard} from "@angular/material/card";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatOption, MatSelect} from "@angular/material/select";
+import {MatInput} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -78,6 +81,11 @@ import {MatCard} from "@angular/material/card";
     MatButton,
     MatIcon,
     MatCard,
+    MatLabel,
+    MatFormField,
+    MatSelect,
+    MatInput,
+    MatOption,
 
   ],
   providers: [

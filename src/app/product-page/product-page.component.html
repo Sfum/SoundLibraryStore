@@ -6,14 +6,12 @@
       <div class="product-card__shell">
         <div class="product-card-bottom__wrapper">
           <div class="product-card__left">
-            <img class="product-card__image" [src]="product.product_image" width="130px" height="130px">
+            <img class="product-card__image" [src]="product.product_image" width="300px" height="300px">
           </div>
           <div class="product-card__right">
-            <span class="font-primary">{{ product.product_name | slice:0:23 }}...</span>
+            <span class="font-primary">{{ product.product_name }}...</span>
             <hr class="product-card__line">
-            <span class="font-secondary">{{ product.product_description | slice:0:120 }}</span>
-            <hr class="product-card__line">
-            <span class="font-secondary">{{ product.brandId }}</span>
+            <span class="font-secondary">{{ product.product_description }}</span>
             <hr class="product-card__line">
             <div class="icon__list">
               <mat-icon class="icon">shopping_cart</mat-icon>

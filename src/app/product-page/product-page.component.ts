@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from "../models/product";
 import {ActivatedRoute} from "@angular/router";
 import {ProductService} from "../services/product.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-product-page',
@@ -11,6 +12,9 @@ import {ProductService} from "../services/product.service";
 export class ProductPageComponent implements OnInit {
   getId: any;
   product!: Product | undefined;
+
+  productCollection$!: Observable<Product[]>;
+
 
   constructor(
     private route: ActivatedRoute,

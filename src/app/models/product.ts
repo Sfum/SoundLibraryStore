@@ -1,5 +1,4 @@
 export interface Product {
-  $key: string,
   id: number,
   product_name: string,
   product_title: string,
@@ -7,4 +6,5 @@ export interface Product {
   brandId: number,
   genreId: number,
   product_image: string,
+  in_bundle: boolean
 }

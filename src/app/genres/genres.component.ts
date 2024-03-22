@@ -14,17 +14,13 @@ import {GenreService} from "../services/genre.service";
   styleUrl: './genres.component.sass'
 })
 export class GenresComponent implements OnInit{
+  products$!: Observable<Product[]>;
+  genres$!: Observable<Genre[]>;
 
-  products$!: Observable<Product[]>
-  genres$!: Observable<Genre[]>
-
-  constructor(private db: AngularFireDatabase,
-              private productService: ProductService,
-              private genresService: GenreService) { }
+  constructor(private productService: ProductService, private genresService: GenreService) { }
 
   ngOnInit(): void {
-    this.genres$ = this.genresService.getGenres()
-    this.products$ = this.productService.getProducts()
+    this.genres$ = this.genresService.getGenres();
+    this.products$ = this.productService.getProducts();
   }
-
 }

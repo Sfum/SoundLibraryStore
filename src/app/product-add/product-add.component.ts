@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../services/product.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product-add',
@@ -15,7 +16,9 @@ export class ProductAddComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private productService: ProductService,
-              private afs: AngularFirestore) {
+              private afs: AngularFirestore,
+              private router: Router
+              ) {
     this.productForm = this.fb.group({
       product_name: ['', Validators.required],
       product_title: ['', Validators.required],
@@ -37,6 +40,7 @@ export class ProductAddComponent implements OnInit {
       this.productService.addProduct(productData).then(() => {
         console.log('Product added successfully.');
         this.productForm.reset();
+        this.router.navigate(['/'])
       })
         .catch(error => {
           console.error('Error adding product: ', error);
