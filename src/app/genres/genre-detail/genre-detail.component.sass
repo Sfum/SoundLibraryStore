@@ -1,17 +1,21 @@
-
-.container
+.container-shell
   gap: 10px
   margin: 10px
 
 .container-card
+  display: grid
+  grid-template-rows: 200px 1fr
   margin: 5px
+
+.info-text
+  grid-row: 1/2
 
 .product-card
   display: flex
   flex-direction: column
   overflow: hidden
   margin: 20px
-  height: 300px
+  grid-row: 2/3
 
 .image
   transition: all 0.3s ease

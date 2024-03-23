@@ -13,9 +13,6 @@ export class ProductPageComponent implements OnInit {
   getId: any;
   product!: Product | undefined;
 
-  productCollection$!: Observable<Product[]>;
-
-
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,

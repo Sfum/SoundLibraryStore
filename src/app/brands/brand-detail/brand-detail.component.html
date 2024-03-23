@@ -1,7 +1,10 @@
+
+
+
 <mat-card class="container mat-elevation-z24">
   <div class="brand-info">
     <h2 class="font-primary">{{ brand?.brand_name }}</h2>
-    <h4 class="font-secondary">{{ brand?.brand_description }}</h4>
+    <h4 class="font-secondary">{{ brand?.brand_description | slice: 1:200 }}...read more</h4>
   </div>
   <div class="product-card">
     <a *ngFor="let product of getBrandProducts()" [href]="'/products/' + product.id">

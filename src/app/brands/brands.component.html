@@ -1,4 +1,6 @@
 <app-navigation-bar></app-navigation-bar>
 <app-logo-bar></app-logo-bar>
+<div class="container-grid">
 <app-brand-detail *ngFor="let brand of brands$ | async" [brand]="brand"
                   [products]="products$ | async"></app-brand-detail>
+</div>
