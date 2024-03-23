@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {Brand} from "../../models/brand";
 import {Product} from "../../models/product";
 import {Genre} from "../../models/genre";
 

@@ -43,6 +43,8 @@ import {MatCard} from "@angular/material/card";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatOption, MatSelect} from "@angular/material/select";
 import {MatInput} from "@angular/material/input";
+import {BundleDetailComponent} from "./bundles/bundle-detail/bundle-detail.component";
+import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -64,7 +66,8 @@ import {MatInput} from "@angular/material/input";
     ShoppingCartComponent,
     BrandDetailComponent,
     WishlistComponent,
-    GenreDetailComponent
+    GenreDetailComponent,
+    BundleDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -86,6 +89,10 @@ import {MatInput} from "@angular/material/input";
     MatSelect,
     MatInput,
     MatOption,
+    MatMenuTrigger,
+    MatMenu,
+    MatMenuItem,
+
 
   ],
   providers: [

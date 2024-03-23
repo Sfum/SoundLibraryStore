@@ -1,7 +1,8 @@
-<mat-card class="container_main">
+<div class="container-shell">
+<mat-card class="container">
   <h2>{{ genre?.genre_name }}</h2>
   <h4>{{ genre?.genre_description }}</h4>
-  <div class="container">
+  <div class="container-card">
     <div class="product-card">
       <img class="image" [routerLink]="'/products/' + product.id"
            [src]="product.product_image"
@@ -10,3 +11,4 @@
     </div>
   </div>
 </mat-card>
+</div>

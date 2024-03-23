@@ -1,11 +1,15 @@
 <nav class="navbar">
   <img src="https://cdn.producerloops.com/images/M/Concept%20Samples%20Logo.jpg" width="150px" alt="Logo" class="logo">
   <ul class="nav-links">
-    <li><a href="">Home</a></li>
-    <li><a href="genres">Genres</a></li>
-    <li><a href="formats">Formats</a></li>
-    <li><a href="brands">Brands</a></li>
-    <li><a href="bundles">Bundles</a></li>
-    <li><a href="provider">Provider</a></li>
+    <li><button mat-button routerLink="/">Home</button></li>
+    <li><button mat-button routerLink="/genres">Genres</button></li>
+    <button mat-button [matMenuTriggerFor]="menu">Formats</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item *ngFor="let format of formats" [value]="format.id">{{ format.format_name }}</button>
+    </mat-menu>
+    <li><button mat-button routerLink="/brands">Brands</button></li>
+    <li><button mat-button routerLink="/bundles">Bundle</button></li>
+    <li><button mat-button routerLink="/provider">Provider</button></li>
   </ul>
 </nav>
+

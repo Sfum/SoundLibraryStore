@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TypeService } from './type.service';
+import { FormatService } from './format.service';
 
-describe('TypeService', () => {
-  let service: TypeService;
+describe('FormatService', () => {
+  let service: FormatService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TypeService);
+    service = TestBed.inject(FormatService);
   });
 
   it('should be created', () => {
