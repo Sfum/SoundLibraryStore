@@ -1,0 +1,58 @@
+
+<div class="container">
+  <div class="button_wrapper">
+    <button mat-raised-button [routerLink]="['/add-product']">Create Product</button>
+  </div>
+  <mat-table [dataSource]="dataSource" >
+    <!-- Product ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Product ID </mat-header-cell>
+      <mat-cell class="cell_hover" *matCellDef="let product" [routerLink]="['/', 'edit', product.id]"> {{ product.id }} </mat-cell>
+    </ng-container>
+
+    <!-- Product Name Column -->
+    <ng-container matColumnDef="product_name">
+      <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
+      <mat-cell class="cell_hover" *matCellDef="let product" [routerLink]="['/', 'edit', product.id]"> {{ product.product_name }} </mat-cell>
+    </ng-container>
+
+    <!-- Product Name Column -->
+    <ng-container matColumnDef="product_title">
+      <mat-header-cell *matHeaderCellDef> Product Title </mat-header-cell>
+      <mat-cell class="cell_hover" *matCellDef="let product" [routerLink]="['/', 'edit', product.id]"> {{ product.product_title }} </mat-cell>
+    </ng-container>
+
+    <!-- Product Price Column -->
+    <ng-container matColumnDef="product_description">
+      <mat-header-cell *matHeaderCellDef> Product Description </mat-header-cell>
+      <mat-cell class="cell_hover" *matCellDef="let product"> {{ product.product_description }} </mat-cell>
+    </ng-container>
+
+    <!-- Supplier ID Column -->
+    <ng-container matColumnDef="brandId">
+      <mat-header-cell *matHeaderCellDef> Brand </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.brandId }} </mat-cell>
+    </ng-container>
+
+    <!-- Category ID Column -->
+    <ng-container matColumnDef="genreId">
+      <mat-header-cell *matHeaderCellDef> Genre </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.genreId }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="product_image">
+      <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.product_image }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="in_bundle">
+      <mat-header-cell *matHeaderCellDef> Bundle? </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.in_bundle }} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons=""></mat-paginator>
+</div>

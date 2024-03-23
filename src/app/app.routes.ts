@@ -13,6 +13,7 @@ import {BundlesComponent} from "./bundles/bundles.component";
 import {ProviderComponent} from "./provider/provider.component";
 import {BrandsComponent} from "./brands/brands.component";
 import {HomeComponent} from "./home/home.component";
+import {LogoutComponent} from "./auth/logout/logout.component";
 // import {AuthGuard} from "@angular/fire/auth-guard";
 
 const routes: Routes = [
@@ -26,10 +27,11 @@ const routes: Routes = [
   {path: 'products/:id', component: ProductPageComponent},
   {path: 'edit/:id', component: ProductEditComponent},
   {path: 'add-product', component: ProductAddComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: SignupComponent},
   {path: 'wishlist', component: WishlistComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogoutComponent},
+  {path: 'signup', component: SignupComponent},
 
 ];
 

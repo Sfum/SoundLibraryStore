@@ -46,6 +46,23 @@ import {MatInput} from "@angular/material/input";
 import {BundleDetailComponent} from "./bundles/bundle-detail/bundle-detail.component";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 
+import {LoginComponent} from "./auth/login/login.component";
+import {SignupComponent} from "./auth/signup/signup.component";
+import {LogoutComponent} from "./auth/logout/logout.component";
+
+import { MatDialogModule } from '@angular/material/dialog';
+import {ProductListComponent} from "./product-list/product-list.component";
+import {
+  MatCell, MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow, MatHeaderRowDef,
+  MatRow, MatRowDef,
+  MatTable
+} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +85,11 @@ import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
     WishlistComponent,
     GenreDetailComponent,
     BundleDetailComponent,
+    LoginComponent,
+    SignupComponent,
+    LogoutComponent,
+    ProductListComponent
+
   ],
   imports: [
     CommonModule,
@@ -92,6 +114,18 @@ import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
     MatMenuTrigger,
     MatMenu,
     MatMenuItem,
+    MatDialogModule,
+    MatTable,
+    MatHeaderCell,
+    MatCell,
+    MatHeaderRow,
+    MatPaginator,
+    MatRow,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatCellDef,
+    MatHeaderRowDef,
+    MatRowDef,
 
 
   ],
