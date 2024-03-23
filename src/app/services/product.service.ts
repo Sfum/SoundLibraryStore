@@ -162,7 +162,7 @@ export class ProductService {
     }))
   );
 
-  getFilteredProductCollection(product: Product) {
+  getFilteredProductCollection() {
     return this.productsArrayFiltered$
   }
 

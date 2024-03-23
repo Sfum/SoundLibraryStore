@@ -1,1 +1,14 @@
-<p>signup works!</p>
+<mat-card>
+  <div class="font-primary margin-auto">Signup</div>
+  <form class="form-container" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="email">Email:</label>
+      <input matInput type="email" id="email" name="email" [(ngModel)]="email" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input matInput type="password" id="password" name="password" [(ngModel)]="password" required>
+    </div>
+    <button mat-raised-button type="submit">Sign Up</button>
+  </form>
+</mat-card>

@@ -1,1 +1,14 @@
-<p>login works!</p>
+<mat-card>
+  <div class="font-primary margin-auto">Login</div>
+  <form class="form-container" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="email">Email:</label>
+      <input matInput type="email" id="email" name="email" [(ngModel)]="email" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input matInput type="password" id="password" name="password" [(ngModel)]="password" required>
+    </div>
+    <button mat-raised-button type="submit">Login</button>
+  </form>
+</mat-card>
