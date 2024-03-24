@@ -19,13 +19,13 @@
     <!-- Product Name Column -->
     <ng-container matColumnDef="product_title">
       <mat-header-cell *matHeaderCellDef> Product Title </mat-header-cell>
-      <mat-cell class="cell_hover" *matCellDef="let product" [routerLink]="['/', 'edit', product.id]"> {{ product.product_title }} </mat-cell>
+      <mat-cell class="cell_hover" *matCellDef="let product" [routerLink]="['/', 'edit', product.id]"> {{ product.product_title | slice: 0: 70 }}...read more </mat-cell>
     </ng-container>
 
     <!-- Product Price Column -->
     <ng-container matColumnDef="product_description">
       <mat-header-cell *matHeaderCellDef> Product Description </mat-header-cell>
-      <mat-cell class="cell_hover" *matCellDef="let product"> {{ product.product_description }} </mat-cell>
+      <mat-cell class="cell_hover" *matCellDef="let product"> {{ product.product_description | slice: 0: 70}}...read more </mat-cell>
     </ng-container>
 
     <!-- Supplier ID Column -->
@@ -42,7 +42,8 @@
 
     <ng-container matColumnDef="product_image">
       <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
-      <mat-cell *matCellDef="let product"> {{ product.product_image }} </mat-cell>
+      <mat-cell *matCellDef="let product"><img [src]="product.product_image" alt="Product Image" style="max-width: 100px; max-height: 100px;">
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="in_bundle">
