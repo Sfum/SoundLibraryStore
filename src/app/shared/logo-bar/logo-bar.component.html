@@ -9,9 +9,9 @@
     </mat-menu>
     <li><button mat-button routerLink="/brands">Brands</button></li>
     <li><button mat-button routerLink="/bundles">Bundle</button></li>
-    <li><button mat-button routerLink="/provider">Provider</button></li>
-    <li><button mat-button routerLink="/login">Login</button></li>
-    <li><button mat-button routerLink="/signup">Signup</button></li>
+    <li><button mat-button routerLink="/provider" *ngIf="(user$| async)">Provider</button></li>
+    <li><button mat-button routerLink="/login" *ngIf="!(user$| async)">Login</button></li>
+    <li><button mat-button routerLink="/signup" *ngIf="!(user$| async)">Signup</button></li>
   </ul>
 </nav>
 

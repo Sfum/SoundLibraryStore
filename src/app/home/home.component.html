@@ -1,4 +1,40 @@
 <app-navigation-bar></app-navigation-bar>
 <app-logo-bar></app-logo-bar>
-<app-product-card></app-product-card>
+
+
+<div class="component-body">
+
+  <ng-container *ngIf="user$ | async as user; else notAuthenticated">
+
+    <div class="component-body">
+
+      <div *ngIf="isAdmin; else notAdmin">
+        <h1 class="margin-auto">Welcome to the Admin Dashboard</h1>
+        <div class="product-list">
+          <app-product-list class="container"></app-product-list>
+        </div>
+      </div>
+
+      <ng-template #notAdmin>
+        <div class="product-card">
+          <div class="product-card-left">
+            <app-product-filter></app-product-filter>
+          </div>
+          <div class="product-card-middle">
+            <app-product-card *ngIf="user && user.uid"></app-product-card>
+          </div>
+        </div>
+      </ng-template>
+
+    </div>
+  </ng-container>
+
+  <ng-template #notAuthenticated>
+    <div class="component-body">
+      <div class="margin-auto font-primary">Welcome to our store! Please, login to start browsing</div>
+      <app-product-card></app-product-card>
+    </div>
+  </ng-template>
+
+</div>
 

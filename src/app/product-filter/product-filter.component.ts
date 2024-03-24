@@ -1,9 +1,7 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {Observable} from "rxjs";
 import {Brand} from "../models/brand";
 import {Genre} from "../models/genre";
-import {Router} from "@angular/router";
-import {AppModule} from "../app.module";
 import {ProductService} from "../services/product.service";
 import {BrandService} from "../services/brand.service";
 import {GenreService} from "../services/genre.service";

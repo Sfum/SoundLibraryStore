@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {Brand} from "../../models/brand";
 import {Genre} from "../../models/genre";
 import {Router} from "@angular/router";
+import firebase from "firebase/compat";
 
 @Component({
   selector: 'app-product-filter-detail',
@@ -10,7 +11,8 @@ import {Router} from "@angular/router";
   styleUrl: './product-filter-detail.component.sass'
 })
 export class ProductFilterDetailComponent {
-  // user$: Observable<firebase.User>;
+  // @ts-ignore
+  user$: Observable<firebase.User>;
 
 
   @Input() filterField$?: Observable<Brand[]>

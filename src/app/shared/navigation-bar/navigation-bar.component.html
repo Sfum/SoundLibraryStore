@@ -20,5 +20,13 @@
         <i class="material-icons">shopping_cart</i>
         Cart
       </span>
+
+    <div class="auth-field">
+      <button mat-raised-button class="nav-button" *ngIf="!(user$| async )" routerLink="/login">Login</button>
+      <button mat-raised-button class="nav-button" *ngIf="!(user$| async )" routerLink="/signup">SignUp</button>
+      <app-logout></app-logout>
+
+    </div>
+
   </div>
 </div>

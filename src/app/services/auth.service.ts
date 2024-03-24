@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {map, Observable} from "rxjs";
-import { User } from 'firebase/auth'
+import firebase from "firebase/compat";
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +9,10 @@ import { User } from 'firebase/auth'
 export class AuthService {
 
   constructor(private afAuth: AngularFireAuth) {
+    // @ts-ignore
     this.user$ = afAuth.authState;
   }
 
-  // @ts-ignore
   user$: Observable<firebase.User>;
 
   signIn(email: string, password: string) {

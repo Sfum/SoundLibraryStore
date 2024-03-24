@@ -1,15 +1,7 @@
 <div class="product-card__container">
   <app-product-card-detail *ngFor="let product of productCollection$ | async"
-                           [product]="product"
-  >
-    {{ product.id }}
+                           [product]="product">
+{{ product.id }}
   </app-product-card-detail>
 </div>
 
-<!--<div class="main-title">Our Brands:</div>-->
-
-<!--<app-brand-detail *ngFor="let brand of brandCollection$ | async"-->
-<!--                  [brand]="brand"-->
-<!--&gt;-->
-<!--  {{ brand.brand_name }}-->
-<!--</app-brand-detail>-->

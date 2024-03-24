@@ -1,6 +1,11 @@
 <app-navigation-bar></app-navigation-bar>
 <app-logo-bar></app-logo-bar>
-<div>
-  <h2 class="font-label font-primary">Bundles</h2>
-  <app-bundle-detail [products]="products"></app-bundle-detail>
+<h2 class="font-label font-primary">Bundles</h2>
+<div class="product-card">
+  <div class="product-card-left">
+    <app-product-filter></app-product-filter>
+  </div>
+  <div class="product-card-middle">
+    <app-bundle-detail [products]="products"></app-bundle-detail>
+  </div>
 </div>

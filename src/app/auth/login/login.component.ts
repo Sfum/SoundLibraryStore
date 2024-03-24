@@ -13,15 +13,12 @@ export class LoginComponent {
   password: string = '';
 
   constructor(private authService: AuthService,
-              public dialogRef: MatDialogRef<LoginComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
               public router: Router) { }
 
   onSubmit() {
     this.authService.signIn(this.email, this.password)
       .then(() => {
         console.log('User logged in successfully');
-        this.dialogRef.close();
         this.router.navigate(['/']);
       })
       .catch((error: { message: any; }) => {

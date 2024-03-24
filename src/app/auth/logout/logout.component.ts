@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {AuthService} from "../../services/auth.service";
+import firebase from "firebase/compat";
 
 @Component({
   selector: 'app-logout',
@@ -9,8 +10,7 @@ import {AuthService} from "../../services/auth.service";
 })
 export class LogoutComponent implements OnInit{
 
-  // @ts-ignore
-  user$: Observable<firebase.User>;
+  user$: Observable<firebase.User> | undefined;
 
   constructor(private authService: AuthService) { }
 
