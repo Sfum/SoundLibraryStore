@@ -13,8 +13,10 @@ export class BundlesComponent implements OnInit{
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(products => {
+    this.productService.getFilteredProductCollection().subscribe(products => {
       this.products = products;
     });
   }
+
+
 }
