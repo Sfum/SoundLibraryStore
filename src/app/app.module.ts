@@ -63,6 +63,9 @@ import {
 } from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 
+import {ProductFilterComponent} from "./product-filter/product-filter.component";
+import {ProductFilterDetailComponent} from "./product-filter/product-filter-detail/product-filter-detail.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,7 +91,9 @@ import {MatPaginator} from "@angular/material/paginator";
     LoginComponent,
     SignupComponent,
     LogoutComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductFilterComponent,
+    ProductFilterDetailComponent
 
   ],
   imports: [
