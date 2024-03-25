@@ -1,5 +1,6 @@
+
 <app-navigation-bar></app-navigation-bar>
-<mat-card *ngIf="product" class="product-card__right mat-elevation-z20">
+<mat-card *ngIf="product"  class="product-card__right mat-elevation-z20">
   <div>
     <div class="product-card__shell">
       <div class="product-card-bottom__wrapper">
@@ -16,13 +17,20 @@
             <mat-icon class="icon">favorite</mat-icon>
             <mat-icon class="icon">list</mat-icon>
             <mat-icon class="icon">phone</mat-icon>
-              <div>Related Products</div>
-              <div class="container-shell">
-                <img class="image" [routerLink]="'/products/' + product.id"
-                     [src]="product.product_image"
-                     *ngFor="let product of getGenreProducts()"
-                     alt="Product Image" width="80px" height="80px">
+            <div>
+              <div *ngIf="relatedProducts.length > 0">
+                <h3>Related Products:</h3>
+                <div class="related-products">
+                  <div *ngFor="let relatedProduct of relatedProducts" class="related-product">
+                    <img [src]="relatedProduct.product_image" alt="Product Image" width="150px"
+                        >
+                  </div>
+                </div>
               </div>
+              <div *ngIf="relatedProducts.length === 0">
+                <p>No related products found.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -30,3 +38,5 @@
   </div>
 
 </mat-card>
+
+

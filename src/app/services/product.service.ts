@@ -1,5 +1,15 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, catchError, combineLatest, EMPTY, map, Observable, shareReplay, throwError} from "rxjs";
+import {
+  BehaviorSubject,
+  catchError,
+  combineLatest,
+  EMPTY,
+  map,
+  Observable,
+  shareReplay, Subject,
+  takeUntil,
+  throwError
+} from "rxjs";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {Product} from "../models/product";
 import {GenreService} from "./genre.service";
@@ -14,7 +24,13 @@ export class ProductService {
 
   constructor(private firestore: AngularFirestore,
               private genreService: GenreService,
-              private brandService: BrandService) {}
+              private brandService: BrandService) {
+    this.brandSelectedSubject.pipe(takeUntil(this.unsubscribe$)).subscribe();
+    this.genreSelectedSubject.pipe(takeUntil(this.unsubscribe$)).subscribe();
+  }
+
+  private unsubscribe$: Subject<void> = new Subject<void>();
+
 
   getProducts(): Observable<any[]> {
     return this.firestore.collection('products',).valueChanges();
@@ -63,9 +79,6 @@ export class ProductService {
     });
   }
 
-
-
-
   // Observable for retrieving products from the mock API
   products$: Observable<Product[]> = this.getProducts()
   // Observables for genre and brand data from their respective services
@@ -82,7 +95,7 @@ export class ProductService {
   optionBrandSelected(selectedBrandId: number) {
     this.brandSelectedSubject.next(0);
     this.genreSelectedSubject.next(0);
-    this.brandSelectedSubject.next(+selectedBrandId); // emit the selected brand id
+    this.brandSelectedSubject.next(+selectedBrandId);
   }
 
   // Subject and Observable for selected brand
@@ -109,6 +122,7 @@ export class ProductService {
     this.brandSelectedSubject.next(0);
     this.genreSelectedSubject.next(0);
     this.genreSelectedSubject.next(+selectedGenreId);
+
   }
 
   // Subject and Observable for selected genre
@@ -164,6 +178,18 @@ export class ProductService {
 
   getFilteredProductCollection() {
     return this.productsArrayFiltered$
+  }
+
+  getRelatedProducts(genreId: number): Observable<Product[]> {
+    // Query the Firestore collection to get products with the same genreId
+    return this.firestore.collection<Product>('products', ref =>
+      ref.where('genreId', '==', genreId)
+    ).valueChanges();
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next(); // Emit a signal to unsubscribe
+    this.unsubscribe$.complete(); // Complete the unsubscribe$ subject
   }
 
 }

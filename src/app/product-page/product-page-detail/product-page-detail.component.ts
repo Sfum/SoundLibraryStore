@@ -12,13 +12,11 @@ import {Genre} from "../../models/genre";
 export class ProductPageDetailComponent  implements OnInit {
   getId: any;
   product!: Product | undefined;
-
-  @Input() genre!: Genre;
-  @Input() products!: Product[] | null;
+  relatedProducts: Product[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService,
+    private productService: ProductService
   ) {
     this.getId = this.route.snapshot.paramMap.get('id');
   }
@@ -29,12 +27,13 @@ export class ProductPageDetailComponent  implements OnInit {
     if (productId) {
       this.productService.getProduct(productId).subscribe(product => {
         this.product = product;
+        if (product) {
+          // Fetch related products based on genreId
+          this.productService.getRelatedProducts(product.genreId).subscribe(products => {
+            this.relatedProducts = products.filter(p => p.id !== productId); // Exclude current product
+          });
+        }
       });
     }
-  }
-
-  getGenreProducts(): Product[] {
-    if (!this.products || !this.genre) return [];
-    return this.products.filter(product => product.genreId === this.genre.id);
   }
 }
