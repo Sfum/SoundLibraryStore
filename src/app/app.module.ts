@@ -65,6 +65,7 @@ import {MatPaginator} from "@angular/material/paginator";
 
 import {ProductFilterComponent} from "./product-filter/product-filter.component";
 import {ProductFilterDetailComponent} from "./product-filter/product-filter-detail/product-filter-detail.component";
+import {ProductPageDetailComponent} from "./product-page/product-page-detail/product-page-detail.component";
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import {ProductFilterDetailComponent} from "./product-filter/product-filter-deta
     LogoutComponent,
     ProductListComponent,
     ProductFilterComponent,
-    ProductFilterDetailComponent
+    ProductFilterDetailComponent,
+    ProductPageDetailComponent
 
   ],
   imports: [

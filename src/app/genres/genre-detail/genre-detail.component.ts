@@ -15,5 +15,4 @@ export class GenreDetailComponent {
   getGenreProducts(): Product[] {
     return this.products?.filter(product => product.genreId === this.genre.id) || [];
   }
-
 }

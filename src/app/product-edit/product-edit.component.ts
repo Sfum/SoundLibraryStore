@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../services/product.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Observable} from "rxjs";
+import {Product} from "../models/product";
 
 @Component({
   selector: 'app-product-edit',
@@ -15,6 +17,9 @@ export class ProductEditComponent implements OnInit {
 
   selectedBrandId: number | undefined;
   selectedGenreId: number | undefined;
+  productEdit$: Observable<Product[]> | undefined;
+  brands$ = this.productService.brands$
+  genres$ = this.productService.genres$
 
   constructor(
     private fb: FormBuilder,
@@ -35,9 +40,10 @@ export class ProductEditComponent implements OnInit {
       in_bundle: ['', Validators.required],
 
     });
+    this.productEdit$ = this.productService.getFilteredProductCollection();
+
   }
 
-  productEdit$ = this.productService.products$
 
   ngOnInit(): void {
     // @ts-ignore

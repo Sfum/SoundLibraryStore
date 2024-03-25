@@ -17,33 +17,16 @@
   <textarea id="productDescription" formControlName="product_description" required></textarea>
 
   <mat-form-field class="form-control">
-    <mat-label> Select Brand </mat-label>
-    <mat-select
-      [(value)]="selectedBrandId"
-      (change)="optionBrandSelected($any($event.target).value)"
-      formControlName="brandId"
-    >
-      <mat-option
-        *ngFor="let element of asyncFilterPipe"
-        [value]="element.id"
-      >
-        {{ element.brandId }}
-      </mat-option>
+    <mat-label>Select Brand</mat-label>
+    <mat-select formControlName="brandId" (selectionChange)="optionBrandSelected($event.value)">
+      <mat-option *ngFor="let brand of brands$ | async" [value]="brand.id">{{ brand.brand_name }}</mat-option>
     </mat-select>
   </mat-form-field>
+
   <mat-form-field class="form-control">
-    <mat-label> Select Genre </mat-label>
-    <mat-select
-      [(value)]="selectedGenreId"
-      (change)="optionGenreSelected($any($event.target).value)"
-      formControlName="genreId"
-    >
-      <mat-option
-        *ngFor="let element of asyncFilterPipe"
-        [value]="element.id"
-      >
-        {{ element.genreId }}
-      </mat-option>
+    <mat-label>Select Genre</mat-label>
+    <mat-select formControlName="genreId" (selectionChange)="optionGenreSelected($event.value)">
+      <mat-option *ngFor="let genre of genres$ | async" [value]="genre.id">{{ genre.genre_name }}</mat-option>
     </mat-select>
   </mat-form-field>
 

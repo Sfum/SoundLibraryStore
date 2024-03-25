@@ -38,8 +38,4 @@ export class ProductListComponent  implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
   }
-
-  onCreateProduct() {
-    this.router.navigate(['/create-product'])
-  }
 }
