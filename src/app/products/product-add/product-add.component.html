@@ -1,7 +1,7 @@
 <app-navigation-bar></app-navigation-bar>
 <div class="container margin-auto font-primary">Add New Product</div>
 
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="productForm" (ngSubmit)="onSubmitWithDebounce()">
 
   <label for="productName" class="font-secondary">Product Name:</label>
   <input type="text" id="productName" formControlName="product_name" required>
@@ -12,11 +12,19 @@
   <label for="productDescription" class="font-secondary">Product Description:</label>
   <textarea id="productDescription" formControlName="product_description" required></textarea>
 
-  <label for="brandId" class="font-small">Brand:</label>
-  <input type="number" id="brandId" formControlName="brandId" required>
+  <mat-form-field class="form-control">
+    <mat-label>Select Brand</mat-label>
+    <mat-select formControlName="brandId" (selectionChange)="optionBrandSelected($event.value)">
+      <mat-option *ngFor="let brand of brands$ | async" [value]="brand.id">{{ brand.brand_name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-  <label for="genreId" class="font-small">Genre:</label>
-  <input type="number" id="genreId" formControlName="genreId" required>
+  <mat-form-field class="form-control">
+    <mat-label>Select Genre</mat-label>
+    <mat-select formControlName="genreId" (selectionChange)="optionGenreSelected($event.value)">
+      <mat-option *ngFor="let genre of genres$ | async" [value]="genre.id">{{ genre.genre_name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <label for="productImage" class="font-small">Product Image URL:</label>
   <input type="text" id="productImage" formControlName="product_image" required>

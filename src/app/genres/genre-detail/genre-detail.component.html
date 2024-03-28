@@ -1,17 +1,13 @@
-<div class="container-shell">
-<mat-card class="container">
-  <div class="container-card">
-    <div class="info-text">
+<div class="container-card mat-elevation-z24">
+    <mat-card class="info-text">
     <h2>{{ genre?.genre_name }}</h2>
     <h4>{{ genre?.genre_description | slice: 1:200 }}...read more</h4>
-    </div>
+    </mat-card>
 
-    <div class="product-card">
+    <mat-card class="product-card">
       <img class="image" [routerLink]="'/products/' + product.id"
            [src]="product.product_image"
            *ngFor="let product of getGenreProducts()"
            alt="Product Image" width="80px" height="80px">
-    </div>
-  </div>
-</mat-card>
+    </mat-card>
 </div>

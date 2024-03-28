@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {Observable} from "rxjs";
-import {Brand} from "../models/brand";
-import {Genre} from "../models/genre";
-import {ProductService} from "../services/product.service";
-import {BrandService} from "../services/brand.service";
-import {GenreService} from "../services/genre.service";
+import {Brand} from "../../models/brand";
+import {Genre} from "../../models/genre";
+import {ProductService} from "../../services/product.service";
+import {BrandService} from "../../services/brand.service";
+import {GenreService} from "../../services/genre.service";
 
 @Component({
   selector: 'app-product-filter',

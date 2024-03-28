@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ProductService} from "../services/product.service";
+import {ProductService} from "../../services/product.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {Router} from "@angular/router";
+import { debounceTime } from 'rxjs/operators';
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-product-add',
@@ -11,8 +13,13 @@ import {Router} from "@angular/router";
 })
 export class ProductAddComponent implements OnInit {
 
+  private onSubmitSubject = new Subject();
+
   productForm: FormGroup;
   productId: string | undefined;
+
+  brands$ = this.productService.brands$
+  genres$ = this.productService.genres$
 
   constructor(private fb: FormBuilder,
               private productService: ProductService,
@@ -27,14 +34,24 @@ export class ProductAddComponent implements OnInit {
       genreId: ['', Validators.required],
       product_image: ['', Validators.required],
     });
+
+    this.onSubmitSubject.pipe(
+      debounceTime(1000)
+    ).subscribe(() => {
+      this.onSubmit();
+    });
   }
 
   ngOnInit() {
     this.productId = this.afs.createId()
   }
 
-  onSubmit() {
+  onSubmitWithDebounce() {
+    // @ts-ignore
+    this.onSubmitSubject.next();
+  }
 
+  onSubmit() {
     if (this.productForm.valid) {
       const productData = this.productForm.value;
       this.productService.addProduct(productData).then(() => {
@@ -49,4 +66,12 @@ export class ProductAddComponent implements OnInit {
       console.log('Form is invalid. Please fill in all required fields.');
     }
   }
+  optionBrandSelected(selectedSupplierId: number) {
+    return this.productService.optionBrandSelected(selectedSupplierId);
+  }
+
+  optionGenreSelected(selectedCategoryId: number) {
+    return this.productService.optionGenreSelected(selectedCategoryId);
+  }
+
 }

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Observable} from "rxjs";
-import {Brand} from "../../models/brand";
-import {Genre} from "../../models/genre";
+import {Brand} from "../../../models/brand";
+import {Genre} from "../../../models/genre";
 import {Router} from "@angular/router";
 import firebase from "firebase/compat";
 

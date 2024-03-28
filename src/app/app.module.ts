@@ -17,8 +17,8 @@ import {AngularFireDatabaseModule} from '@angular/fire/compat/database';
 
 import {CommonModule} from "@angular/common";
 
-import {ProductCardComponent} from "./product-card/product-card.component";
-import {ProductCardDetailComponent} from "./product-card/product-card-detail/product-card-detail.component";
+import {ProductCardComponent} from "./products/product-card/product-card.component";
+import {ProductCardDetailComponent} from "./products/product-card/product-card-detail/product-card-detail.component";
 import {MatButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {NavigationBarComponent} from "./shared/navigation-bar/navigation-bar.component";
@@ -30,9 +30,9 @@ import {BrandsComponent} from "./brands/brands.component";
 import {BundlesComponent} from "./bundles/bundles.component";
 import {FormatsComponent} from "./formats/formats.component";
 
-import {ProductAddComponent} from "./product-add/product-add.component";
-import {ProductEditComponent} from "./product-edit/product-edit.component";
-import {ProductPageComponent} from "./product-page/product-page.component";
+import {ProductAddComponent} from "./products/product-add/product-add.component";
+import {ProductEditComponent} from "./products/product-edit/product-edit.component";
+import {ProductPageComponent} from "./products/product-page/product-page.component";
 
 import {ProviderComponent} from "./provider/provider.component";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
@@ -51,7 +51,7 @@ import {SignupComponent} from "./auth/signup/signup.component";
 import {LogoutComponent} from "./auth/logout/logout.component";
 
 import { MatDialogModule } from '@angular/material/dialog';
-import {ProductListComponent} from "./product-list/product-list.component";
+import {ProductListComponent} from "./products/product-list/product-list.component";
 import {
   MatCell, MatCellDef,
   MatColumnDef,
@@ -63,9 +63,9 @@ import {
 } from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 
-import {ProductFilterComponent} from "./product-filter/product-filter.component";
-import {ProductFilterDetailComponent} from "./product-filter/product-filter-detail/product-filter-detail.component";
-import {ProductPageDetailComponent} from "./product-page/product-page-detail/product-page-detail.component";
+import {ProductFilterComponent} from "./products/product-filter/product-filter.component";
+import {ProductFilterDetailComponent} from "./products/product-filter/product-filter-detail/product-filter-detail.component";
+import {ProductPageDetailComponent} from "./products/product-page/product-page-detail/product-page-detail.component";
 
 @NgModule({
   declarations: [

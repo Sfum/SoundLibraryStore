@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ProductPageComponent} from "./product-page/product-page.component";
-import {ProductEditComponent} from "./product-edit/product-edit.component";
-import {ProductAddComponent} from "./product-add/product-add.component";
+import {ProductPageComponent} from "./products/product-page/product-page.component";
+import {ProductEditComponent} from "./products/product-edit/product-edit.component";
+import {ProductAddComponent} from "./products/product-add/product-add.component";
 import {WishlistComponent} from "./wishlist/wishlist.component";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {LoginComponent} from "./auth/login/login.component";
@@ -14,7 +14,7 @@ import {ProviderComponent} from "./provider/provider.component";
 import {BrandsComponent} from "./brands/brands.component";
 import {HomeComponent} from "./home/home.component";
 import {LogoutComponent} from "./auth/logout/logout.component";
-import {ProductPageDetailComponent} from "./product-page/product-page-detail/product-page-detail.component";
+import {ProductPageDetailComponent} from "./products/product-page/product-page-detail/product-page-detail.component";
 // import {AuthGuard} from "@angular/fire/auth-guard";
 
 const routes: Routes = [
