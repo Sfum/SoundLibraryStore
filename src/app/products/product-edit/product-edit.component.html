@@ -1,9 +1,8 @@
 <app-navigation-bar></app-navigation-bar>
 
 <div class="container margin-auto font-primary">Edit Product</div>
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()"
-      *ngIf="(productEdit$ | async) as asyncFilterPipe">
 
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" *ngIf="(productEdit$ | async) as asyncFilterPipe">
   <label for="id">ID:</label>
   <input matInput type="text" id="id" formControlName="id" required>
 
@@ -33,9 +32,8 @@
   <label for="productImage">Product Image URL:</label>
   <input matInput type="text" id="productImage" formControlName="product_image" required>
 
-  <label for="productBundle">Bundle?:</label>
-  <input matInput type="text" id="productBundle" formControlName="in_bundle" required>
+  <!-- Toggle for in_bundle property -->
+  <mat-slide-toggle formControlName="in_bundle">Is it part of a bundle?</mat-slide-toggle>
 
   <button mat-raised-button [disabled]="productForm.invalid">Update Product</button>
 </form>
-

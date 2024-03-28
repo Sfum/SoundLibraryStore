@@ -66,6 +66,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {ProductFilterComponent} from "./products/product-filter/product-filter.component";
 import {ProductFilterDetailComponent} from "./products/product-filter/product-filter-detail/product-filter-detail.component";
 import {ProductPageDetailComponent} from "./products/product-page/product-page-detail/product-page-detail.component";
+import {MatSlideToggle} from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -133,6 +134,7 @@ import {ProductPageDetailComponent} from "./products/product-page/product-page-d
     MatCellDef,
     MatHeaderRowDef,
     MatRowDef,
+    MatSlideToggle,
 
 
   ],
