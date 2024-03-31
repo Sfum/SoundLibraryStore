@@ -15,6 +15,7 @@ import {BrandsComponent} from "./brands/brands.component";
 import {HomeComponent} from "./home/home.component";
 import {LogoutComponent} from "./auth/logout/logout.component";
 import {ProductPageDetailComponent} from "./products/product-page/product-page-detail/product-page-detail.component";
+import {BrandAddComponent} from "./brands/brand-add/brand-add.component";
 // import {AuthGuard} from "@angular/fire/auth-guard";
 
 const routes: Routes = [
@@ -26,8 +27,9 @@ const routes: Routes = [
   {path: 'bundles', component: BundlesComponent},
   {path: 'provider', component: ProviderComponent},
   {path: 'products/:id', component: ProductPageDetailComponent},
-  {path: 'edit/:id', component: ProductEditComponent},
   {path: 'add-product', component: ProductAddComponent},
+  {path: 'edit/:id', component: ProductEditComponent},
+  {path: 'add-brand', component: BrandAddComponent},
   {path: 'wishlist', component: WishlistComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
   {path: 'login', component: LoginComponent},

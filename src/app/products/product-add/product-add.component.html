@@ -29,6 +29,8 @@
   <label for="productImage" class="font-small">Product Image URL:</label>
   <input type="text" id="productImage" formControlName="product_image" required>
 
+  <mat-slide-toggle formControlName="in_bundle">Is it part of a bundle?</mat-slide-toggle>
+
   <button type="submit" mat-raised-button>Add Product</button>
 <!--          [disabled]="productForm.invalid"-->
 

@@ -33,6 +33,7 @@ export class ProductAddComponent implements OnInit {
       brandId: ['', Validators.required],
       genreId: ['', Validators.required],
       product_image: ['', Validators.required],
+      in_bundle: ['', Validators.required],
     });
 
     this.onSubmitSubject.pipe(

@@ -67,6 +67,12 @@ import {ProductFilterComponent} from "./products/product-filter/product-filter.c
 import {ProductFilterDetailComponent} from "./products/product-filter/product-filter-detail/product-filter-detail.component";
 import {ProductPageDetailComponent} from "./products/product-page/product-page-detail/product-page-detail.component";
 import {MatSlideToggle} from "@angular/material/slide-toggle";
+import {BrandListComponent} from "./brands/brand-list/brand-list.component";
+import {GenreEditComponent} from "./genres/genre-edit/genre-edit.component";
+import {BrandAddComponent} from "./brands/brand-add/brand-add.component";
+import {GenreAddComponent} from "./genres/genre-add/genre-add.component";
+import {BrandEditComponent} from "./brands/brand-edit/brand-edit.component";
+import {GenreListComponent} from "./genres/genre-list/genre-list.component";
 
 @NgModule({
   declarations: [
@@ -96,7 +102,11 @@ import {MatSlideToggle} from "@angular/material/slide-toggle";
     ProductListComponent,
     ProductFilterComponent,
     ProductFilterDetailComponent,
-    ProductPageDetailComponent
+    ProductPageDetailComponent,
+    BrandAddComponent,
+    GenreAddComponent,
+    BrandEditComponent,
+    GenreListComponent
 
   ],
   imports: [
@@ -135,6 +145,7 @@ import {MatSlideToggle} from "@angular/material/slide-toggle";
     MatHeaderRowDef,
     MatRowDef,
     MatSlideToggle,
+    GenreEditComponent,
 
 
   ],

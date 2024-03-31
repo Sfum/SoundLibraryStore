@@ -181,9 +181,14 @@ export class ProductService {
   }
 
   getRelatedProducts(genreId: number): Observable<Product[]> {
-    // Query the Firestore collection to get products with the same genreId
     return this.firestore.collection<Product>('products', ref =>
       ref.where('genreId', '==', genreId)
+    ).valueChanges();
+  }
+
+  getSameBrandProducts(brandId: number): Observable<Product[]> {
+    return this.firestore.collection<Product>('brands', ref =>
+      ref.where('brandId', '==', brandId)
     ).valueChanges();
   }
 
