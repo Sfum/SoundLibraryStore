@@ -106,7 +106,8 @@ import {GenreListComponent} from "./genres/genre-list/genre-list.component";
     BrandAddComponent,
     GenreAddComponent,
     BrandEditComponent,
-    GenreListComponent
+    GenreListComponent,
+    BrandListComponent
 
   ],
   imports: [

@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ProductPageComponent} from "./products/product-page/product-page.component";
 import {ProductEditComponent} from "./products/product-edit/product-edit.component";
 import {ProductAddComponent} from "./products/product-add/product-add.component";
 import {WishlistComponent} from "./wishlist/wishlist.component";
@@ -16,6 +15,7 @@ import {HomeComponent} from "./home/home.component";
 import {LogoutComponent} from "./auth/logout/logout.component";
 import {ProductPageDetailComponent} from "./products/product-page/product-page-detail/product-page-detail.component";
 import {BrandAddComponent} from "./brands/brand-add/brand-add.component";
+import {BrandEditComponent} from "./brands/brand-edit/brand-edit.component";
 // import {AuthGuard} from "@angular/fire/auth-guard";
 
 const routes: Routes = [
@@ -30,6 +30,7 @@ const routes: Routes = [
   {path: 'add-product', component: ProductAddComponent},
   {path: 'edit/:id', component: ProductEditComponent},
   {path: 'add-brand', component: BrandAddComponent},
+  {path: 'brand-edit/:id', component: BrandEditComponent},
   {path: 'wishlist', component: WishlistComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
   {path: 'login', component: LoginComponent},

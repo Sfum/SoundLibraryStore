@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {BrandService} from "../../services/brand.service";
 import {Brand} from "../../models/brand";
-import {MatCard} from "@angular/material/card";
-import {MatInput} from "@angular/material/input";
 
 @Component({
   selector: 'app-brand-add',

@@ -1,1 +1,16 @@
-<p>brand-edit works!</p>
+<app-navigation-bar></app-navigation-bar>
+
+<div class="container margin-auto font-primary">Edit Brand</div>
+
+<form [formGroup]="brandForm" (ngSubmit)="onSubmit()" *ngIf="(brandEdit$ | async) as asyncFilterPipe">
+  <label for="id">ID:</label>
+  <input matInput type="text" id="id" formControlName="id" required>
+
+  <label for="brand_name">Brand Name:</label>
+  <input matInput type="text" id="brand_name" formControlName="brand_name" required>
+
+  <label for="brand_description">Brand Title:</label>
+  <input matInput type="text" id="brand_description" formControlName="brand_description" required>
+
+  <button mat-raised-button>Update Brand</button>
+</form>

@@ -1,1 +1,37 @@
-<p>brand-list works!</p>
+
+<div class="container">
+  <div class="button_wrapper">
+    <button mat-raised-button [routerLink]="['/add-brand']">Create Brand</button>
+  </div>
+  <mat-table [dataSource]="dataSource" >
+    <!-- Brand ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Brand ID </mat-header-cell>
+      <mat-cell class="cell_hover" *matCellDef="let brand" [routerLink]="['/', 'brand-edit', brand.id]"> {{ brand.id }} </mat-cell>
+    </ng-container>
+
+    <!-- Brand Name Column -->
+    <ng-container matColumnDef="brand_name">
+      <mat-header-cell *matHeaderCellDef> Brand Name </mat-header-cell>
+      <mat-cell class="cell_hover" *matCellDef="let brand" [routerLink]="['/', 'brand-edit', brand.id]"> {{ brand.brand_name }} </mat-cell>
+    </ng-container>
+
+    <!-- Brand Name Column -->
+    <ng-container matColumnDef="brand_description">
+      <mat-header-cell *matHeaderCellDef> Brand Description </mat-header-cell>
+      <mat-cell class="cell_hover" *matCellDef="let brand" [routerLink]="['/', 'brand-edit', brand.id]"> {{ brand.brand_description | slice: 0: 70 }}...read more </mat-cell>
+    </ng-container>
+
+
+<!--    <ng-container matColumnDef="brand_image">-->
+<!--      <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>-->
+<!--      <mat-cell *matCellDef="let brand"><img [src]="brand.brand_image" alt="Brand Image" style="max-width: 100px; max-height: 100px;">-->
+<!--      </mat-cell>-->
+<!--    </ng-container>-->
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons=""></mat-paginator>
+</div>
