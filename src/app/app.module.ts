@@ -74,6 +74,8 @@ import {GenreAddComponent} from "./genres/genre-add/genre-add.component";
 import {BrandEditComponent} from "./brands/brand-edit/brand-edit.component";
 import {GenreListComponent} from "./genres/genre-list/genre-list.component";
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,7 +109,9 @@ import {GenreListComponent} from "./genres/genre-list/genre-list.component";
     GenreAddComponent,
     BrandEditComponent,
     GenreListComponent,
-    BrandListComponent
+    BrandListComponent,
+    GenreListComponent,
+    GenreEditComponent
 
   ],
   imports: [
@@ -145,9 +149,7 @@ import {GenreListComponent} from "./genres/genre-list/genre-list.component";
     MatCellDef,
     MatHeaderRowDef,
     MatRowDef,
-    MatSlideToggle,
-    GenreEditComponent,
-
+    MatSlideToggle
 
   ],
   providers: [

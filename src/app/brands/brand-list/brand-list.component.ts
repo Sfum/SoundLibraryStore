@@ -1,8 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
-import {Product} from "../../models/product";
 import {MatPaginator} from "@angular/material/paginator";
-import {ProductService} from "../../services/product.service";
 import {Router} from "@angular/router";
 import {Brand} from "../../models/brand";
 import {BrandService} from "../../services/brand.service";
@@ -25,8 +23,7 @@ export class BrandListComponent implements OnInit {
   // @ts-ignore
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private brandService: BrandService,
-              private router: Router) {}
+  constructor(private brandService: BrandService) {}
 
   ngOnInit(): void {
     this.brandService.getBrands().subscribe((brands) => {

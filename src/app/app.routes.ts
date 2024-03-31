@@ -16,6 +16,8 @@ import {LogoutComponent} from "./auth/logout/logout.component";
 import {ProductPageDetailComponent} from "./products/product-page/product-page-detail/product-page-detail.component";
 import {BrandAddComponent} from "./brands/brand-add/brand-add.component";
 import {BrandEditComponent} from "./brands/brand-edit/brand-edit.component";
+import {GenreEditComponent} from "./genres/genre-edit/genre-edit.component";
+import {GenreAddComponent} from "./genres/genre-add/genre-add.component";
 // import {AuthGuard} from "@angular/fire/auth-guard";
 
 const routes: Routes = [
@@ -31,6 +33,8 @@ const routes: Routes = [
   {path: 'edit/:id', component: ProductEditComponent},
   {path: 'add-brand', component: BrandAddComponent},
   {path: 'brand-edit/:id', component: BrandEditComponent},
+  {path: 'add-genre', component: GenreAddComponent},
+  {path: 'genre-edit/:id', component: GenreEditComponent},
   {path: 'wishlist', component: WishlistComponent},
   {path: 'shopping-cart', component: ShoppingCartComponent},
   {path: 'login', component: LoginComponent},

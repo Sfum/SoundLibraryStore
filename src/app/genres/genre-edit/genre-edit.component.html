@@ -1,1 +1,16 @@
-<p>genre-edit works!</p>
+<app-navigation-bar></app-navigation-bar>
+
+<div class="container margin-auto font-primary">Edit Genre</div>
+
+<form [formGroup]="genreForm" (ngSubmit)="onSubmit()" *ngIf="(genreEdit$ | async) as asyncFilterPipe">
+  <label for="id">ID:</label>
+  <input matInput type="text" id="id" formControlName="id" required>
+
+  <label for="genre_name">Genre Name:</label>
+  <input matInput type="text" id="genre_name" formControlName="genre_name" required>
+
+  <label for="genre_description">Genre Title:</label>
+  <input matInput type="text" id="genre_description" formControlName="genre_description" required>
+
+  <button mat-raised-button>Update Genre</button>
+</form>

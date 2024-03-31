@@ -24,11 +24,11 @@ export class ProductFilterDetailComponent {
   constructor(public router: Router) {
   }
 
-  optionBrandSelected(selectedBrandId: number) {
+  optionBrandSelected(selectedBrandId: string) {
     this.brandSelectedEvent.emit(selectedBrandId);
   }
 
-  optionGenreSelected(selectedGenreId: number) {
+  optionGenreSelected(selectedGenreId: string) {
     this.genreSelectedEvent.emit(selectedGenreId);
   }
 }

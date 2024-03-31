@@ -1,1 +1,36 @@
-<p>genre-list works!</p>
+
+<div class="container">
+  <div class="button_wrapper">
+    <button mat-raised-button [routerLink]="['/add-genre']">Create Genre</button>
+  </div>
+  <mat-table [dataSource]="dataSource" >
+    <!-- Genre ID Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Genre ID </mat-header-cell>
+      <mat-cell class="cell_hover" *matCellDef="let genre" [routerLink]="['/', 'genre-edit', genre.id]"> {{ genre.id }} </mat-cell>
+    </ng-container>
+
+    <!-- Genre Name Column -->
+    <ng-container matColumnDef="genre_name">
+      <mat-header-cell *matHeaderCellDef> Genre Name </mat-header-cell>
+      <mat-cell class="cell_hover" *matCellDef="let genre" [routerLink]="['/', 'genre-edit', genre.id]"> {{ genre.genre_name }} </mat-cell>
+    </ng-container>
+
+    <!-- Genre Name Column -->
+    <ng-container matColumnDef="genre_description">
+      <mat-header-cell *matHeaderCellDef> Genre Description </mat-header-cell>
+      <mat-cell class="cell_hover" *matCellDef="let genre" [routerLink]="['/', 'genre-edit', genre.id]"> {{ genre.genre_description | slice: 0: 70 }}...read more </mat-cell>
+    </ng-container>
+
+    <!--    <ng-container matColumnDef="genre_image">-->
+    <!--      <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>-->
+    <!--      <mat-cell *matCellDef="let genre"><img [src]="genre.genre_image" alt="Genre Image" style="max-width: 100px; max-height: 100px;">-->
+    <!--      </mat-cell>-->
+    <!--    </ng-container>-->
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons=""></mat-paginator>
+</div>

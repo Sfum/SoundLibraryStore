@@ -47,7 +47,8 @@ export class BrandEditComponent implements OnInit {
     this.brandService.getBrand(this.brandId).subscribe(
       (brand) => {
         if (brand) {
-          this.brandForm.patchValue(brand);
+          const { id, ...brandData } = brand;
+          this.brandForm.patchValue(brandData);
         } else {
           console.error('Brand not found');
         }
