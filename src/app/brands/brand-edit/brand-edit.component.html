@@ -3,8 +3,6 @@
 <div class="container margin-auto font-primary">Edit Brand</div>
 
 <form [formGroup]="brandForm" (ngSubmit)="onSubmit()" *ngIf="(brandEdit$ | async) as asyncFilterPipe">
-  <label for="id">ID:</label>
-  <input matInput type="text" id="id" formControlName="id" required>
 
   <label for="brand_name">Brand Name:</label>
   <input matInput type="text" id="brand_name" formControlName="brand_name" required>

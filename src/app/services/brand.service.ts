@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {catchError, Observable, throwError} from "rxjs";
 import {Brand} from "../models/brand";
+import {Product} from "../models/product";
 
 @Injectable({
   providedIn: 'root'
@@ -31,12 +32,18 @@ export class BrandService {
     return new Promise<void>((resolve, reject) => {
       this.firestore.collection('brands')
         .add(brand)
-        .then(() => {
-          resolve();
-        })
-        .catch(error => {
-          reject(error);
-        });
+        .then(ref => {
+          brand._id = String(+ref.id);
+          this.firestore.collection('brands')
+            .doc(ref.id).update({_id: ref.id})
+            .then(() => {
+              resolve()
+            }).catch(error => {
+            reject(error);
+          });
+        }).catch(error => {
+        reject(error);
+      });
     });
   }
   updateBrand(brandId: string, brand: Brand): Observable<void> {

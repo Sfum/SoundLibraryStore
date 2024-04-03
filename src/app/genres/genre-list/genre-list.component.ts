@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {Router} from "@angular/router";
 import {Genre} from "../../models/genre";
 import {GenreService} from "../../services/genre.service";
 

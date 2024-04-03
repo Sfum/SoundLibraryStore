@@ -16,6 +16,7 @@ export class BrandAddComponent implements OnInit {
               private brandService: BrandService) {
 
     this.brandForm = this.formBuilder.group({
+      _id: [''],
       id: ['', Validators.required],
       brand_name: ['', Validators.required],
       brand_description: ['', Validators.required]
@@ -28,6 +29,7 @@ export class BrandAddComponent implements OnInit {
   onSubmit(): void {
     if (this.brandForm.valid) {
       const newBrand: Brand = {
+        _id: this.brandForm.value._id,
         id: this.brandForm.value.id,
         brand_name: this.brandForm.value.brand_name,
         brand_description: this.brandForm.value.brand_description

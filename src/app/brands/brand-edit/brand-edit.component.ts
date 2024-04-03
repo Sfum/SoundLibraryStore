@@ -25,8 +25,6 @@ export class BrandEditComponent implements OnInit {
 
   ) {
     this.brandForm = this.fb.group({
-
-      id: ['', Validators.required],
       brand_name: ['', Validators.required],
       brand_description: ['', Validators.required],
 
@@ -38,7 +36,7 @@ export class BrandEditComponent implements OnInit {
 
   ngOnInit(): void {
     // @ts-ignore
-    this.brandId = this.route.snapshot.paramMap.get('id');
+    this.brandId = this.route.snapshot.paramMap.get('_id');
     this.loadBrand();
   }
 

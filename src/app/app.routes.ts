@@ -32,7 +32,7 @@ const routes: Routes = [
   {path: 'add-product', component: ProductAddComponent},
   {path: 'edit/:id', component: ProductEditComponent},
   {path: 'add-brand', component: BrandAddComponent},
-  {path: 'brand-edit/:id', component: BrandEditComponent},
+  {path: 'brand-edit/:_id', component: BrandEditComponent},
   {path: 'add-genre', component: GenreAddComponent},
   {path: 'genre-edit/:id', component: GenreEditComponent},
   {path: 'wishlist', component: WishlistComponent},

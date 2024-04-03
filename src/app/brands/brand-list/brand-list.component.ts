@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {Router} from "@angular/router";
 import {Brand} from "../../models/brand";
 import {BrandService} from "../../services/brand.service";
 
@@ -12,6 +11,7 @@ import {BrandService} from "../../services/brand.service";
 })
 export class BrandListComponent implements OnInit {
   displayedColumns: string[] = [
+    '_id',
     'id',
     'brand_name',
     'brand_description',
