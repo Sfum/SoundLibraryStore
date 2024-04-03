@@ -16,6 +16,7 @@ export class GenreAddComponent implements OnInit {
               private genreService: GenreService) {
 
     this.genreForm = this.formBuilder.group({
+      _id: [''],
       id: ['', Validators.required],
       genre_name: ['', Validators.required],
       genre_description: ['', Validators.required]
@@ -28,6 +29,7 @@ export class GenreAddComponent implements OnInit {
   onSubmit(): void {
     if (this.genreForm.valid) {
       const newGenre: Genre = {
+        _id: this.genreForm.value._id,
         id: this.genreForm.value.id,
         genre_name: this.genreForm.value.genre_name,
         genre_description: this.genreForm.value.genre_description

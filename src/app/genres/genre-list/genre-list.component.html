@@ -4,22 +4,28 @@
     <button mat-raised-button [routerLink]="['/add-genre']">Create Genre</button>
   </div>
   <mat-table [dataSource]="dataSource" >
-    <!-- Genre ID Column -->
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> Genre ID </mat-header-cell>
-      <mat-cell class="cell_hover" *matCellDef="let genre" [routerLink]="['/', 'genre-edit', genre.id]"> {{ genre.id }} </mat-cell>
-    </ng-container>
+
+<!--    <ng-container matColumnDef="_id">-->
+<!--      <mat-header-cell *matHeaderCellDef> Firebase ID </mat-header-cell>-->
+<!--      <mat-cell class="cell_hover" *matCellDef="let genre" [routerLink]="['/', 'genre-edit', genre._id]"> {{ genre._id }} </mat-cell>-->
+<!--    </ng-container>-->
+
+<!--    &lt;!&ndash; Genre ID Column &ndash;&gt;-->
+<!--    <ng-container matColumnDef="id">-->
+<!--      <mat-header-cell *matHeaderCellDef> Genre ID </mat-header-cell>-->
+<!--      <mat-cell class="cell_hover" *matCellDef="let genre" [routerLink]="['/', 'genre-edit', genre._id]"> {{ genre.id }} </mat-cell>-->
+<!--    </ng-container>-->
 
     <!-- Genre Name Column -->
     <ng-container matColumnDef="genre_name">
       <mat-header-cell *matHeaderCellDef> Genre Name </mat-header-cell>
-      <mat-cell class="cell_hover" *matCellDef="let genre" [routerLink]="['/', 'genre-edit', genre.id]"> {{ genre.genre_name }} </mat-cell>
+      <mat-cell class="cell_hover" *matCellDef="let genre" [routerLink]="['/', 'genre-edit', genre._id]"> {{ genre.genre_name }} </mat-cell>
     </ng-container>
 
     <!-- Genre Name Column -->
     <ng-container matColumnDef="genre_description">
       <mat-header-cell *matHeaderCellDef> Genre Description </mat-header-cell>
-      <mat-cell class="cell_hover" *matCellDef="let genre" [routerLink]="['/', 'genre-edit', genre.id]"> {{ genre.genre_description | slice: 0: 70 }}...read more </mat-cell>
+      <mat-cell class="cell_hover" *matCellDef="let genre" [routerLink]="['/', 'genre-edit', genre._id]"> {{ genre.genre_description | slice: 0: 70 }}...read more </mat-cell>
     </ng-container>
 
     <!--    <ng-container matColumnDef="genre_image">-->

@@ -11,8 +11,8 @@ import {BrandService} from "../../services/brand.service";
 })
 export class BrandListComponent implements OnInit {
   displayedColumns: string[] = [
-    '_id',
-    'id',
+    // '_id',
+    // 'id',
     'brand_name',
     'brand_description',
   ];

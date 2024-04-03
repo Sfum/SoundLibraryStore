@@ -5,15 +5,15 @@
   </div>
   <mat-table [dataSource]="dataSource" >
 
-    <ng-container matColumnDef="_id">
-      <mat-header-cell *matHeaderCellDef> Firebase ID </mat-header-cell>
-      <mat-cell class="cell_hover" *matCellDef="let brand" [routerLink]="['/', 'brand-edit', brand._id]"> {{ brand._id }} </mat-cell>
-    </ng-container>
+<!--    <ng-container matColumnDef="_id">-->
+<!--      <mat-header-cell *matHeaderCellDef> Firebase ID </mat-header-cell>-->
+<!--      <mat-cell class="cell_hover" *matCellDef="let brand" [routerLink]="['/', 'brand-edit', brand._id]"> {{ brand._id }} </mat-cell>-->
+<!--    </ng-container>-->
 
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> Brand ID </mat-header-cell>
-      <mat-cell class="cell_hover" *matCellDef="let brand" [routerLink]="['/', 'brand-edit', brand._id]"> {{ brand.id }} </mat-cell>
-    </ng-container>
+<!--    <ng-container matColumnDef="id">-->
+<!--      <mat-header-cell *matHeaderCellDef> Brand ID </mat-header-cell>-->
+<!--      <mat-cell class="cell_hover" *matCellDef="let brand" [routerLink]="['/', 'brand-edit', brand._id]"> {{ brand.id }} </mat-cell>-->
+<!--    </ng-container>-->
 
     <!-- Brand Name Column -->
     <ng-container matColumnDef="brand_name">

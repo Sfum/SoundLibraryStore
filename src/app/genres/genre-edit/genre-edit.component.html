@@ -3,8 +3,6 @@
 <div class="container margin-auto font-primary">Edit Genre</div>
 
 <form [formGroup]="genreForm" (ngSubmit)="onSubmit()" *ngIf="(genreEdit$ | async) as asyncFilterPipe">
-  <label for="id">ID:</label>
-  <input matInput type="text" id="id" formControlName="id" required>
 
   <label for="genre_name">Genre Name:</label>
   <input matInput type="text" id="genre_name" formControlName="genre_name" required>

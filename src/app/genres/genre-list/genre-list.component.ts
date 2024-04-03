@@ -11,7 +11,8 @@ import {GenreService} from "../../services/genre.service";
 })
 export class GenreListComponent implements OnInit {
   displayedColumns: string[] = [
-    'id',
+    // '_id',
+    // 'id',
     'genre_name',
     'genre_description',
   ];

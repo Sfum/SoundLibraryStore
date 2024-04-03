@@ -26,8 +26,6 @@ export class GenreEditComponent implements OnInit {
 
   ) {
     this.genreForm = this.fb.group({
-
-      id: ['', Validators.required],
       genre_name: ['', Validators.required],
       genre_description: ['', Validators.required],
 

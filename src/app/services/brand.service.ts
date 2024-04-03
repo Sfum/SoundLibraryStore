@@ -26,8 +26,6 @@ export class BrandService {
       })
     );
   }
-
-
   addBrand(brand: Brand): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       this.firestore.collection('brands')
