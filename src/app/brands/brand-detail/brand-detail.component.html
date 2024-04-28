@@ -1,10 +1,10 @@
 <mat-card class="container mat-elevation-z24">
   <div class="brand-info">
     <h2 class="font-primary">{{ brand?.brand_name }}</h2>
-    <h4 class="font-secondary">{{ brand?.brand_description | slice: 1:200 }}...read more</h4>
+    <h4 class="font-secondary">{{ brand?.brand_description | slice: 0:130 }}...read more</h4>
   </div>
   <div class="product-card">
-    <a *ngFor="let product of getBrandProducts()" [href]="'/products/' + product.id">
+    <a *ngFor="let product of getBrandProducts() | slice: 0: 4" [href]="'/products/' + product.id">
       <img class="image" [src]="product.product_image" alt="Product Image" width="80px" height="80px">
     </a>
   </div>
