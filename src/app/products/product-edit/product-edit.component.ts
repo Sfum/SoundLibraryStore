@@ -80,7 +80,7 @@ export class ProductEditComponent implements OnInit {
         () => {
           console.log('Product updated successfully.');
           // Handle success, maybe redirect to the product details page
-          this.router.navigate(['/']);
+          this.router.navigate(['/provider']);
         },
         (error) => {
           console.error('Error updating product: ', error);

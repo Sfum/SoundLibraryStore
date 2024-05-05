@@ -1,11 +1,9 @@
-
 <app-navigation-bar></app-navigation-bar>
-<mat-card *ngIf="product"  class="product-card__right mat-elevation-z20">
-  <div>
-    <div class="product-card__shell">
+<mat-card *ngIf="product"  class="mat-elevation-z20">
+    <div class="product-card__shell margin-primary">
       <div class="product-card-bottom__wrapper">
         <div class="product-card__left">
-          <img class="product-card__image" [src]="product.product_image" width="300px" height="300px">
+          <img class="product-card__image" [src]="product.product_image" width="300px" height="300px" alt="">
         </div>
         <div class="product-card__right">
           <span class="font-primary">{{ product.product_name }}...</span>
@@ -17,26 +15,23 @@
             <mat-icon class="icon">favorite</mat-icon>
             <mat-icon class="icon">list</mat-icon>
             <mat-icon class="icon">phone</mat-icon>
-            <div>
-              <div *ngIf="relatedProducts.length > 0">
-                <h3>Related Products:</h3>
-                <div class="related-products">
-                  <div *ngFor="let relatedProduct of relatedProducts" class="related-product">
-                    <img [src]="relatedProduct.product_image" alt="Product Image" width="150px"
-                        >
-                  </div>
-                </div>
-              </div>
-              <div *ngIf="relatedProducts.length === 0">
-                <p>No related products found.</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
+      <hr class="margin-line">
+      <div class="margin-primary">
+        <div *ngIf="relatedProducts.length > 0">
+          <h3 class="font-primary">Related Products:</h3>
+          <div class="related-products">
+            <div *ngFor="let relatedProduct of relatedProducts" class="related-product">
+              <img [src]="relatedProduct.product_image" alt="Product Image" width="150px"
+              >
+            </div>
+          </div>
+        </div>
+        <div *ngIf="relatedProducts.length === 0">
+          <p>No related products found.</p>
+        </div>
+      </div>
     </div>
-  </div>
-
 </mat-card>
-
-

@@ -6,13 +6,17 @@ import {environment} from "../environments/environment";
 import {RouterLink} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
+// @ts-ignore
+
 import {AppRoutingModule} from './app.routes';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 
 import {AngularFireModule} from '@angular/fire/compat';
-import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+
+import {AngularFireAuthModule, USE_EMULATOR as USE_AUTH_EMULATOR} from '@angular/fire/compat/auth';
+import {AngularFirestoreModule, USE_EMULATOR as USE_FIRESTORE_EMULATOR} from '@angular/fire/compat/firestore';
+
 import {AngularFireStorageModule} from '@angular/fire/compat/storage';
-import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
 import {AngularFireDatabaseModule} from '@angular/fire/compat/database';
 
 import {CommonModule} from "@angular/common";
@@ -74,6 +78,7 @@ import {GenreAddComponent} from "./genres/genre-add/genre-add.component";
 import {BrandEditComponent} from "./brands/brand-edit/brand-edit.component";
 import {GenreListComponent} from "./genres/genre-list/genre-list.component";
 
+import {ProductRelatedComponent} from "./products/product-related/product-related.component";
 
 
 @NgModule({
@@ -111,8 +116,8 @@ import {GenreListComponent} from "./genres/genre-list/genre-list.component";
     GenreListComponent,
     BrandListComponent,
     GenreListComponent,
-    GenreEditComponent
-
+    GenreEditComponent,
+    ProductRelatedComponent
   ],
   imports: [
     CommonModule,
@@ -122,6 +127,8 @@ import {GenreListComponent} from "./genres/genre-list/genre-list.component";
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
     RouterLink,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -153,7 +160,10 @@ import {GenreListComponent} from "./genres/genre-list/genre-list.component";
 
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    { provide: USE_AUTH_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9099] : undefined },
+    { provide: USE_FIRESTORE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 8080] : undefined },
+    // { provide: USE_FUNCTIONS_EMULATOR, useValue: environment.useEmulators ? ['localhost', 5001] : undefined },
   ],
   exports: [
     ProductCardComponent,

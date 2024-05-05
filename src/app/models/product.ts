@@ -6,5 +6,6 @@ export interface Product {
   brandId: number,
   genreId: number,
   product_image: string,
+  price: number,
   in_bundle: boolean
 }

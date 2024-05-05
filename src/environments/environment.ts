@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  useEmulators: true,
+  useEmulators: false,
   firebase: {
     apiKey: "AIzaSyD1JWXSFtIKr4X0shgaptYlEVzqYkBRoGI",
     authDomain: "soundlibrarystore.firebaseapp.com",

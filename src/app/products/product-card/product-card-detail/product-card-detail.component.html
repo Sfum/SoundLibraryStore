@@ -3,11 +3,24 @@
   <div class="product-details">
     <h2 class="product-name font-primary">{{ product.product_name }}</h2>
     <h3 class="product-title font-secondary">{{ product.product_title | slice:0:100 }}...</h3>
-    <p class="supplier-id font-small" [routerLink]="'/brands'">Brand: {{ product.brandId }}</p>
-    <div class="button_group">
-    <button class="button" mat-raised-button><mat-icon class="icon">shopping_cart</mat-icon></button>
-    <button class="button" mat-raised-button [routerLink]="'/products/' + product.id"><mat-icon class="icon">list</mat-icon></button>
-    <button class="button" mat-raised-button><mat-icon class="icon">favorite</mat-icon></button>
+    <div class="card-bottom">
+      <div class="card-bottom__left">
+        <div class="font-primary">Price:
+          <div class="font-secondary">
+            ${{product.price}}</div>
+        </div>
+      </div>
+      <div class="card-bottom__right">
+        <div class="card-bottom__icon">
+          <mat-icon class="icon">shopping_cart</mat-icon>
+        </div>
+        <div class="card-bottom__icon" [routerLink]="'/products/' + product.id">
+          <mat-icon class="icon">list</mat-icon>
+        </div>
+        <div class="card-bottom__icon">
+          <mat-icon class="icon">favorite</mat-icon>
+        </div>
+      </div>
     </div>
   </div>
 </div>

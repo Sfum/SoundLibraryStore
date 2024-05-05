@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {map, Observable} from "rxjs";
 import firebase from "firebase/compat";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(private afAuth: AngularFireAuth,
+              private router: Router) {
     // @ts-ignore
     this.user$ = afAuth.authState;
   }
@@ -29,7 +31,6 @@ export class AuthService {
 
   isAdmin(): Observable<boolean> {
     return this.user$.pipe(
-      // Perform logic to determine if user is an admin
       map(user => user && user.email === 'pulsedrecords@gmail.com')
     );
   }
