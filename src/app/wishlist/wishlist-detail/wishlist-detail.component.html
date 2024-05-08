@@ -1,1 +1,53 @@
-<p>wishlist-detail works!</p>
+<h1 class="wishlist__title-label margin-auto">Wishlist</h1>
+<div class="wishlist__container">
+  <mat-card class="wishlist__items--container"
+            *ngFor="let product of products; let i = index">
+    <div>
+      <img class="wishlist__image"
+           [src]="product.product_image"
+           width="120"
+           alt=""/>
+    </div>
+    <div>
+      <div class="wishlist__title font-primary">{{ product.product_name }}</div>
+      <div class="wishlist__subtitle font-secondary">{{ product.brandId }}</div>
+    </div>
+    <div class="wishlist__icon-field">
+      <mat-icon
+        class="wishlist__card--icon"
+        [routerLink]="['/products/product-detail', product.id]"
+      >open_in_new
+      </mat-icon>
+
+      <ng-template #reMindMe>
+        <mat-icon class="wishlist__card--icon">list</mat-icon>
+      </ng-template>
+      <mat-icon
+        class="wishlist__card--icon"
+        [style.color]="product.quantity == 0 ? 'red' : 'green'"
+      >fiber_manual_record
+      </mat-icon>
+      <mat-icon class="wishlist__card--icon">check_circle</mat-icon>
+      <mat-icon class="wishlist__card--icon">question_answer</mat-icon>
+      <mat-icon class="wishlist__card--icon">phone</mat-icon>
+    </div>
+
+    <div class="wishlist__card_label font-label">
+      ${{ product.quantity * product.price | number : "1.2-2" }}
+    </div>
+
+    <div class="wishlist__remove">
+      <button class="wishlist__button button__primary"
+              mat-raised-button
+              (click)="addProductToCart(product)">
+        Add to cart
+      </button>
+      <button
+        class="wishlist__button"
+        mat-raised-button
+        (click)="removeFromWishlist(product)">
+        Remove
+      </button>
+    </div>
+  </mat-card>
+</div>

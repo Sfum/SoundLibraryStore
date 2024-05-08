@@ -1,26 +1,34 @@
 <div class="product-card">
-  <img [src]="product.product_image" alt="Product Image" class="product-image">
+  <img [src]="product.product_image" [routerLink]="'/products/' + product.id" alt="Product Image" class="product-image">
   <div class="product-details">
     <h2 class="product-name font-primary">{{ product.product_name }}</h2>
     <h3 class="product-title font-secondary">{{ product.product_title | slice:0:100 }}...</h3>
-    <div class="card-bottom">
-      <div class="card-bottom__left">
-        <div class="font-primary">Price:
-          <div class="font-secondary">
-            ${{product.price}}</div>
-        </div>
+    <div class="product-card__bottom">
+      <div class="price font-primary">${{product.price}}</div>
+      <div class="product-card__bottom--left">
+        <button
+                mat-mini-fab color="primary"
+                aria-label="icon"
+                (click)="addToCart(product)"
+                [routerLink]="['/shopping-cart']"
+        >
+          <mat-icon
+          >shopping_cart
+          </mat-icon>
+        </button>
       </div>
-      <div class="card-bottom__right">
-        <div class="card-bottom__icon">
-          <mat-icon class="icon">shopping_cart</mat-icon>
-        </div>
-        <div class="card-bottom__icon" [routerLink]="'/products/' + product.id">
-          <mat-icon class="icon">list</mat-icon>
-        </div>
-        <div class="card-bottom__icon">
-          <mat-icon class="icon">favorite</mat-icon>
-        </div>
-      </div>
+    </div>
+    <div>
+      <button class="product-card__bottom--left-icon"
+              mat-mini-fab
+              aria-label="icon"
+              (click)="addToWishlist(product)"
+              [routerLink]="['/wishlist']"
+      >
+        <mat-icon
+        >favorite
+        </mat-icon>
+      </button>
     </div>
   </div>
 </div>

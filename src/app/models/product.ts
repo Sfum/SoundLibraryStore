@@ -8,4 +8,5 @@ export interface Product {
   product_image: string,
   price: number,
   in_bundle: boolean
+  quantity: number,
 }
