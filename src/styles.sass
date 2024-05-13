@@ -1,17 +1,76 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css'
-$font-primary: Tahoma, sans-serif
+@import "primeicons/primeicons.css"
+$font-primary: Arial, sans serif
+
+$primary-color: hsla(335, 100%, 27%, 1)
+
+//• Font size
+
+.font-sm
+  font-family: $font-primary
+  font-size: 14px
+  font-weight: 620
+  line-height: 1.2rem
+
+.font-md
+  font-family: $font-primary
+  font-size: 16px
+  font-weight: 530
+
+.font-lg
+  font-family: $font-primary
+  font-size: 18px
+  font-weight: 450
+  line-height: 0.8rem
+
+//• Color
+//• Margin
+//• Padding
+//• Width
+//• Height
+//• Box shadows
+//• Border radius
+//• Border width
+//• Opacity
+
+.title-main
+  font-family: $font-primary
+  font-size: 16px
+  text-transform: uppercase
+  line-height: 0.9rem
+  font-weight: 560
+
+.text-primary
+  font-size: 14px
+  line-height: 0.9rem
+
+.text-secondary
+  font-size: 13px
+  line-height: 1.2rem
+  color: #333
+
+.text-tertiary
+  font-size: 18px
+  text-transform: uppercase
+  line-height: 1.2rem
+  font-weight: bold
+  color: #333
+  margin-bottom: 8px
+
+//Font Sizing
 
 .font-primary
   font-family: $font-primary
-  font-weight: 530
-  font-size: 15px
+  font-size: 16px
+  text-transform: capitalize
+  font-weight: 650
   letter-spacing: 0.8px
   text-align: left
 
 .font-secondary
   font-family: $font-primary
-  font-weight: 430
-  font-size: 13px
+  font-size: 16px
+  text-transform: capitalize
   opacity: 90%
 
 .font-small
@@ -20,13 +79,144 @@ $font-primary: Tahoma, sans-serif
   font-size: 10px
   opacity: 75%
 
-.margin-auto
-  margin: 20px auto
+//Margins
 
-.product-name
- font-size: 18px
- text-transform: uppercase
- line-height: 1.2rem
- font-weight: bold
- color: #333
- margin-bottom: 8px
+.margin--xsm
+  margin: 5px
+.margin--sm
+  margin: 10px
+.margin--md
+  margin: 20px
+.margin--lg
+  margin: 30px
+.margin--xlg
+  margin: 40px
+
+.margin__left--xsm
+  margin-left: 5px
+.margin__left--sm
+  margin-left: 10px
+.margin__left--md
+  margin-left: 20px
+.margin__left--lg
+  margin-left: 30px
+
+.margin__right--xsm
+  margin-right: 5px
+.margin__right--sm
+  margin-right: 10px
+.margin__right--md
+  margin-right: 20px
+.margin__right--lg
+  margin-right: 30px
+
+.margin__top--xsm
+  margin-top: 5px
+.margin__top--sm
+  margin-top: 10px
+.margin__top--md
+  margin-top: 20px
+.margin__top--lg
+  margin-top: 30px
+
+.margin__bottom--xsm
+  margin-bottom: 5px
+.margin__bottom--sm
+  margin-bottom: 10px
+.margin__bottom--md
+  margin-bottom: 20px
+.margin__bottom--lg
+  margin-bottom: 30px
+
+.margin__auto
+  margin: auto
+
+//////////////
+
+
+//Color Primary
+
+.color__primary--100
+  color: hsl(210, 100%, 95%)
+
+.color__primary--200
+  color: hsl(210, 100%, 85%)
+
+.color__primary--300
+  color: hsl(210, 100%, 75%)
+
+.color__primary--400
+  color: hsl(210, 100%, 65%)
+
+.color__primary--500
+  color: hsl(210, 100%, 55%)
+
+.color__primary--600
+  color: hsl(210, 100%, 45%)
+
+.color__primary--700
+  color: hsl(210, 100%, 35%)
+
+//Color Neutral
+
+.color__secondary--100
+  color: hsl(0, 0%, 95%)
+
+
+.color__secondary--200
+  color: hsl(0, 0%, 85%)
+
+
+.color__secondary--300
+  color: hsl(0, 0%, 75%)
+
+
+.color__secondary--400
+  color: hsl(0, 0%, 65%)
+
+
+.color__secondary--500
+  color: hsl(0, 0%, 55%)
+
+
+.color__secondary--600
+  color: hsl(0, 0%, 45%)
+
+
+.color__secondary--700
+  color: hsl(0, 0%, 35%)
+
+//Border radius
+
+.border-radius--sm
+  border-radius: 10px
+
+.border-radius--md
+  border-radius: 20px
+
+.border-radius--lg
+  border-radius: 30px
+
+.border-radius--lg
+  border-radius: 40px
+
+// Opacity
+
+.opacity--sm
+  opacity: 90%
+
+.opacity--md
+  opacity: 80%
+
+.opacity--lg
+  opacity: 70%
+
+.opacity--xlg
+  opacity: 60%
+
+  //Align
+
+.align__items
+  display: flex
+  justify-content: center
+  align-items: baseline

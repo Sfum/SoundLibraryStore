@@ -1,14 +1,13 @@
-<app-navigation-bar></app-navigation-bar>
 
 <div class="container margin-auto font-primary">Edit Brand</div>
 
 <form [formGroup]="brandForm" (ngSubmit)="onSubmit()" *ngIf="(brandEdit$ | async) as asyncFilterPipe">
 
-  <label for="brand_name">Brand Name:</label>
+  <label for="brand_name" class="">Brand Name:</label>
   <input matInput type="text" id="brand_name" formControlName="brand_name" required>
 
-  <label for="brand_description">Brand Title:</label>
-  <input matInput type="text" id="brand_description" formControlName="brand_description" required>
-
-  <button mat-raised-button>Update Brand</button>
+  <label for="brand_description" class="margin__top--md">Brand Description:</label>
+  <textarea matInput type="text" id="brand_description" formControlName="brand_description" required style="width: 100%; height: 200px;">
+  </textarea>
+  <button class="margin__top--md"mat-raised-button>Update Brand</button>
 </form>

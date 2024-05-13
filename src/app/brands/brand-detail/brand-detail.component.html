@@ -1,9 +1,10 @@
 <mat-card class="container mat-elevation-z24">
-  <div class="brand-info">
-    <h2 class="font-primary">{{ brand?.brand_name }}</h2>
-    <h4 class="font-secondary">{{ brand?.brand_description | slice: 0:130 }}...read more</h4>
+  <div class="brand-info margin__top--lg margin__left--lg">
+    <h2 class="title-main">{{ brand?.brand_name }}</h2>
+
+    <h4 class="text-primary">{{ brand?.brand_description | slice: 0:180 }}...read more</h4>
   </div>
-  <div class="product-card">
+  <div class="product-card margin__left--lg">
     <a *ngFor="let product of getBrandProducts() | slice: 0: 4" [href]="'/products/' + product.id">
       <img class="image" [src]="product.product_image" alt="Product Image" width="80px" height="80px">
     </a>

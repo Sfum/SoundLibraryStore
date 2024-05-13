@@ -1,14 +1,15 @@
+@import url('../../../../src/styles.sass')
+
 .container
   gap: 10px
-  margin: 10px
-  height: 300px
+  height: 350px
 
 .container-card
   display: grid
-  grid-template-rows: 200px 1fr
-  margin: 5px
-  gap: 10px
-  height: 335px
+  grid-template-rows: 60% 1fr
+  gap: 5px
+  height: 300px
+  text-align: left
 
 .info-text
   grid-row: 1/2
@@ -17,18 +18,9 @@
 .product-card
   display: flex
   flex-direction: column
-  padding: 20px
   grid-row: 2/3
 
 .image
   transition: all 0.3s ease
   &:hover
     transform: translateY(-5px)
-
-h2
-  margin: 30px 10px 10px 10px
-  text-align: center
-
-h4
-  margin: 20px
-  text-align: center

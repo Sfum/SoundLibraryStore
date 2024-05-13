@@ -2,15 +2,18 @@
 <div class="wishlist__container">
   <mat-card class="wishlist__items--container"
             *ngFor="let product of products; let i = index">
-    <div>
+
       <img class="wishlist__image"
            [src]="product.product_image"
-           width="120"
            alt=""/>
-    </div>
-    <div>
-      <div class="wishlist__title font-primary">{{ product.product_name }}</div>
-      <div class="wishlist__subtitle font-secondary">{{ product.brandId }}</div>
+
+    <div class="grid-column-right">
+      <div class="title-main">{{ product.product_name }}</div>
+      <div class="text-primary">{{ product.brandId }}</div>
+      <div class="text-field text-secondary">{{ product.product_description }}</div>
+
+    <div class="wishlist__remove">
+
     </div>
     <div class="wishlist__icon-field">
       <mat-icon
@@ -36,18 +39,16 @@
       ${{ product.quantity * product.price | number : "1.2-2" }}
     </div>
 
-    <div class="wishlist__remove">
-      <button class="wishlist__button button__primary"
-              mat-raised-button
-              (click)="addProductToCart(product)">
-        Add to cart
-      </button>
-      <button
-        class="wishlist__button"
-        mat-raised-button
-        (click)="removeFromWishlist(product)">
-        Remove
-      </button>
+    <div class="wishlist__button pi pi-comment"
+            (click)="addProductToCart(product)">
+      Add to cart
+    </div>
+    <button
+      class="wishlist__button"
+      mat-raised-button
+      (click)="removeFromWishlist(product)">
+      Remove
+    </button>
     </div>
   </mat-card>
 </div>

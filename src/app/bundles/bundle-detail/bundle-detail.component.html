@@ -1,21 +1,35 @@
 <div class="product-cards-container">
   <div class="product-card" *ngFor="let product of filteredProducts">
-    <img [src]="product.product_image" alt="Product Image" class="product-image">
-    <div class="product-details">
-      <h2 class="product-name font-primary">{{ product.product_name }}</h2>
-      <h3 class="product-title font-secondary">{{ product.product_title | slice:0:100 }}...</h3>
-      <p class="supplier-id font-small" [routerLink]="'/brands'">Brand: {{ product.brandId }}</p>
-      <div class="button_group">
-        <button class="button" mat-raised-button>
-          <mat-icon class="icon">shopping_cart</mat-icon>
-        </button>
-        <button class="button" mat-raised-button [routerLink]="'/products/' + product.id">
-          <mat-icon class="icon">list</mat-icon>
-        </button>
-        <button class="button" mat-raised-button>
-          <mat-icon class="icon">favorite</mat-icon>
+  <img [src]="product.product_image" [routerLink]="'/products/' + product.id" alt="Product Image" class="product-image">
+  <div class="product-details">
+    <h2 class="title-main">{{ product.product_name }}</h2>
+    <h3 class="text-primary">{{ product.product_title | slice:0:100 }}...</h3>
+    <div class="product-card__bottom">
+      <div class="price">${{product.price}}</div>
+      <div class="product-card__bottom--left">
+        <button
+          mat-mini-fab color="primary"
+          aria-label="icon"
+          (click)="addToCart(product)"
+          [routerLink]="['/shopping-cart']"
+        >
+          <mat-icon
+          >shopping_cart
+          </mat-icon>
         </button>
       </div>
+    </div>
+    <div>
+      <button class="product-card__bottom--left-icon"
+              mat-mini-fab
+              aria-label="icon"
+              (click)="addToWishlist(product)"
+              [routerLink]="['/wishlist']"
+      >
+        <mat-icon
+        >favorite
+        </mat-icon>
+      </button>
     </div>
   </div>
 </div>

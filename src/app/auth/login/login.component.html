@@ -1,6 +1,6 @@
-<mat-card>
-  <div class="font-primary margin-auto">Login</div>
-  <form class="form-container" (ngSubmit)="onSubmit()">
+<mat-card class="form-container">
+  <div class="font-primary">Login</div>
+  <form (ngSubmit)="onSubmit()" class="margin__left--lg margin__top--sm margin__bottom--md">
     <div>
       <label for="email">Email:</label>
       <input matInput type="email" id="email" name="email" [(ngModel)]="email" required>

@@ -1,13 +1,13 @@
-<div class="container-card mat-elevation-z24">
-    <mat-card class="info-text">
-    <h2>{{ genre?.genre_name }}</h2>
-    <h4>{{ genre?.genre_description | slice: 1:200 }}...read more</h4>
-    </mat-card>
+<mat-card class="container-card mat-elevation-z24">
+  <div class="info-text margin--lg">
+    <h2 class="title-main margin-text">{{ genre?.genre_name }}</h2>
+    <h4 class="text-primary margin-text">{{ genre?.genre_description | slice: 0:340 }}...read more</h4>
+  </div>
 
-    <mat-card class="product-card">
-      <img class="image" [routerLink]="'/products/' + product.id"
-           [src]="product.product_image"
-           *ngFor="let product of getGenreProducts()"
-           alt="Product Image" width="80px" height="80px">
-    </mat-card>
-</div>
+  <div class="product-card margin__left--lg">
+    <img class="image" [routerLink]="'/products/' + product.id"
+         [src]="product.product_image"
+         *ngFor="let product of getGenreProducts() | slice: 0:4 "
+         alt="Product Image" width="80px" height="80px">
+  </div>
+</mat-card>
