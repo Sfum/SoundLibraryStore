@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from "../../../models/product";
 import {ActivatedRoute} from "@angular/router";
 import {ProductService} from "../../../services/product.service";
 import {Genre} from "../../../models/genre";
+import {WishlistService} from "../../../services/wishlist.service";
 
 @Component({
   selector: 'app-product-page-detail',
@@ -14,12 +15,16 @@ export class ProductPageDetailComponent  implements OnInit {
   product!: Product | undefined;
   relatedProducts: Product[] = [];
 
+  @Output() addToWishlistEvent: EventEmitter<any> = new EventEmitter<any>();
+
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
   ) {
     this.getId = this.route.snapshot.paramMap.get('id');
   }
+
+
 
   ngOnInit(): void {
     const productId = this.route.snapshot.params['id'];
@@ -35,5 +40,8 @@ export class ProductPageDetailComponent  implements OnInit {
         }
       });
     }
+  }
+  addToWishlist(product: Product) {
+    this.addToWishlistEvent.emit(product);
   }
 }

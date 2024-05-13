@@ -5,6 +5,7 @@ import {ProductService} from "../../services/product.service";
 import {Observable} from "rxjs";
 import {Genre} from "../../models/genre";
 import {GenreService} from "../../services/genre.service";
+import {WishlistService} from "../../services/wishlist.service";
 
 @Component({
   selector: 'app-product-page',
@@ -16,10 +17,15 @@ export class ProductPageComponent  implements OnInit{
   genres$!: Observable<Genre[]>;
 
   constructor(private productService: ProductService,
-              private genresService: GenreService) { }
+              private genresService: GenreService,
+              private wishlistService: WishlistService) { }
 
   ngOnInit(): void {
     this.genres$ = this.genresService.getGenres();
     this.products$ = this.productService.getProducts();
+  }
+  onAddToWishlist(product: any) {
+    this.wishlistService.addToWishlist(product)
+
   }
 }

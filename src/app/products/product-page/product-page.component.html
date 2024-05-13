@@ -2,6 +2,10 @@
 <div class="container-grid">
   <app-genre-detail
     *ngFor="let genre of genres$ | async" [genre]="genre"
-    [products]="products$ | async"></app-genre-detail>
+    [products]="products$ | async"
+  ></app-genre-detail>
+  <app-product-page-detail
+    (addToWishlistEvent)="onAddToWishlist($event)"
+  ></app-product-page-detail>
 </div>
 <app-product-related></app-product-related>

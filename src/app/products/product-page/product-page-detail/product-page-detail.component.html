@@ -17,8 +17,15 @@
           <mat-icon class="icon opacity--lg">list</mat-icon>
           <mat-icon class="icon opacity--lg">phone</mat-icon>
         </div>
-        <span class="title-main margin__top--sm opacity--md">${{ product.price }}</span>
-
+        <div class="button-group">
+          <button mat-raised-button class="button pi pi-heart margin__top--md button-primary"
+                  (click)="addToWishlist(product)"
+          > Wishlist
+          </button>
+          <button mat-raised-button class="pi pi-shopping-cart margin__top--md margin__left--sm button-primary"
+          > ${{ product.price }}
+          </button>
+        </div>
         <hr class="product-card__line">
 
       </div>
@@ -36,39 +43,52 @@
 
       </div>
       <div class="container-banner--table-two margin__left--md">
-        <div class="pi pi-download margin__auto align__items">
-          <div class="font-sm margin__left--xsm">Unlimited Usage
+        <div class="pi pi-history margin__auto align__items">
+          <div class="font-sm margin__left--xsm">24/7 Support
           </div>
         </div>
         <div class="margin__auto">
-          100% Royalty Free
+          0 800 3948 5922
         </div>
       </div>
       <div class="container-banner--table-three">
-
+        <div class="pi pi-history margin__auto align__items">
+          <div class="font-sm margin__left--xsm">Product Returns
+          </div>
+        </div>
+        <div class="margin__auto">
+          File a return
+        </div>
       </div>
       <div class="container-banner--table-four">
-
+        <div class="pi pi-history margin__auto align__items">
+          <div class="font-sm margin__left--xsm">Fast Download
+          </div>
+        </div>
+        <div class="margin__auto">
+          up to 128MB/s
+        </div>
       </div>
 
-      <div>
 
-        <hr class="margin-line opacity--xlg margin__bottom--md margin__top--md">
-        <div class="margin-primary">
-          <div *ngIf="relatedProducts.length > 0">
-            <h3 class="font-primary">Related Products:</h3>
-            <div class="related-products">
-              <div *ngFor="let relatedProduct of relatedProducts" class="related-product">
-                <img [src]="relatedProduct.product_image" alt="Product Image" width="150px"
-                >
-              </div>
+    </div>
+    <div>
+      <hr class="margin-line opacity--xlg margin__bottom--md margin__top--md">
+      <div class="margin-primary">
+        <div *ngIf="relatedProducts.length > 0">
+          <h3 class="font-primary">Related Products:</h3>
+          <div class="related-products">
+            <div *ngFor="let relatedProduct of relatedProducts" class="related-product">
+              <img [src]="relatedProduct.product_image" alt="Product Image" width="150px"
+              >
             </div>
           </div>
-          <div *ngIf="relatedProducts.length === 0">
-            <p>No related products found.</p>
-          </div>
+        </div>
+        <div *ngIf="relatedProducts.length === 0">
+          <p>No related products found.</p>
         </div>
       </div>
     </div>
   </div>
+
 </mat-card>

@@ -15,22 +15,31 @@
 
 .container-banner
   display: grid
-  grid-template-columns: 1fr 1fr 1fr 1fr
+  grid-template-columns: 0.25fr 0.25fr 0.25fr 0.25fr
   &--table-one
    grid-column: 1/2
    height: 40px
    display: flex
    flex-direction: row
-
+   align-content: baseline
   &--table-two
     grid-column: 2/3
     height: 40px
     display: flex
     flex-direction: row
+    align-content: baseline
   &--table-three
     grid-column: 3/4
+    height: 40px
+    display: flex
+    flex-direction: row
+    align-content: baseline
   &--table-four
     grid-column: 4/5
+    height: 40px
+    display: flex
+    flex-direction: row
+    align-content: baseline
 div
 
   img
@@ -43,3 +52,8 @@ div
 .related-products
   display: flex
   flex-direction: row
+.button-group
+  display: flex
+  flex-direction: row
+
+
