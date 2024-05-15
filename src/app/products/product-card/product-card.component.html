@@ -1,7 +1,11 @@
+
+
+
 <div class="product-card__container">
   <app-product-card-detail *ngFor="let product of productCollection$ | async"
                            [product]="product"
                            (addToWishlistEvent)="onAddToWishlist($event)"
+                           (addToCartEvent)="onAddToCart($event)"
   >
 {{ product.id }}
   </app-product-card-detail>

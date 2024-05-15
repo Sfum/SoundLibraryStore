@@ -18,11 +18,11 @@
           <mat-icon class="icon opacity--lg">phone</mat-icon>
         </div>
         <div class="button-group">
-          <button mat-raised-button class="button pi pi-heart margin__top--md button-primary"
-                  (click)="addToWishlist(product)"
+          <button mat-raised-button (click)="addToWishlist(product)" class="button pi pi-heart margin__top--md button-primary"
+
           > Wishlist
           </button>
-          <button mat-raised-button class="pi pi-shopping-cart margin__top--md margin__left--sm button-primary"
+          <button mat-raised-button (click)="addToCart(product)" class="pi pi-shopping-cart margin__top--md margin__left--sm button-primary"
           > ${{ product.price }}
           </button>
         </div>

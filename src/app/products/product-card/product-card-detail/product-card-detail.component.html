@@ -1,4 +1,4 @@
-<div class="product-card">
+<mat-card class="product-card mat-elevation-z24">
   <img [src]="product.product_image" [routerLink]="'/products/' + product.id" alt="Product Image" class="product-image">
   <div class="product-details">
     <h2 class="title-main opacity--md">{{ product.product_name }}</h2>
@@ -17,7 +17,6 @@
               mat-mini-fab
               aria-label="icon"
               (click)="addToWishlist(product)"
-              [routerLink]="['/wishlist']"
       >
         <mat-icon
         >favorite
@@ -25,4 +24,4 @@
       </button>
     </div>
   </div>
-</div>
+</mat-card>

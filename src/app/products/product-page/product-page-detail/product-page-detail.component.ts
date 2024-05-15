@@ -16,6 +16,7 @@ export class ProductPageDetailComponent  implements OnInit {
   relatedProducts: Product[] = [];
 
   @Output() addToWishlistEvent: EventEmitter<any> = new EventEmitter<any>();
+  @Output() addToCartEvent: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     private route: ActivatedRoute,
@@ -43,5 +44,8 @@ export class ProductPageDetailComponent  implements OnInit {
   }
   addToWishlist(product: Product) {
     this.addToWishlistEvent.emit(product);
+  }
+  addToCart(product: Product) {
+    this.addToCartEvent.emit(product);
   }
 }

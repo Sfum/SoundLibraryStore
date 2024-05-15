@@ -7,6 +7,7 @@ import {GenreService} from "../../services/genre.service";
 import {Brand} from "../../models/brand";
 import {Genre} from "../../models/genre";
 import {WishlistService} from "../../services/wishlist.service";
+import {CartService} from "../../services/cart.service";
 
 @Component({
   selector: 'app-product-card',
@@ -22,7 +23,8 @@ export class ProductCardComponent implements OnInit {
   constructor(private productService: ProductService,
               private brandService: BrandService,
               private genreService: GenreService,
-              private wishlistService: WishlistService) {
+              private wishlistService: WishlistService,
+              private cartService: CartService) {
   }
 
   ngOnInit() {
@@ -32,6 +34,11 @@ export class ProductCardComponent implements OnInit {
   }
   onAddToWishlist(product: any) {
     this.wishlistService.addToWishlist(product)
+
+  }
+
+  onAddToCart(product: any) {
+    this.cartService.addToCart(product)
 
   }
 }

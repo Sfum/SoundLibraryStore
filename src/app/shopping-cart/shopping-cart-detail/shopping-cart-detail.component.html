@@ -1,1 +1,50 @@
-<p>shopping-cart-detail works!</p>
+<mat-card class="cart__items-container mat-elevation-z24"
+          *ngFor="let product of products; let i = index">
+
+  <div class="cart__inner-wrapper">
+    <img class="cart__product-image margin__top--md margin__left--md"
+         [src]="product.product_image"
+         height="90"
+         width="90"
+         alt=""/>
+  </div>
+  <div class="cart__info">
+    <mat-icon class="cart__badge"
+              [matBadge]="product.quantity"
+              matBadgeSize="large"
+              matBadgeColor="warn">
+    </mat-icon>
+
+    <div class="cart__label-wrapper margin__left--md">
+      <div class="font-secondary opacity--md">{{ product.brandId }}</div>
+      <div class="font-primary">{{ product.product_name }}</div>
+
+
+      <div class="cart__quantity-label margin__top--md margin__bottom--sm">
+        <input [(ngModel)]="product.quantity"
+               [ngModelOptions]="{ standalone: true }"
+               min="1"
+               type="number"
+               value="1"/>
+      </div>
+
+      <div class="cart__card_price-amount font-label font-primary margin__top--sm">
+        ${{ product.quantity * product.price | number : "1.2-2" }}
+      </div>
+    </div>
+
+    <div class="cart__remove-button">
+      <button mat-fab
+              class="cart__wishlist-button"
+              (click)="addToWishlist(product)">
+        <mat-icon>favorite_border</mat-icon>
+      </button>
+      <button mat-fab
+              class="cart__wishlist-button"
+              (click)="removeFromCart(product)">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-card>
+

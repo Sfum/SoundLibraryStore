@@ -6,6 +6,8 @@ import {environment} from "../environments/environment";
 import {RouterLink} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
+import {ProductCarouselComponent} from "./products/product-carousel/product-carousel.component";
+
 // @ts-ignore
 
 import {AppRoutingModule} from './app.routes';
@@ -23,7 +25,7 @@ import {CommonModule} from "@angular/common";
 
 import {ProductCardComponent} from "./products/product-card/product-card.component";
 import {ProductCardDetailComponent} from "./products/product-card/product-card-detail/product-card-detail.component";
-import {MatButton, MatMiniFabButton} from "@angular/material/button";
+import {MatButton, MatFabButton, MatMiniFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {NavigationBarComponent} from "./shared/navigation-bar/navigation-bar.component";
 import {LogoBarComponent} from "./shared/logo-bar/logo-bar.component";
@@ -81,6 +83,10 @@ import {GenreListComponent} from "./genres/genre-list/genre-list.component";
 import {ProductRelatedComponent} from "./products/product-related/product-related.component";
 
 import {WishlistDetailComponent} from "./wishlist/wishlist-detail/wishlist-detail.component";
+import {CarouselModule} from "ngx-bootstrap/carousel";
+
+import {ShoppingCartDetailComponent} from "./shopping-cart/shopping-cart-detail/shopping-cart-detail.component";
+import {MatBadge} from "@angular/material/badge";
 
 
 @NgModule({
@@ -120,49 +126,54 @@ import {WishlistDetailComponent} from "./wishlist/wishlist-detail/wishlist-detai
     GenreListComponent,
     GenreEditComponent,
     ProductRelatedComponent,
-    WishlistDetailComponent
+    WishlistDetailComponent,
+    ProductCarouselComponent,
+    ShoppingCartDetailComponent
   ],
-    imports: [
-        CommonModule,
-        BrowserModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFirestoreModule,
-        AngularFireAuthModule,
-        AngularFireStorageModule,
-        AngularFireDatabaseModule,
-        AngularFireStorageModule,
-        AngularFireAuthModule,
-        RouterLink,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        FormsModule,
-        MatButton,
-        MatIcon,
-        MatCard,
-        MatLabel,
-        MatFormField,
-        MatSelect,
-        MatInput,
-        MatOption,
-        MatMenuTrigger,
-        MatMenu,
-        MatMenuItem,
-        MatDialogModule,
-        MatTable,
-        MatHeaderCell,
-        MatCell,
-        MatHeaderRow,
-        MatPaginator,
-        MatRow,
-        MatColumnDef,
-        MatHeaderCellDef,
-        MatCellDef,
-        MatHeaderRowDef,
-        MatRowDef,
-        MatSlideToggle,
-        MatMiniFabButton
+  imports: [
+    CommonModule,
+    BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
+    RouterLink,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    FormsModule,
+    MatButton,
+    MatIcon,
+    MatCard,
+    MatLabel,
+    MatFormField,
+    MatSelect,
+    MatInput,
+    MatOption,
+    MatMenuTrigger,
+    MatMenu,
+    MatMenuItem,
+    MatDialogModule,
+    MatTable,
+    MatHeaderCell,
+    MatCell,
+    MatHeaderRow,
+    MatPaginator,
+    MatRow,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatCellDef,
+    MatHeaderRowDef,
+    MatRowDef,
+    MatSlideToggle,
+    MatMiniFabButton,
+    CarouselModule,
+    MatFabButton,
+    MatBadge
 
-    ],
+  ],
   providers: [
     provideAnimationsAsync(),
     { provide: USE_AUTH_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9099] : undefined },

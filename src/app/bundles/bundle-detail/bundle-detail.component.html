@@ -1,4 +1,4 @@
-<div class="product-cards-container">
+<div class="product__cards--container">
   <div class="product-card" *ngFor="let product of filteredProducts">
   <img [src]="product.product_image" [routerLink]="'/products/' + product.id" alt="Product Image" class="product-image">
   <div class="product-details">

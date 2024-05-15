@@ -1,1 +1,18 @@
-<p>shopping-cart works!</p>
+<div class="container">
+  <div>
+  <mat-card class="cart__checkout--total mat-elevation-z24">
+    <div class="cart__price-label font-label margin__left--md margin__top--md font-primary">Shopping Cart</div>
+    <div class="margin__left--md margin__top--sm text-primary">{{ total | currency }}</div>
+    <hr/>
+    <div class="cart__checkout margin__left--md margin__top--md">
+      <button mat-raised-button class="" (click)="onCheckout()">Checkout</button>
+    </div>
+  </mat-card>
+  <div class="margin__top--md">
+  <app-shopping-cart-detail *ngIf="products$" [products]="products"
+                            (removeFromCartEvent)="removeFromCart($event)"
+                            (addToWishListEvent)="addToWishlist($event)"
+  ></app-shopping-cart-detail>
+  </div>
+  </div>
+</div>

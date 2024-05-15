@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import {SnackbarService} from "./snackbar.service";
 
 @Injectable({
   providedIn: 'root',
 })
 export class WishlistService {
-  constructor() {}
+  constructor(private snackbarService: SnackbarService) {}
 
   products: any[] = [];
 
@@ -13,9 +14,10 @@ export class WishlistService {
       product.quantity = 1;
       this.addProductToWishlist(product);
       this.products = [...this.getProduct()];
+      this.snackbarService.showSnackbar(`\`${product.product_name}\` by \`${product.brandId}\` added to Wishlist`);
       product.in_wishlist = !product.in_wishlist;
     } else {
-      // this.snackbarService.showSnackbar('Item is Already In Wishlist');
+      this.snackbarService.showSnackbar('Item is Already In Wishlist');
     }
   }
   getProduct() {

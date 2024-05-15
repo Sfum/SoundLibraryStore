@@ -1,54 +1,46 @@
-<h1 class="wishlist__title-label margin-auto">Wishlist</h1>
-<div class="wishlist__container">
+<h1 class="wishlist__title-label">Wishlist</h1>
   <mat-card class="wishlist__items--container"
             *ngFor="let product of products; let i = index">
 
-      <img class="wishlist__image"
-           [src]="product.product_image"
-           alt=""/>
+    <img class="wishlist__image margin--md"
+         [src]="product.product_image"
+         alt=""/>
 
-    <div class="grid-column-right">
-      <div class="title-main">{{ product.product_name }}</div>
-      <div class="text-primary">{{ product.brandId }}</div>
-      <div class="text-field text-secondary">{{ product.product_description }}</div>
+    <div class="grid-column-right margin__top--lg">
+      <div class="title-main margin__bottom--sm">{{ product.product_name }}</div>
+      <div class="text-primary margin__bottom--xsm">{{ product.brandId }}</div>
+      <div class="text-field text-secondary opacity--md margin__right--md">{{ product.product_description }}</div>
+      <div class="opacity--md">
+        <mat-icon
+          class="wishlist__card--icon"
+          [routerLink]="['/products/product-detail', product.id]"
+        >open_in_new
+        </mat-icon>
+        <mat-icon
+          class="wishlist__card--icon"
+          [style.color]="product.quantity == 0 ? 'red' : 'green'"
+        >fiber_manual_record
+        </mat-icon>
+        <mat-icon class="wishlist__card--icon">check_circle</mat-icon>
+        <mat-icon class="wishlist__card--icon">question_answer</mat-icon>
+        <mat-icon class="wishlist__card--icon">phone</mat-icon>
+      </div>
 
-    <div class="wishlist__remove">
+      <div class="wishlist__card_label font-primary">
+        ${{ product.quantity * product.price | number : "1.2-2" }}
+      </div>
 
-    </div>
-    <div class="wishlist__icon-field">
-      <mat-icon
-        class="wishlist__card--icon"
-        [routerLink]="['/products/product-detail', product.id]"
-      >open_in_new
-      </mat-icon>
-
-      <ng-template #reMindMe>
-        <mat-icon class="wishlist__card--icon">list</mat-icon>
-      </ng-template>
-      <mat-icon
-        class="wishlist__card--icon"
-        [style.color]="product.quantity == 0 ? 'red' : 'green'"
-      >fiber_manual_record
-      </mat-icon>
-      <mat-icon class="wishlist__card--icon">check_circle</mat-icon>
-      <mat-icon class="wishlist__card--icon">question_answer</mat-icon>
-      <mat-icon class="wishlist__card--icon">phone</mat-icon>
-    </div>
-
-    <div class="wishlist__card_label font-label">
-      ${{ product.quantity * product.price | number : "1.2-2" }}
-    </div>
-
-    <div class="wishlist__button pi pi-comment"
-            (click)="addProductToCart(product)">
-      Add to cart
-    </div>
-    <button
-      class="wishlist__button"
-      mat-raised-button
-      (click)="removeFromWishlist(product)">
-      Remove
-    </button>
+      <div class="cart__remove-button">
+        <button mat-fab
+                class="cart__wishlist-button"
+                (click)="addProductToCart(product)">
+          <mat-icon>shopping_cart</mat-icon>
+        </button>
+        <button mat-fab
+                class="cart__wishlist-button"
+                (click)="removeFromWishlist(product)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </div>
     </div>
   </mat-card>
-</div>

@@ -9,4 +9,5 @@ export interface Product {
   price: number,
   in_bundle: boolean
   quantity: number,
+  in_cart: boolean
 }

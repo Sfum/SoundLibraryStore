@@ -1,5 +1,7 @@
+<div class="container">
 <app-wishlist-detail *ngIf="products$" [products]="products"
-
+                     (addToCartEvent)="onAddToCart($event)"
                      (removeWishlistEvent)="removeFromWishlist($event)"
 ></app-wishlist-detail>
+</div>
 

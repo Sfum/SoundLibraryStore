@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="payment__order--summary">
+    <h6 class="payment__label--summary">Order Summary</h6>
+    <div>
+      <span>Subtotal:</span>
+      <span class="payment__label--cart"
+      >${{ cartTotal | number : "1.2-2" }}</span
+      >
+    </div>
+    <hr />
+    <div>
+      <span>TOTAL:</span>
+      <strong class="payment__label--cart"
+      >${{ cartTotal | number : "1.2-2" }}</strong
+      >
+    </div>
+
+
+    <div class="payment__payment--labels">
+      <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+    </div>
+  </div> </div>
