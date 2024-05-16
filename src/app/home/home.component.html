@@ -1,44 +1,24 @@
-<!--<div class="homepage margin__bottom&#45;&#45;lg">-->
-<!--  <div class="background"></div>-->
-<!--  <div class="content">-->
-<!--    <div class="title-main">DISCOVER AMAZING SOUNDS</div>-->
-<!--    <div class="margin__top&#45;&#45;md margin__left&#45;&#45;lg title-secondary">...straight into your DAW</div>-->
-<!--  </div>-->
-<!--</div>-->
-
-<div class="component-body">
-
-  <ng-container *ngIf="user$ | async as user; else notAuthenticated">
-
-    <div class="component-body">
-
-      <div *ngIf="isAdmin; else notAdmin">
-        <h1 class="margin-auto">Welcome to the Admin Dashboard</h1>
-        <div class="product-list">
-          <app-product-list class="container"></app-product-list>
+<ng-container *ngIf="user$ | async as user; else notAuthenticated">
+    <div *ngIf="isAdmin; else notAdmin">
+      <div class="product-list">
+        <app-product-list class="container"></app-product-list>
+      </div>
+    </div>
+    <ng-template #notAdmin>
+      <div class="product-card">
+        <div class="product-card-left">
+          <app-product-filter></app-product-filter>
+        </div>
+        <div class="product-card-right">
+          <app-product-card *ngIf="user && user.uid"></app-product-card>
         </div>
       </div>
+    </ng-template>
+</ng-container>
+<ng-template #notAuthenticated>
+  <div class="component-body">
+    <app-product-card></app-product-card>
+  </div>
+</ng-template>
 
-      <ng-template #notAdmin>
-        <div class="product-card">
-          <div class="product-card-left">
-            <app-product-filter></app-product-filter>
-          </div>
-          <div class="product-card-middle">
-            <app-product-card *ngIf="user && user.uid"></app-product-card>
-          </div>
-        </div>
-      </ng-template>
-
-    </div>
-  </ng-container>
-
-  <ng-template #notAuthenticated>
-    <div class="component-body">
-
-      <app-product-card></app-product-card>
-    </div>
-  </ng-template>
-
-</div>
 
