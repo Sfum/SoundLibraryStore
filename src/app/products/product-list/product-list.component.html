@@ -7,19 +7,20 @@
     <!-- Product ID Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> Product ID </mat-header-cell>
-      <mat-cell class="cell_hover" *matCellDef="let product" [routerLink]="['/', 'edit', product.id]"> {{ product.id }} </mat-cell>
+      <mat-cell *matCellDef="let product"> {{ product.id }} </mat-cell>
     </ng-container>
 
     <!-- Product Name Column -->
     <ng-container matColumnDef="product_name">
       <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
-      <mat-cell class="cell_hover" *matCellDef="let product" [routerLink]="['/', 'edit', product.id]"> {{ product.product_name }} </mat-cell>
-    </ng-container>
-
-    <!-- Supplier ID Column -->
-    <ng-container matColumnDef="brandId">
-      <mat-header-cell *matHeaderCellDef> Brand </mat-header-cell>
-      <mat-cell *matCellDef="let product"> {{ product.brandId }} </mat-cell>
+      <mat-cell class="cell_hover"
+                *matCellDef="let product"
+                [routerLink]="['/', 'edit', product.id]">
+        <div class="cell--main">
+        <div class="font-secondary">{{ product.product_name }}</div>
+        <div class="font-small">{{ product.brandId }}</div>
+        </div>
+      </mat-cell>
     </ng-container>
 
     <!-- Category ID Column -->
@@ -37,6 +38,11 @@
     <ng-container matColumnDef="in_bundle">
       <mat-header-cell *matHeaderCellDef> Bundle? </mat-header-cell>
       <mat-cell *matCellDef="let product"> {{ product.in_bundle }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let product"> ${{ product.price }} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

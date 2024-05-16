@@ -1,13 +1,30 @@
-
-<div class="container margin-auto font-primary">Edit Brand</div>
-
-<form [formGroup]="brandForm" (ngSubmit)="onSubmit()" *ngIf="(brandEdit$ | async) as asyncFilterPipe">
-
-  <label for="brand_name" class="">Brand Name:</label>
-  <input matInput type="text" id="brand_name" formControlName="brand_name" required>
-
-  <label for="brand_description" class="margin__top--md">Brand Description:</label>
-  <textarea matInput type="text" id="brand_description" formControlName="brand_description" required style="width: 100%; height: 200px;">
-  </textarea>
-  <button class="margin__top--md"mat-raised-button>Update Brand</button>
-</form>
+<div class="align__items">
+  <mat-card class="container">
+    <div class="font-primary margin__left--md margin__top--md">Edit Brand</div>
+    <div class="margin--md">
+      <form [formGroup]="brandForm" (ngSubmit)="onSubmit()"
+            *ngIf="(brandEdit$ | async) as asyncFilterPipe" class="container">
+        <label for="brand_name"
+               class="font-primary margin__bottom--xsm">
+          Brand Name:</label>
+        <input class="border-radius--sm"
+               type="text" id="brand_name"
+               formControlName="brand_name"
+               required>
+        <label for="brand_description"
+               class="font-primary margin__top--md margin__bottom--xsm">
+          Brand
+          Description:</label>
+        <textarea class="border-radius--sm"
+                  type="text"
+                  id="brand_description"
+                  formControlName="brand_description"
+                  required style="width: 100%; height: 200px;">
+        </textarea>
+        <button mat-raised-button
+                class="margin__top--sm margin__right--lg">Update Brand
+        </button>
+      </form>
+    </div>
+  </mat-card>
+</div>

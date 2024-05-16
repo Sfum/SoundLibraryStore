@@ -14,10 +14,10 @@ export class ProductListComponent  implements OnInit {
   displayedColumns: string[] = [
     'id',
     'product_name',
-    'brandId',
     'genreId',
     'product_image',
-    'in_bundle'
+    'in_bundle',
+    'price'
   ];
   // @ts-ignore
   dataSource: MatTableDataSource<Product>;

@@ -4,6 +4,7 @@ import {ProductService} from "../../services/product.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {Product} from "../../models/product";
+import {SnackbarService} from "../../services/snackbar.service";
 
 @Component({
   selector: 'app-product-edit',
@@ -26,6 +27,7 @@ export class ProductEditComponent implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
+    private snackbarService: SnackbarService
 
   ) {
     this.productForm = this.fb.group({
@@ -80,7 +82,7 @@ export class ProductEditComponent implements OnInit {
         () => {
           console.log('Product updated successfully.');
           // Handle success, maybe redirect to the product details page
-          this.router.navigate(['/provider']);
+          this.snackbarService.showSnackbar(`Product updated successfully.`);
         },
         (error) => {
           console.error('Error updating product: ', error);

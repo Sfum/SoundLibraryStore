@@ -71,12 +71,14 @@ export class ProductService {
         .then(() => {
           observer.next();
           observer.complete();
+          window.location.reload();
         })
         .catch((error) => {
           console.error('Error updating product: ', error);
           observer.error('Something went wrong while updating the product');
         });
     });
+
   }
 
   // Observable for retrieving products from the mock API
