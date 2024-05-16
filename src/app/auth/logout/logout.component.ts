@@ -22,11 +22,9 @@ export class LogoutComponent implements OnInit{
     this.authService.signOut()
       .then(() => {
         console.log('User signed out successfully');
-        // Optionally, navigate to another page upon successful sign out
       })
       .catch(error => {
         console.error('Error signing out:', error.message);
-        // Handle error, e.g., display error message to user
       });
   }
 

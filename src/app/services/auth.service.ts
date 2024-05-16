@@ -3,6 +3,8 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {map, Observable} from "rxjs";
 import firebase from "firebase/compat";
 import {Router} from "@angular/router";
+import {WishlistService} from "./wishlist.service";
+import {CartService} from "./cart.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,9 @@ import {Router} from "@angular/router";
 export class AuthService {
 
   constructor(private afAuth: AngularFireAuth,
-              private router: Router) {
+              private router: Router,
+              private wishlistService: WishlistService,
+              private cartService: CartService) {
     // @ts-ignore
     this.user$ = afAuth.authState;
   }
@@ -25,8 +29,11 @@ export class AuthService {
     return this.afAuth.createUserWithEmailAndPassword(email, password);
   }
 
-  signOut() {
-    return this.afAuth.signOut();
+  async signOut() {
+    this.wishlistService.clearWishlist();
+    this.cartService.clearCart();
+    await this.afAuth.signOut();
+    window.location.reload();
   }
 
   isAdmin(): Observable<boolean> {

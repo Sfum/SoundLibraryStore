@@ -45,4 +45,8 @@ export class WishlistService {
       this.saveCart();
     }
   }
+  clearWishlist(): void {
+    localStorage.removeItem('wishlist_items');
+    this.products = [];
+  }
 }

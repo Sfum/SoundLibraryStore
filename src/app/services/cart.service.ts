@@ -59,4 +59,8 @@ export class CartService {
       alert('Item Already In Cart');
     }
   }
+  clearCart(): void {
+    localStorage.removeItem('total_price');
+    this.products = [];
+  }
 }
