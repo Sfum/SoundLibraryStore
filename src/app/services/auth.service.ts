@@ -29,7 +29,8 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
-  signUp(email: string, password: string, displayName: string, photoURL: string) {
+  signUp(email: string, password: string, displayName: string, photoURL: string,
+         address: string, postcode: string, country: string ) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
         // User created successfully
@@ -38,12 +39,16 @@ export class AuthService {
         if (user) {
           return user.updateProfile({
             displayName: displayName,
-            photoURL: photoURL
+            photoURL: photoURL,
+
           }).then(() => {
             // Add additional information to Firestore
             return this.firestore.collection('users').doc(user.uid).set({
               displayName: displayName,
               photoURL: photoURL,
+              address: address,
+              postcode: postcode,
+              country: country
             });
           });
         } else {

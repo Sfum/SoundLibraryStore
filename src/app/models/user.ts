@@ -5,5 +5,8 @@ export interface User extends firebase.User {
   email: string;
   displayName: string;
   photoUrl: string;
+  address: string;
+  postcode: string;
+  country: string;
 }
 

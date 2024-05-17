@@ -11,11 +11,15 @@ export class SignupComponent {
   password: string = '';
   displayName: string = '';
   photoURL: string = '';
+  address: string = '';
+  postcode: string = '';
+  country: string = '';
 
   constructor(private authService: AuthService) { }
 
   onSubmit() {
-    this.authService.signUp(this.email, this.password, this.displayName, this.photoURL)
+    this.authService.signUp(this.email, this.password, this.displayName, this.photoURL,
+      this.address, this.postcode, this.country)
       .then(() => {
         console.log('User signed up successfully');
       })
