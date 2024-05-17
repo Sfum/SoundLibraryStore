@@ -1,17 +1,20 @@
-<div class="container__center">
-  <mat-card class="form-container">
-    <div class="font-primary margin__top--md margin__left--md margin__bottom--xsm">REGISTER</div>
-    <form (ngSubmit)="onSubmit()"
-          class="margin__left--md margin__top--sm margin__bottom--md margin__right--md">
-      <div>
-        <label for="email" class="font-primary">Email:</label>
-        <input matInput type="email" id="email" name="email" [(ngModel)]="email" required>
-      </div>
-      <div>
-        <label for="password" class="font-primary margin__top--sm">Password:</label>
-        <input matInput type="password" id="password" name="password" [(ngModel)]="password" required>
-      </div>
-      <button mat-raised-button class="margin__top--sm" type="submit">Register</button>
-    </form>
-  </mat-card>
-</div>
+<!-- signup.component.html -->
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label>Email</label>
+    <input type="email" [(ngModel)]="email" name="email" required>
+  </div>
+  <div>
+    <label>Password</label>
+    <input type="password" [(ngModel)]="password" name="password" required>
+  </div>
+  <div>
+    <label>Display Name</label>
+    <input type="text" [(ngModel)]="displayName" name="displayName" required>
+  </div>
+  <div>
+    <label>Photo URL</label>
+    <input type="text" [(ngModel)]="photoURL" name="photoURL">
+  </div>
+  <button type="submit">Sign Up</button>
+</form>

@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {WishlistService} from "./wishlist.service";
 import {CartService} from "./cart.service";
 import User = firebase.User;
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ import User = firebase.User;
 export class AuthService {
 
   constructor(private afAuth: AngularFireAuth,
+              private firestore: AngularFirestore,
               private router: Router,
               private wishlistService: WishlistService,
               private cartService: CartService) {
@@ -27,8 +29,27 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
-  signUp(email: string, password: string) {
-    return this.afAuth.createUserWithEmailAndPassword(email, password);
+  signUp(email: string, password: string, displayName: string, photoURL: string) {
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        // User created successfully
+        const user = userCredential.user;
+
+        if (user) {
+          return user.updateProfile({
+            displayName: displayName,
+            photoURL: photoURL
+          }).then(() => {
+            // Add additional information to Firestore
+            return this.firestore.collection('users').doc(user.uid).set({
+              displayName: displayName,
+              photoURL: photoURL,
+            });
+          });
+        } else {
+          throw new Error("User not found after creation");
+        }
+      });
   }
 
   async signOut() {

@@ -9,11 +9,13 @@ import {AuthService} from "../../services/auth.service";
 export class SignupComponent {
   email: string = '';
   password: string = '';
+  displayName: string = '';
+  photoURL: string = '';
 
   constructor(private authService: AuthService) { }
 
   onSubmit() {
-    this.authService.signUp(this.email, this.password)
+    this.authService.signUp(this.email, this.password, this.displayName, this.photoURL)
       .then(() => {
         console.log('User signed up successfully');
       })
