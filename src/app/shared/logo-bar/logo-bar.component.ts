@@ -14,6 +14,8 @@ export class LogoBarComponent implements OnInit {
   formats: Format[] = [];
 
   user$: Observable<firebase.User> | undefined;
+  // @ts-ignore
+  isAdmin: Observable<boolean>
 
   constructor(private formatService: FormatService,
               private authService: AuthService) { }
@@ -23,6 +25,7 @@ export class LogoBarComponent implements OnInit {
       this.formats = formats;
       // @ts-ignore
       this.user$ = this.authService.user$;
+      this.isAdmin = this.authService.isAdmin()
     });
   }
 }
