@@ -87,7 +87,7 @@ import {CarouselModule} from "ngx-bootstrap/carousel";
 
 import {ShoppingCartDetailComponent} from "./shopping-cart/shopping-cart-detail/shopping-cart-detail.component";
 import {MatBadge} from "@angular/material/badge";
-
+import {ProfileComponent} from "./auth/profile/profile.component";
 
 @NgModule({
   declarations: [
@@ -128,7 +128,8 @@ import {MatBadge} from "@angular/material/badge";
     ProductRelatedComponent,
     WishlistDetailComponent,
     ProductCarouselComponent,
-    ShoppingCartDetailComponent
+    ShoppingCartDetailComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

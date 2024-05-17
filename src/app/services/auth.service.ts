@@ -5,6 +5,7 @@ import firebase from "firebase/compat";
 import {Router} from "@angular/router";
 import {WishlistService} from "./wishlist.service";
 import {CartService} from "./cart.service";
+import User = firebase.User;
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,12 @@ export class AuthService {
               private router: Router,
               private wishlistService: WishlistService,
               private cartService: CartService) {
-    // @ts-ignore
-    this.user$ = afAuth.authState;
+
+    this.user$ = afAuth.authState as Observable<User | null>;
   }
 
-  user$: Observable<firebase.User>;
+  user$: Observable<User | null> = this.afAuth.authState as Observable<User | null>;
+
 
   signIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password);
@@ -37,6 +39,7 @@ export class AuthService {
   }
 
   isAdmin(): Observable<boolean> {
+    // @ts-ignore
     return this.user$.pipe(
       map(user => user && user.email === 'pulsedrecords@gmail.com')
     );

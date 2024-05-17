@@ -18,6 +18,7 @@ import {BrandAddComponent} from "./brands/brand-add/brand-add.component";
 import {BrandEditComponent} from "./brands/brand-edit/brand-edit.component";
 import {GenreEditComponent} from "./genres/genre-edit/genre-edit.component";
 import {GenreAddComponent} from "./genres/genre-add/genre-add.component";
+import {ProfileComponent} from "./auth/profile/profile.component";
 // import {AuthGuard} from "@angular/fire/auth-guard";
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogoutComponent},
   {path: 'signup', component: SignupComponent},
+  {path: 'profile', component: ProfileComponent},
 
 ];
 
