@@ -16,6 +16,7 @@ export class HomeComponent {
   }
 
   ngOnInit() {
+    // @ts-ignore
     this.user$ = this.authService.user$;
     this.authService.isAdmin().subscribe(isAdmin => {
       this.isAdmin = isAdmin;

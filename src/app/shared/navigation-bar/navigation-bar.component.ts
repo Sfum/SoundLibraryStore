@@ -17,6 +17,7 @@ export class NavigationBarComponent {
   }
 
   ngOnInit() {
+    // @ts-ignore
     this.user$ = this.authService.user$;
   }
 

@@ -19,6 +19,7 @@ import {BrandEditComponent} from "./brands/brand-edit/brand-edit.component";
 import {GenreEditComponent} from "./genres/genre-edit/genre-edit.component";
 import {GenreAddComponent} from "./genres/genre-add/genre-add.component";
 import {ProfileComponent} from "./auth/profile/profile.component";
+import {AdminGuard} from "./guards/admin.guard";
 // import {AuthGuard} from "@angular/fire/auth-guard";
 
 const routes: Routes = [
@@ -28,7 +29,7 @@ const routes: Routes = [
   {path: 'formats', component: FormatsComponent},
   {path: 'brands', component: BrandsComponent},
   {path: 'bundles', component: BundlesComponent},
-  {path: 'provider', component: ProviderComponent},
+  {path: 'provider', component: ProviderComponent, canActivate: [AdminGuard]},
   {path: 'products/:id', component: ProductPageDetailComponent},
   {path: 'add-product', component: ProductAddComponent},
   {path: 'edit/:id', component: ProductEditComponent},

@@ -21,6 +21,7 @@ export class LogoBarComponent implements OnInit {
   ngOnInit(): void {
     this.formatService.getFormats().subscribe(formats => {
       this.formats = formats;
+      // @ts-ignore
       this.user$ = this.authService.user$;
     });
   }
