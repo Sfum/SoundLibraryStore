@@ -32,7 +32,6 @@ export class ProductEditComponent implements OnInit {
   ) {
     this.productForm = this.fb.group({
 
-      id: ['', Validators.required],
       product_name: ['', Validators.required],
       product_title: ['', Validators.required],
       product_description: ['', Validators.required],
