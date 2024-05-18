@@ -1,8 +1,10 @@
-<div *ngIf="user">
+
+<div class="container align__items" *ngIf="user">
   <h2>Welcome, {{ user.displayName }}</h2>
-  <p>Email: {{ user.email }} {{user.displayName}}</p>
+  <p>Email: {{ user.email }} </p>
+  <p>Username: {{user.displayName}}</p>
   <img [src]="user.photoURL" width="200px" alt="Profile Picture">
-  <button (click)="logout()">Logout</button>
+  <button mat-raised-button (click)="logout()" class="margin__top--md">Logout</button>
 </div>
 
 <div *ngIf="!user">

@@ -3,8 +3,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../../services/product.service";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {Router} from "@angular/router";
-import { debounceTime } from 'rxjs/operators';
+import {debounceTime, finalize} from 'rxjs/operators';
 import {Subject} from "rxjs";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 @Component({
   selector: 'app-product-add',
@@ -24,7 +25,8 @@ export class ProductAddComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private productService: ProductService,
               private afs: AngularFirestore,
-              private router: Router
+              private router: Router,
+              private afStorage: AngularFireStorage,
               ) {
     this.productForm = this.fb.group({
       product_name: ['', Validators.required],
@@ -32,7 +34,7 @@ export class ProductAddComponent implements OnInit {
       product_description: ['', Validators.required],
       brandId: ['', Validators.required],
       genreId: ['', Validators.required],
-      product_image: ['', Validators.required],
+      product_image: [],
       in_bundle: ['', Validators.required],
     });
 
@@ -52,13 +54,29 @@ export class ProductAddComponent implements OnInit {
     this.onSubmitSubject.next();
   }
 
+
+  uploadImage(event: any) {
+    const file = event.target.files[0];
+    const filePath = `products/${this.productId}/${file.name}`;
+    const fileRef = this.afStorage.ref(filePath);
+    const task = this.afStorage.upload(filePath, file);
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe(url => {
+          this.productForm.patchValue({ product_image: url });
+        });
+      })
+    ).subscribe();
+  }
+
   onSubmit() {
     if (this.productForm.valid) {
       const productData = this.productForm.value;
       this.productService.addProduct(productData).then(() => {
         console.log('Product added successfully.');
         this.productForm.reset();
-        this.router.navigate(['/'])
+        this.router.navigate(['/provider']);
       })
         .catch(error => {
           console.error('Error adding product: ', error);
@@ -67,6 +85,7 @@ export class ProductAddComponent implements OnInit {
       console.log('Form is invalid. Please fill in all required fields.');
     }
   }
+
   optionBrandSelected(selectedSupplierId: number) {
     return this.productService.optionBrandSelected(selectedSupplierId);
   }

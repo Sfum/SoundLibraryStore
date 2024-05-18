@@ -1,39 +1,46 @@
+<mat-card class="product__edit--container align__items">
 
-<div class="container margin-auto font-primary">Edit Product</div>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" *ngIf="(productEdit$ | async) as asyncFilterPipe">
+    <div class="product__edit--left margin__left--md margin__top--md">
+      <div class="container margin__bottom--xsm font-primary">Edit Product</div>
+      <label for="id">ID:</label>
+      <input class="margin__bottom--sm" matInput type="text" id="id" formControlName="id" required>
 
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()" *ngIf="(productEdit$ | async) as asyncFilterPipe">
-  <label for="id">ID:</label>
-  <input matInput type="text" id="id" formControlName="id" required>
+      <label for="productName">Product Name:</label>
+      <input matInput type="text" id="productName" formControlName="product_name" required>
 
-  <label for="productName">Product Name:</label>
-  <input matInput type="text" id="productName" formControlName="product_name" required>
+      <mat-form-field class="form-control margin__top--md">
+        <mat-label>Select Brand</mat-label>
+        <mat-select formControlName="brandId" (selectionChange)="optionBrandSelected($event.value)">
+          <mat-option *ngFor="let brand of brands$ | async" [value]="brand.id">{{ brand.brand_name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <label for="productTitle">Product Title:</label>
-  <input matInput type="text" id="productTitle" formControlName="product_title" required>
+      <mat-form-field class="form-control margin__left--md">
+        <mat-label>Select Genre</mat-label>
+        <mat-select formControlName="genreId" (selectionChange)="optionGenreSelected($event.value)">
+          <mat-option *ngFor="let genre of genres$ | async" [value]="genre.id">{{ genre.genre_name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <label for="productDescription">Product Description:</label>
-  <textarea id="productDescription" formControlName="product_description" required></textarea>
+      <label for="productImage">Product Image URL:</label>
+      <input class="margin__bottom--sm" matInput type="text" id="productImage" formControlName="product_image" required>
 
-  <mat-form-field class="form-control">
-    <mat-label>Select Brand</mat-label>
-    <mat-select formControlName="brandId" (selectionChange)="optionBrandSelected($event.value)">
-      <mat-option *ngFor="let brand of brands$ | async" [value]="brand.id">{{ brand.brand_name }}</mat-option>
-    </mat-select>
-  </mat-form-field>
+      <!-- Toggle for in_bundle property -->
+      <mat-slide-toggle class="margin__bottom--md" formControlName="in_bundle">Is it part of a bundle?</mat-slide-toggle>
 
-  <mat-form-field class="form-control">
-    <mat-label>Select Genre</mat-label>
-    <mat-select formControlName="genreId" (selectionChange)="optionGenreSelected($event.value)">
-      <mat-option *ngFor="let genre of genres$ | async" [value]="genre.id">{{ genre.genre_name }}</mat-option>
-    </mat-select>
-  </mat-form-field>
+    </div>
+      <div class="product__edit--right margin__left--md margin__top--md">
+        <div class="container margin__bottom--xsm font-primary">Description</div>
+        <label for="productTitle">Product Title:</label>
+        <input matInput type="text" id="productTitle" formControlName="product_title" required>
 
-  <label for="productImage">Product Image URL:</label>
-  <input matInput type="text" id="productImage" formControlName="product_image" required>
+        <label for="productDescription" class="margin__top--sm">Product Description:</label>
+        <textarea id="productDescription" formControlName="product_description" required rows="9" cols="50"></textarea>
 
-  <!-- Toggle for in_bundle property -->
-  <mat-slide-toggle formControlName="in_bundle">Is it part of a bundle?</mat-slide-toggle>
+        <button mat-raised-button class="button margin__top--md" [disabled]="productForm.invalid">Update Product</button>
+        <button mat-raised-button class="button margin__top--md margin__left--sm"[routerLink]='["/provider"]'>Back</button>
+      </div>
 
-  <button mat-raised-button [disabled]="productForm.invalid">Update Product</button>
-  <button mat-raised-button [routerLink]='["/provider"]'>Back</button>
-</form>
+  </form>
+</mat-card>

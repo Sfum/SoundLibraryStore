@@ -1,17 +1,12 @@
 .container
-  margin: 20px 0 0 20px
-
 
 form
   display: grid
   gap: 1rem
-  margin: auto
   width: 600px
 
   label
     display: block
-    font-weight: 500
-    margin: 20px 0 0 0
 
 
   input,
@@ -28,12 +23,24 @@ form
     transition: background-color 0.3s
 
     &:hover
-      background-color: #0056b3
+      background-color: whitesmoke
 
 
     &:disabled
-      background-color: #ccc
+      background-color: darkgrey
       cursor: not-allowed
 
+
+.product__edit--container
+  display: grid
+  grid-template-columns: 600px 600px
+
+.product__edit--left
+  grid-column: 1/2
+  width: 540px
+
+.product__edit--right
+  grid-column: 2/3
+  width: 560px
 
 

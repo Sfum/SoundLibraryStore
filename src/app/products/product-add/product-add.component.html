@@ -26,9 +26,12 @@
     </mat-select>
   </mat-form-field>
 
-  <label for="productImage" class="font-small">Product Image URL:</label>
-  <input type="text" id="productImage" formControlName="product_image" required>
-
+  <form [formGroup]="productForm" (ngSubmit)="onSubmitWithDebounce()">
+    <!-- Other form fields -->
+    <label for="productImage" class="font-small">Product Image:</label>
+    <input type="file" id="productImage" (change)="uploadImage($event)">
+    <button type="submit" mat-raised-button>Add Product</button>
+  </form>
   <mat-slide-toggle formControlName="in_bundle">Is it part of a bundle?</mat-slide-toggle>
 
   <button type="submit" mat-raised-button>Add Product</button>

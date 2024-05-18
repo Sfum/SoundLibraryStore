@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {map, Observable} from "rxjs";
 import firebase from "firebase/compat";
 import {Router} from "@angular/router";
 import {WishlistService} from "./wishlist.service";
 import {CartService} from "./cart.service";
 import User = firebase.User;
-import {AngularFirestore} from "@angular/fire/compat/firestore";
+
 
 @Injectable({
   providedIn: 'root'
