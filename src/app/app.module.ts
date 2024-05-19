@@ -88,6 +88,7 @@ import {CarouselModule} from "ngx-bootstrap/carousel";
 import {ShoppingCartDetailComponent} from "./shopping-cart/shopping-cart-detail/shopping-cart-detail.component";
 import {MatBadge} from "@angular/material/badge";
 import {ProfileComponent} from "./auth/profile/profile.component";
+import {MatStep, MatStepLabel, MatStepper, MatStepperNext, MatStepperPrevious} from "@angular/material/stepper";
 
 @NgModule({
   declarations: [
@@ -172,7 +173,12 @@ import {ProfileComponent} from "./auth/profile/profile.component";
     MatMiniFabButton,
     CarouselModule,
     MatFabButton,
-    MatBadge
+    MatBadge,
+    MatStep,
+    MatStepperPrevious,
+    MatStepperNext,
+    MatStepper,
+    MatStepLabel
 
   ],
   providers: [

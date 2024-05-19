@@ -1,5 +1,8 @@
-<!-- signup.component.html -->
-<form (ngSubmit)="onSubmit()">
+<div class="align__items">
+<mat-card>
+  <a class="font-primary margin__left--md margin__top--md">Register</a>
+
+<form (ngSubmit)="onSubmit()" class="margin--md">
   <div>
     <label>Email</label>
     <input type="email" [(ngModel)]="email" name="email" required>
@@ -29,5 +32,10 @@
     <label>Country</label>
     <input type="text" [(ngModel)]="country" name="country" required>
   </div>
-  <button type="submit">Sign Up</button>
+  <button mat-raised-button type="submit" class="margin__top--md">Sign Up</button>
 </form>
+</mat-card>
+</div>
+
+
+

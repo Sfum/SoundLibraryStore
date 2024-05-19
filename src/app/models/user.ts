@@ -8,5 +8,6 @@ export interface User extends firebase.User {
   address: string;
   postcode: string;
   country: string;
+  is_brand: boolean
 }
 

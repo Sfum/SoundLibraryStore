@@ -26,11 +26,11 @@ export class ProductPageComponent  implements OnInit{
     this.genres$ = this.genresService.getGenres();
     this.products$ = this.productService.getProducts();
   }
-  onAddToWishlist(product: any) {
+  onAddToWishlist(product: Product) {
     this.wishlistService.addToWishlist(product)
 
   }
-  onAddToCart(product: any) {
+  onAddToCart(product: Product) {
     this.cartService.addToCart(product)
   }
 }

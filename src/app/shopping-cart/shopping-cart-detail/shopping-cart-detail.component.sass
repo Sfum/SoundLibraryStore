@@ -1,12 +1,24 @@
 .cart__items-container
-  height: 240px
+  display: grid
+  grid-template-columns: 30% 70%
+  height: 130px
   width: 600px
+
+.cart__product-image
+  grid-column: 1/2
+
+.cart__info
+  grid-column: 2/3
 
 .cart__badge
   position: absolute
-  left: 90px
-  top: 30px
+  left: 86px
+  top: 26px
 .cart__remove-button
   position: absolute
-  left: 200px
-  top: 100px
+  left: 390px
+  top: 80px
+.cart__card_price-amount
+  position: absolute
+  left: 500px
+  top: 50px

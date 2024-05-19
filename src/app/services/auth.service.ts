@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {map, Observable} from "rxjs";
+import {map, Observable, of, switchMap} from "rxjs";
 import firebase from "firebase/compat";
 import {Router} from "@angular/router";
 import {WishlistService} from "./wishlist.service";
@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   signUp(email: string, password: string, displayName: string, photoURL: string,
-         address: string, postcode: string, country: string ) {
+         address: string, postcode: string, country: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then(userCredential => {
         // User created successfully
@@ -49,7 +49,7 @@ export class AuthService {
               photoURL: photoURL,
               address: address,
               postcode: postcode,
-              country: country
+              country: country,
             });
           });
         } else {

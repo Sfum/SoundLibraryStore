@@ -1,14 +1,12 @@
-<mat-card class="cart__items-container mat-elevation-z24"
+<mat-card class="cart__items-container mat-elevation-z24 margin__bottom--sm"
           *ngFor="let product of products; let i = index">
 
-  <div class="cart__inner-wrapper">
     <img class="cart__product-image margin__top--md margin__left--md"
          [src]="product.product_image"
          height="90"
          width="90"
          alt=""/>
-  </div>
-  <div class="cart__info">
+  <div class="cart__info margin__top--md">
     <mat-icon class="cart__badge"
               [matBadge]="product.quantity"
               matBadgeSize="large"
@@ -28,7 +26,7 @@
                value="1"/>
       </div>
 
-      <div class="cart__card_price-amount font-label font-primary margin__top--sm">
+      <div class="cart__card_price-amount font-primary margin__top--sm">
         ${{ product.quantity * product.price | number : "1.2-2" }}
       </div>
     </div>
