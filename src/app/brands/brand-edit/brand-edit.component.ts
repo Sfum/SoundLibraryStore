@@ -63,7 +63,7 @@ export class BrandEditComponent implements OnInit {
         () => {
           console.log('Brand updated successfully.');
           // Handle success, maybe redirect to the brand details page
-          this.router.navigate(['/provider']);
+          this.router.navigate(['/manage-products']);
         },
         (error) => {
           console.error('Error updating brand: ', error);

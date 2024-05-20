@@ -187,12 +187,13 @@ import {MatStep, MatStepLabel, MatStepper, MatStepperNext, MatStepperPrevious} f
     { provide: USE_FIRESTORE_EMULATOR, useValue: environment.useEmulators ? ['localhost', 8080] : undefined },
     // { provide: USE_FUNCTIONS_EMULATOR, useValue: environment.useEmulators ? ['localhost', 5001] : undefined },
   ],
-  exports: [
-    ProductCardComponent,
-    BrandDetailComponent,
-    NavigationBarComponent,
-    LogoBarComponent
-  ],
+    exports: [
+        ProductCardComponent,
+        BrandDetailComponent,
+        NavigationBarComponent,
+        LogoBarComponent,
+        BrandListComponent
+    ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

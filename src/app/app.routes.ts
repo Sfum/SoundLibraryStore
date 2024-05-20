@@ -20,7 +20,8 @@ import {GenreEditComponent} from "./genres/genre-edit/genre-edit.component";
 import {GenreAddComponent} from "./genres/genre-add/genre-add.component";
 import {ProfileComponent} from "./auth/profile/profile.component";
 import {AdminGuard} from "./guards/admin.guard";
-// import {AuthGuard} from "@angular/fire/auth-guard";
+import {BrandListComponent} from "./brands/brand-list/brand-list.component";
+import {GenreListComponent} from "./genres/genre-list/genre-list.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '', pathMatch: 'full'},
@@ -29,7 +30,9 @@ const routes: Routes = [
   {path: 'formats', component: FormatsComponent},
   {path: 'brands', component: BrandsComponent},
   {path: 'bundles', component: BundlesComponent},
-  {path: 'provider', component: ProviderComponent, canActivate: [AdminGuard]},
+  {path: 'manage-products', component: ProviderComponent, canActivate: [AdminGuard]},
+  {path: 'manage-brands', component: BrandListComponent, canActivate: [AdminGuard]},
+  {path: 'manage-genres', component: GenreListComponent, canActivate: [AdminGuard]},
   {path: 'products/:id', component: ProductPageDetailComponent},
   {path: 'add-product', component: ProductAddComponent},
   {path: 'edit/:id', component: ProductEditComponent},
