@@ -2,8 +2,8 @@
   <mat-card class="container">
     <div class="font-primary margin__left--md margin__top--md">Edit Genre</div>
     <div class="margin--md">
-      <form [formGroup]="genreForm" (ngSubmit)="onSubmit()"
-            *ngIf="(genreEdit$ | async) as asyncFilterPipe" class="container">
+      <form class="form-container container" [formGroup]="genreForm" (ngSubmit)="onSubmit()"
+            *ngIf="(genreEdit$ | async) as asyncFilterPipe">
         <label for="genre_name"
                class="font-primary margin__bottom--xsm">
           Genre Name:</label>

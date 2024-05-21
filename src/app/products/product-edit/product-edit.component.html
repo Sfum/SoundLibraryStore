@@ -1,7 +1,7 @@
 <mat-card class="product__edit--container">
 
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" *ngIf="(productEdit$ | async) as asyncFilterPipe">
-    <div class="product__edit--left margin__left--md margin__top--md">
+  <form class="form-container" [formGroup]="productForm" (ngSubmit)="onSubmit()" *ngIf="(productEdit$ | async) as asyncFilterPipe">
+    <div class="product__edit--left margin__left--lg margin__top--lg">
       <div class="container margin__bottom--md font-primary">Edit Product</div>
 
       <label for="productName">Product Name:</label>
@@ -34,9 +34,9 @@
         <input matInput type="text" id="productTitle" formControlName="product_title" required>
 
         <label for="productDescription" class="margin__top--sm">Product Details:</label>
-        <textarea id="productDescription" formControlName="product_description" required rows="9" cols="50"></textarea>
+        <textarea type="text" id="productDescription" formControlName="product_description" required rows="9" cols="50"></textarea>
 
-        <button mat-raised-button class="button margin__top--md" [disabled]="productForm.invalid">Update Product</button>
+        <button mat-raised-button class="button margin__top--sm" [disabled]="productForm.invalid">Update Product</button>
       </div>
 
   </form>

@@ -2,7 +2,7 @@
 <mat-card>
   <a class="font-primary margin__left--md margin__top--md">Register</a>
 
-<form (ngSubmit)="onSubmit()" class="margin--md">
+<form class="form-container margin--md"  (ngSubmit)="onSubmit()">
   <div>
     <label>Email</label>
     <input type="email" [(ngModel)]="email" name="email" required>

@@ -64,7 +64,7 @@ export class GenreEditComponent implements OnInit {
         () => {
           console.log('Genre updated successfully.');
           // Handle success, maybe redirect to the genre details page
-          this.router.navigate(['/manage-products']);
+          this.router.navigate(['/manage-genres']);
         },
         (error) => {
           console.error('Error updating genre: ', error);

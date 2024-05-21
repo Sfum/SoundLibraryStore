@@ -8,6 +8,7 @@ import {WishlistService} from "./wishlist.service";
 import {CartService} from "./cart.service";
 import User = firebase.User;
 import {SnackbarService} from "./snackbar.service";
+import {user} from "@angular/fire/auth";
 
 
 @Injectable({
@@ -31,7 +32,8 @@ export class AuthService {
   signIn(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then(() => {
-        this.snackbarService.showSnackbar('User Signed In successfully!');
+        this.snackbarService.showSnackbar(`Welcome, you have been logged in!`);
+
       })
       .catch(error => {
         this.snackbarService.showSnackbar(`Sign In failed: ${error.message}`);

@@ -2,8 +2,8 @@
   <mat-card class="container">
     <div class="font-primary margin__left--md margin__top--md">Edit Brand</div>
     <div class="margin--md">
-      <form [formGroup]="brandForm" (ngSubmit)="onSubmit()"
-            *ngIf="(brandEdit$ | async) as asyncFilterPipe" class="container">
+      <form class="form-container container" [formGroup]="brandForm" (ngSubmit)="onSubmit()"
+            *ngIf="(brandEdit$ | async) as asyncFilterPipe">
         <label for="brand_name"
                class="font-primary margin__bottom--xsm">
           Brand Name:</label>

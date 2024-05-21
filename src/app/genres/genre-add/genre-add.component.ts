@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {GenreService} from "../../services/genre.service";
 import {Genre} from "../../models/genre";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-genre-add',
@@ -13,7 +14,8 @@ export class GenreAddComponent implements OnInit {
   genreForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private genreService: GenreService) {
+              private genreService: GenreService,
+              private router: Router) {
 
     this.genreForm = this.formBuilder.group({
       _id: [''],
@@ -38,6 +40,7 @@ export class GenreAddComponent implements OnInit {
         .then(() => {
           console.log('Genre added successfully.');
           this.genreForm.reset();
+          this.router.navigate(['/manage-genres']);
         })
         .catch(error => {
           console.error('Error adding genre: ', error);
