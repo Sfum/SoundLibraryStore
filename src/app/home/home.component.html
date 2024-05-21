@@ -1,3 +1,5 @@
+<app-product-carousel></app-product-carousel>
+
 <ng-container *ngIf="user$ | async as user; else notAuthenticated">
     <div *ngIf="isAdmin; else notAdmin">
       <div class="product-list">

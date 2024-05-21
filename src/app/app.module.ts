@@ -83,7 +83,6 @@ import {GenreListComponent} from "./genres/genre-list/genre-list.component";
 import {ProductRelatedComponent} from "./products/product-related/product-related.component";
 
 import {WishlistDetailComponent} from "./wishlist/wishlist-detail/wishlist-detail.component";
-import {CarouselModule} from "ngx-bootstrap/carousel";
 
 import {ShoppingCartDetailComponent} from "./shopping-cart/shopping-cart-detail/shopping-cart-detail.component";
 import {MatBadge} from "@angular/material/badge";
@@ -171,14 +170,13 @@ import {MatStep, MatStepLabel, MatStepper, MatStepperNext, MatStepperPrevious} f
     MatRowDef,
     MatSlideToggle,
     MatMiniFabButton,
-    CarouselModule,
     MatFabButton,
     MatBadge,
     MatStep,
     MatStepperPrevious,
     MatStepperNext,
     MatStepper,
-    MatStepLabel
+    MatStepLabel,
 
   ],
   providers: [

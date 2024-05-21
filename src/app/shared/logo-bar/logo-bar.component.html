@@ -9,9 +9,12 @@
     </mat-menu>
     <li><button class="font-primary" mat-button routerLink="/brands">Brands</button></li>
     <li><button class="font-primary" mat-button routerLink="/bundles">Bundles</button></li>
-    <li><button class="font-primary" mat-button routerLink="/manage-products" *ngIf="(isAdmin| async)">Product Management</button></li>
-    <li><button class="font-primary" mat-button routerLink="/manage-brands" *ngIf="(isAdmin| async)">Brands Management</button></li>
-    <li><button class="font-primary" mat-button routerLink="/manage-genres" *ngIf="(isAdmin| async)">Genres Management</button></li>
+    <button mat-button [matMenuTriggerFor]="providerMenu" class="font-primary">Provider</button>
+    <mat-menu #providerMenu="matMenu" yPosition="below">
+      <div class="icon-align"><i class="pi pi-box margin__left--md"></i><button class="font-secondary bar-menu margin__right--md" mat-button routerLink="/manage-products" *ngIf="(isAdmin| async)">Product Management</button></div>
+      <div class="icon-align"><i class="pi pi-star-fill margin__left--md"></i><button class="font-secondary bar-menu margin__right--md" mat-button routerLink="/manage-brands" *ngIf="(isAdmin| async)">Brand Management</button></div>
+      <div class="icon-align"><i class="pi pi-barcode margin__left--md"></i><button class="font-secondary bar-menu margin__right--md" mat-button routerLink="/manage-genres" *ngIf="(isAdmin| async)">Genre Management</button></div>
+    </mat-menu>
     <li><button class="font-primary" mat-button routerLink="/login" *ngIf="!(user$| async)">Login</button></li>
     <li><button class="font-primary"mat-button routerLink="/signup" *ngIf="!(user$| async)">Signup</button></li>
   </ul>
