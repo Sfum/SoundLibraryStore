@@ -1,40 +1,24 @@
 .container
-  margin: 20px 0 0 20px
+  display: flex
+  flex-direction: column
+  width: 600px
+  input textarea
+    padding: 10px
+    max-width: 560px
+
+.text-field
+  max-width: 540px
+
+.button
+  max-width: 160px
+  margin-left: auto
+
+form.container
+  display: flex
+  flex-direction: column
 
 
-form
-  display: grid
-  gap: 1rem
-  margin: auto
-  padding: 20px
-
-  label
-    display: block
-    font-weight: 500
-    margin-bottom: 0.5rem
-
-
-  input,
-  textarea
-    width: 100%
-    padding: 0.5rem
-    margin-bottom: 1rem
-    border: 1px solid #ccc
-    border-radius: 4px
-
-
-  button
-    padding: 0.5rem 1rem
-    cursor: pointer
-    transition: background-color 0.3s
-
-    &:hover
-      background-color: #0056b3
-
-
-    &:disabled
-      background-color: #ccc
-      cursor: not-allowed
-
-
+.form-actions
+  display: flex
+  justify-content: flex-end
 

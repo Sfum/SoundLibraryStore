@@ -26,8 +26,6 @@ export class ProductEditComponent implements OnInit {
     private fb: FormBuilder,
     private productService: ProductService,
     private route: ActivatedRoute,
-    private router: Router,
-    private snackbarService: SnackbarService
 
   ) {
     this.productForm = this.fb.group({
