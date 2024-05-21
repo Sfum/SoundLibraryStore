@@ -5,14 +5,14 @@
       <form class="form-container container" [formGroup]="genreForm" (ngSubmit)="onSubmit()"
             *ngIf="(genreEdit$ | async) as asyncFilterPipe">
         <label for="genre_name"
-               class="font-primary margin__bottom--xsm">
+               class="font-secondary margin__bottom--xsm">
           Genre Name:</label>
         <input class="text-field padding--md margin__right--lg"
                type="text" id="genre_name"
                formControlName="genre_name"
                required>
         <label for="genre_description"
-               class="text-field font-primary margin__top--md margin__bottom--xsm">
+               class="text-field font-secondary margin__top--md margin__bottom--xsm">
           Genre Description:</label>
         <textarea class="text-field padding--md"
                   type="text"

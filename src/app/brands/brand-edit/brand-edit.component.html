@@ -5,14 +5,14 @@
       <form class="form-container container" [formGroup]="brandForm" (ngSubmit)="onSubmit()"
             *ngIf="(brandEdit$ | async) as asyncFilterPipe">
         <label for="brand_name"
-               class="font-primary margin__bottom--xsm">
+               class="font-secondary margin__bottom--xsm">
           Brand Name:</label>
         <input class="text-field padding--md margin__right--lg"
                type="text" id="brand_name"
                formControlName="brand_name"
                required>
         <label for="brand_description"
-               class="text-field font-primary margin__top--md margin__bottom--xsm">
+               class="text-field font-secondary margin__top--md margin__bottom--xsm">
           Brand Description:</label>
         <textarea class="text-field padding--md"
                   type="text"

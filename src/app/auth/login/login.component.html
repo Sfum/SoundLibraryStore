@@ -4,11 +4,11 @@
     <form (ngSubmit)="onSubmit()"
           class="margin__left--md margin__top--sm margin__bottom--md margin__right--md">
       <div>
-        <label class="font-primary" for="email">Email:</label>
+        <label class="font-secondary" for="email">Email:</label>
         <input matInput type="email" id="email" name="email" [(ngModel)]="email" required>
       </div>
       <div>
-        <label for="password" class="margin__top--sm font-primary">Password:</label>
+        <label for="password" class="margin__top--sm font-secondary">Password:</label>
         <input matInput type="password" id="password" name="password" [(ngModel)]="password" required>
       </div>
       <button mat-raised-button class="margin__top--sm" type="submit">Login</button>
