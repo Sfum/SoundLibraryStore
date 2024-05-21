@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {catchError, Observable, throwError} from "rxjs";
 import {Brand} from "../models/brand";
+import {SnackbarService} from "./snackbar.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class BrandService {
 
   brands$ = this.getBrands()
 
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private firestore: AngularFirestore,
+              public snackbarService: SnackbarService) {}
 
   getBrands(): Observable<any[]> {
     return this.firestore.collection('brands').valueChanges();
@@ -38,6 +40,8 @@ export class BrandService {
             }).catch(error => {
             reject(error);
           });
+          this.snackbarService.showSnackbar('Brand Added Successfully!')
+
         }).catch(error => {
         reject(error);
       });
@@ -49,9 +53,10 @@ export class BrandService {
         .then(() => {
           observer.next();
           observer.complete();
+          this.snackbarService.showSnackbar('Brand Updated Successfully!')
         })
         .catch((error) => {
-          console.error('Error updating brand: ', error);
+
           observer.error('Something went wrong while updating the brand');
         });
     });

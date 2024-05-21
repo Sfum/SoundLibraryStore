@@ -3,6 +3,7 @@ import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {catchError, Observable, throwError} from "rxjs";
 import {Genre} from "../models/genre";
 import {Brand} from "../models/brand";
+import {SnackbarService} from "./snackbar.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class GenreService {
 
   genres$ = this.getGenres()
 
-  constructor(private firestore: AngularFirestore) {}
+  constructor(private firestore: AngularFirestore,
+              private snackbarService: SnackbarService) {}
 
   getGenres(): Observable<any[]> {
     return this.firestore.collection('genres').valueChanges();
@@ -39,6 +41,8 @@ export class GenreService {
             }).catch(error => {
             reject(error);
           });
+          this.snackbarService.showSnackbar('Genre Added Successfully!')
+
         }).catch(error => {
         reject(error);
       });
@@ -50,9 +54,9 @@ export class GenreService {
         .then(() => {
           observer.next();
           observer.complete();
+          this.snackbarService.showSnackbar('Genre Updated Successfully!')
         })
         .catch((error) => {
-          console.error('Error updating genre: ', error);
           observer.error('Something went wrong while updating the genre');
         });
     });
