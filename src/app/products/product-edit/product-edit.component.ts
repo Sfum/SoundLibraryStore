@@ -79,9 +79,7 @@ export class ProductEditComponent implements OnInit {
     if (this.productForm.valid) {
       this.productService.updateProduct(this.productId, this.productForm.value).subscribe(
         () => {
-          console.log('Product updated successfully.');
-          // Handle success, maybe redirect to the product details page
-          this.snackbarService.showSnackbar(`Product updated successfully.`);
+          window.location.reload();
         },
         (error) => {
           console.error('Error updating product: ', error);

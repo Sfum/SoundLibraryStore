@@ -16,6 +16,8 @@ import {GenreService} from "./genre.service";
 import {BrandService} from "./brand.service";
 import {Genre} from "../models/genre";
 import {Brand} from "../models/brand";
+import {SnackbarService} from "./snackbar.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +26,9 @@ export class ProductService {
 
   constructor(private firestore: AngularFirestore,
               private genreService: GenreService,
-              private brandService: BrandService) {
+              private brandService: BrandService,
+              public snackbarService: SnackbarService,
+              public router: Router) {
     this.brandSelectedSubject.pipe(takeUntil(this.unsubscribe$)).subscribe();
     this.genreSelectedSubject.pipe(takeUntil(this.unsubscribe$)).subscribe();
   }
@@ -57,6 +61,8 @@ export class ProductService {
             .doc(ref.id).update({id: ref.id})
             .then(() => {
               resolve()
+              this.snackbarService.showSnackbar(`Product Added successfully.`);
+
             }).catch(error => {
             reject(error);
           });
@@ -71,7 +77,7 @@ export class ProductService {
         .then(() => {
           observer.next();
           observer.complete();
-          window.location.reload();
+          this.snackbarService.showSnackbar(`Product updated successfully.`);
         })
         .catch((error) => {
           console.error('Error updating product: ', error);

@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {WishlistService} from "./wishlist.service";
 import {CartService} from "./cart.service";
 import User = firebase.User;
+import {SnackbarService} from "./snackbar.service";
 
 
 @Injectable({
@@ -18,7 +19,8 @@ export class AuthService {
               private firestore: AngularFirestore,
               private router: Router,
               private wishlistService: WishlistService,
-              private cartService: CartService) {
+              private cartService: CartService,
+              public snackbarService: SnackbarService) {
 
     this.user$ = afAuth.authState as Observable<User | null>;
   }
@@ -27,7 +29,13 @@ export class AuthService {
 
 
   signIn(email: string, password: string) {
-    return this.afAuth.signInWithEmailAndPassword(email, password);
+    return this.afAuth.signInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.snackbarService.showSnackbar('User Signed In successfully!');
+      })
+      .catch(error => {
+        this.snackbarService.showSnackbar(`Sign In failed: ${error.message}`);
+      });
   }
 
   signUp(email: string, password: string, displayName: string, photoURL: string,

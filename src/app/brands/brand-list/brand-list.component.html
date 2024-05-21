@@ -2,6 +2,9 @@
   <div class="button_wrapper">
     <button mat-raised-button [routerLink]="['/add-brand']">Create Brand</button>
   </div>
+  <div class="button_wrapper">
+    <button mat-raised-button [routerLink]="['/manage-products']">Back</button>
+  </div>
   <mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="brand_name">
       <mat-header-cell *matHeaderCellDef> Brand Name</mat-header-cell>

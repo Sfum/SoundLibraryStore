@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BrandService} from "../../services/brand.service";
 import {Brand} from "../../models/brand";
+import {SnackbarService} from "../../services/snackbar.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-brand-add',
@@ -13,7 +15,9 @@ export class BrandAddComponent implements OnInit {
   brandForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private brandService: BrandService) {
+              private brandService: BrandService,
+              public snackbarService: SnackbarService,
+              public router: Router) {
 
     this.brandForm = this.formBuilder.group({
       _id: [''],
@@ -38,6 +42,8 @@ export class BrandAddComponent implements OnInit {
         .then(() => {
           console.log('Brand added successfully.');
           this.brandForm.reset();
+          this.router.navigate(['/manage-brands']);
+          this.snackbarService.showSnackbar('Brand Added Successfully!')
         })
         .catch(error => {
           console.error('Error adding brand: ', error);

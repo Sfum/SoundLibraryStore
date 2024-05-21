@@ -4,6 +4,7 @@ import {BrandService} from "../../services/brand.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {Brand} from "../../models/brand";
+import {SnackbarService} from "../../services/snackbar.service";
 
 @Component({
   selector: 'app-brand-edit',
@@ -22,6 +23,7 @@ export class BrandEditComponent implements OnInit {
     private brandService: BrandService,
     private route: ActivatedRoute,
     private router: Router,
+    public snackbarService: SnackbarService
 
   ) {
     this.brandForm = this.fb.group({
@@ -61,9 +63,9 @@ export class BrandEditComponent implements OnInit {
     if (this.brandForm.valid) {
       this.brandService.updateBrand(this.brandId, this.brandForm.value).subscribe(
         () => {
-          console.log('Brand updated successfully.');
+          this.snackbarService.showSnackbar('Brand Updated Successfully!')
           // Handle success, maybe redirect to the brand details page
-          this.router.navigate(['/manage-products']);
+          this.router.navigate(['/manage-brands']);
         },
         (error) => {
           console.error('Error updating brand: ', error);

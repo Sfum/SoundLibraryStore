@@ -7,23 +7,24 @@
         <label for="brand_name"
                class="font-primary margin__bottom--xsm">
           Brand Name:</label>
-        <input class="padding--md margin__right--lg"
+        <input class="text-field padding--md margin__right--lg"
                type="text" id="brand_name"
                formControlName="brand_name"
                required>
         <label for="brand_description"
-               class="font-primary margin__top--md margin__bottom--xsm">
-          Brand
-          Description:</label>
-        <textarea class="padding--md"
+               class="text-field font-primary margin__top--md margin__bottom--xsm">
+          Brand Description:</label>
+        <textarea class="text-field padding--md"
                   type="text"
                   id="brand_description"
                   formControlName="brand_description"
                   required style="width: 100%; height: 200px;">
         </textarea>
-        <button mat-raised-button
-                class="margin__top--sm margin__right--lg">Update Brand
-        </button>
+        <div class="form-actions">
+          <button mat-raised-button
+                  class="button margin__top--sm margin__right--xlg">Update Brand
+          </button>
+        </div>
       </form>
     </div>
   </mat-card>
