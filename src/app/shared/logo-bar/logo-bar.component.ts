@@ -15,7 +15,7 @@ export class LogoBarComponent implements OnInit {
 
   user$: Observable<firebase.User> | undefined;
   // @ts-ignore
-  isAdmin: Observable<boolean>
+  isAdmin: Observable<boolean> = false;
 
   constructor(private formatService: FormatService,
               private authService: AuthService) { }

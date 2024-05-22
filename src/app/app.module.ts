@@ -1,5 +1,7 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+//
+// import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import {AppComponent} from './app.component';
 import {environment} from "../environments/environment";
@@ -7,7 +9,7 @@ import {RouterLink} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {ProductCarouselComponent} from "./products/product-carousel/product-carousel.component";
-
+import {StorageComponent} from "./storage/storage.component";
 // @ts-ignore
 
 import {AppRoutingModule} from './app.routes';
@@ -129,7 +131,8 @@ import {MatStep, MatStepLabel, MatStepper, MatStepperNext, MatStepperPrevious} f
     WishlistDetailComponent,
     ProductCarouselComponent,
     ShoppingCartDetailComponent,
-    ProfileComponent
+    ProfileComponent,
+    StorageComponent
   ],
   imports: [
     CommonModule,
