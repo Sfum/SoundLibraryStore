@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {Product} from "../../models/product";
 import {SnackbarService} from "../../services/snackbar.service";
+import {finalize} from "rxjs/operators";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 @Component({
   selector: 'app-product-edit',
@@ -26,6 +28,8 @@ export class ProductEditComponent implements OnInit {
     private fb: FormBuilder,
     private productService: ProductService,
     private route: ActivatedRoute,
+    private afStorage: AngularFireStorage
+
 
   ) {
     this.productForm = this.fb.group({
@@ -42,7 +46,37 @@ export class ProductEditComponent implements OnInit {
     this.productEdit$ = this.productService.getFilteredProductCollection();
 
   }
+  uploadImage(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const filePath = `products/${this.productId}/${file.name}`;
+      const fileRef = this.afStorage.ref(filePath);
+      const task = this.afStorage.upload(filePath, file);
 
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(
+            url => {
+              this.productForm.patchValue({ product_image: url });
+              console.log('File URL:', url);
+            },
+            error => {
+              console.error('Error getting download URL:', error);
+            }
+          );
+        })
+      ).subscribe(
+        snapshot => {
+          console.log('Upload progress:', snapshot);
+        },
+        error => {
+          console.error('Upload error:', error);
+        }
+      );
+    } else {
+      console.error('No file selected');
+    }
+  }
 
   ngOnInit(): void {
     // @ts-ignore
@@ -87,4 +121,5 @@ export class ProductEditComponent implements OnInit {
       console.log('Form is invalid. Please fill in all required fields.');
     }
   }
+
 }
