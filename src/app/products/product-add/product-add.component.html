@@ -30,10 +30,10 @@
       <label for="productImage" class="font-small">Product Image:</label>
       <input type="file" id="productImage" (change)="uploadImage($event)">
 
-      <!-- Image preview -->
-<!--      <div *ngIf="productForm.get('product_image').value">-->
-<!--        <img [src]="productForm.get('product_image').value" alt="Product Image" width="200">-->
-<!--      </div>-->
+       Image preview
+      <div *ngIf="productForm.get('product_image')?.value">
+        <img [src]="productForm.get('product_image')?.value" alt="Product Image" width="200">
+      </div>
 
       <mat-slide-toggle class="margin__top--sm margin__bottom--sm" formControlName="in_bundle">Is it part of a bundle?</mat-slide-toggle>
 
