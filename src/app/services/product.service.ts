@@ -23,21 +23,21 @@ import {Router} from "@angular/router";
   providedIn: 'root'
 })
 export class ProductService {
-
-  constructor(private firestore: AngularFirestore,
-              private genreService: GenreService,
-              private brandService: BrandService,
-              public snackbarService: SnackbarService,
-              public router: Router) {
+  constructor(
+    private firestore: AngularFirestore,
+    private genreService: GenreService,
+    private brandService: BrandService,
+    public snackbarService: SnackbarService,
+    public router: Router
+  ) {
     this.brandSelectedSubject.pipe(takeUntil(this.unsubscribe$)).subscribe();
     this.genreSelectedSubject.pipe(takeUntil(this.unsubscribe$)).subscribe();
   }
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
-
   getProducts(): Observable<any[]> {
-    return this.firestore.collection('products',).valueChanges();
+    return this.firestore.collection('products').valueChanges();
   }
 
   getProduct(id: string): Observable<Product | undefined> {
@@ -53,20 +53,24 @@ export class ProductService {
 
   addProduct(product: Product): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      this.firestore.collection('products')
+      this.firestore
+      .collection('products')
       .add(product)
-      .then(ref => {
+      .then((ref) => {
         product.id = +ref.id;
-        this.firestore.collection('products')
-        .doc(ref.id).update({id: ref.id})
+        this.firestore
+        .collection('products')
+        .doc(ref.id)
+        .update({ id: ref.id })
         .then(() => {
-          resolve()
+          resolve();
           this.snackbarService.showSnackbar(`Product Added successfully.`);
-
-        }).catch(error => {
+        })
+        .catch((error) => {
           reject(error);
         });
-      }).catch(error => {
+      })
+      .catch((error) => {
         reject(error);
       });
     });
@@ -74,7 +78,10 @@ export class ProductService {
 
   updateProduct(productId: string, product: Product): Observable<void> {
     return new Observable((observer) => {
-      this.firestore.collection('products').doc(productId).update(product)
+      this.firestore
+      .collection('products')
+      .doc(productId)
+      .update(product)
       .then(() => {
         observer.next();
         observer.complete();
@@ -85,11 +92,13 @@ export class ProductService {
         observer.error('Something went wrong while updating the product');
       });
     });
-
   }
 
   deleteProduct(id: string): Promise<void> {
-    return this.firestore.collection('products').doc(id).delete()
+    return this.firestore
+    .collection('products')
+    .doc(id)
+    .delete()
     .then(() => {
       this.snackbarService.showSnackbar(`Product deleted successfully.`);
     })
@@ -100,10 +109,10 @@ export class ProductService {
   }
 
   // Observable for retrieving products from the mock API
-  products$: Observable<Product[]> = this.getProducts()
+  products$: Observable<Product[]> = this.getProducts();
   // Observables for genre and brand data from their respective services
-  genres$: Observable<Genre[]> = this.genreService.getGenres()
-  brands$: Observable<Brand[]> = this.brandService.getBrands()
+  genres$: Observable<Genre[]> = this.genreService.getGenres();
+  brands$: Observable<Brand[]> = this.brandService.getBrands();
 
   // Private variables for product data and filtered product subject
   private products: Product[] = [];
@@ -123,14 +132,9 @@ export class ProductService {
   brandSelectedAction$ = this.brandSelectedSubject.asObservable();
 
   // Combining products and selected brand to filter products by brand
-  brandActionStream$ = combineLatest([
-    this.products$,
-    this.brandSelectedAction$,
-  ]).pipe(
+  brandActionStream$ = combineLatest([this.products$, this.brandSelectedAction$]).pipe(
     map(([products, selectedBrandId]) =>
-      products.filter((product) =>
-        selectedBrandId ? product.brandId == selectedBrandId : true
-      )
+      products.filter((product) => (selectedBrandId ? product.brandId == selectedBrandId : true))
     ),
     catchError((err) => {
       return EMPTY;
@@ -142,7 +146,6 @@ export class ProductService {
     this.brandSelectedSubject.next(0);
     this.genreSelectedSubject.next(0);
     this.genreSelectedSubject.next(+selectedGenreId);
-
   }
 
   // Subject and Observable for selected genre
@@ -150,26 +153,39 @@ export class ProductService {
   genreSelectedAction$ = this.genreSelectedSubject.asObservable();
 
   // Combining brand-filtered products and selected genre to filter products by genre
-  genreActionStream$ = combineLatest([
-    this.brandActionStream$,
-    this.genreSelectedAction$,
-  ]).pipe(
+  genreActionStream$ = combineLatest([this.brandActionStream$, this.genreSelectedAction$]).pipe(
     map(([products, selectedGenreId]) =>
-      products.filter((product) =>
-        selectedGenreId ? product.genreId == selectedGenreId : true
-      )
+      products.filter((product) => (selectedGenreId ? product.genreId == selectedGenreId : true))
     ),
     catchError((err) => {
       return EMPTY;
     })
   );
 
-  // Combining genre-filtered products with additional information (brand and genre names)
-  productsArrayFiltered$ = combineLatest([
-    this.genreActionStream$,
-    this.brands$,
-    this.genres$,
-  ]).pipe(
+  // Subject and Observable for selected price range
+  private priceRangeSelectedSubject = new BehaviorSubject<{ min: number; max: number }>({
+    min: 0,
+    max: Infinity,
+  });
+  priceRangeSelectedAction$ = this.priceRangeSelectedSubject.asObservable();
+
+  // Method to handle selecting a price range
+  optionPriceRangeSelected(minPrice: number, maxPrice: number) {
+    this.priceRangeSelectedSubject.next({ min: minPrice, max: maxPrice });
+  }
+
+  // Combining genre-filtered products and selected price range to filter products by price
+  priceActionStream$ = combineLatest([this.genreActionStream$, this.priceRangeSelectedAction$]).pipe(
+    map(([products, priceRange]) =>
+      products.filter((product) => product.price >= priceRange.min && product.price <= priceRange.max)
+    ),
+    catchError((err) => {
+      return EMPTY;
+    })
+  );
+
+  // Combining price-filtered products with additional information (brand and genre names)
+  productsArrayFiltered$ = combineLatest([this.priceActionStream$, this.brands$, this.genres$]).pipe(
     map(([products, brands, genres]) =>
       products.map(
         (product) =>
@@ -184,11 +200,7 @@ export class ProductService {
   );
 
   // Combining filtered products with brands and genres
-  filteredProducts$ = combineLatest([
-    this.productsArrayFiltered$,
-    this.brands$,
-    this.genres$,
-  ]).pipe(
+  filteredProducts$ = combineLatest([this.productsArrayFiltered$, this.brands$, this.genres$]).pipe(
     map(([products, brands, genres]) => ({
       products,
       brands,
@@ -197,17 +209,17 @@ export class ProductService {
   );
 
   getFilteredProductCollection() {
-    return this.productsArrayFiltered$
+    return this.productsArrayFiltered$;
   }
 
   getRelatedProducts(genreId: number): Observable<Product[]> {
-    return this.firestore.collection<Product>('products', ref =>
+    return this.firestore.collection<Product>('products', (ref) =>
       ref.where('genreId', '==', genreId)
     ).valueChanges();
   }
 
   getSameBrandProducts(brandId: number): Observable<Product[]> {
-    return this.firestore.collection<Product>('brands', ref =>
+    return this.firestore.collection<Product>('brands', (ref) =>
       ref.where('brandId', '==', brandId)
     ).valueChanges();
   }
@@ -216,6 +228,4 @@ export class ProductService {
     this.unsubscribe$.next(); // Emit a signal to unsubscribe
     this.unsubscribe$.complete(); // Complete the unsubscribe$ subject
   }
-
-
 }

@@ -1,0 +1,23 @@
+<mat-card class="align__items">
+<form [formGroup]="priceForm" (ngSubmit)="onSubmit()" class="padding--md margin__top--md">
+  <div class="price">
+    <label class="font-secondary" for="minPrice">Min Price</label>
+    <input matInput id="minPrice" formControlName="minPrice" type="number" min="0" />
+    <div *ngIf="priceForm.get('minPrice')?.invalid && priceForm.get('minPrice')?.touched">
+      <small *ngIf="priceForm.get('minPrice')?.errors?.['required']">Min Price is required</small>
+      <small *ngIf="priceForm.get('minPrice')?.errors?.['min']">Min Price cannot be negative</small>
+    </div>
+  </div>
+
+  <div class="price">
+    <label class="font-secondary" for="maxPrice">Max Price</label>
+    <input matInput id="maxPrice" formControlName="maxPrice" type="number" min="0" />
+    <div *ngIf="priceForm.get('maxPrice')?.invalid && priceForm.get('maxPrice')?.touched">
+      <small *ngIf="priceForm.get('maxPrice')?.errors?.['required']">Max Price is required</small>
+      <small *ngIf="priceForm.get('maxPrice')?.errors?.['min']">Max Price cannot be negative</small>
+    </div>
+  </div>
+
+  <button mat-raised-button type="submit" [disabled]="priceForm.invalid">Filter</button>
+</form>
+</mat-card>

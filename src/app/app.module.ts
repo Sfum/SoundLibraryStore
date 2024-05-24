@@ -86,6 +86,8 @@ import {ProductRelatedComponent} from "./products/product-related/product-relate
 
 import {WishlistDetailComponent} from "./wishlist/wishlist-detail/wishlist-detail.component";
 
+import {PriceFilterComponent} from "./products/product-filter/price-filter/price-filter.component";
+
 import {ShoppingCartDetailComponent} from "./shopping-cart/shopping-cart-detail/shopping-cart-detail.component";
 import {MatBadge} from "@angular/material/badge";
 import {ProfileComponent} from "./auth/profile/profile.component";
@@ -132,7 +134,8 @@ import {MatStep, MatStepLabel, MatStepper, MatStepperNext, MatStepperPrevious} f
     ProductCarouselComponent,
     ShoppingCartDetailComponent,
     ProfileComponent,
-    StorageComponent
+    StorageComponent,
+    PriceFilterComponent
   ],
   imports: [
     CommonModule,
