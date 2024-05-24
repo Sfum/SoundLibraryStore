@@ -8,7 +8,7 @@ import {GenreService} from "../services/genre.service";
 @Component({
   selector: 'app-genres',
   templateUrl: './genres.component.html',
-  styleUrl: './genres.component.sass'
+  styleUrl: './genres.component.sass',
 })
 export class GenresComponent implements OnInit{
   products$!: Observable<Product[]>;

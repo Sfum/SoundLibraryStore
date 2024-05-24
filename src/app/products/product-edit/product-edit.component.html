@@ -1,49 +1,42 @@
 <mat-card class="product__edit--container">
-
-  <form class="form-container" [formGroup]="productForm" (ngSubmit)="onSubmit()" *ngIf="(productEdit$ | async) as asyncFilterPipe">
+  <form class="form-container" [formGroup]="productForm" (ngSubmit)="onSubmit()"
+        *ngIf="(productEdit$ | async) as asyncFilterPipe">
     <div class="product__edit--left margin__left--lg margin__top--lg">
       <div class="container margin__bottom--md font-primary">Edit Product</div>
-
       <label for="productName">Product Name:</label>
       <input matInput type="text" id="productName" formControlName="product_name" required>
-
       <mat-form-field class="form-control margin__top--md">
         <mat-label>Select Brand</mat-label>
         <mat-select formControlName="brandId" (selectionChange)="optionBrandSelected($event.value)">
           <mat-option *ngFor="let brand of brands$ | async" [value]="brand.id">{{ brand.brand_name }}</mat-option>
         </mat-select>
       </mat-form-field>
-
       <mat-form-field class="form-control margin__left--md">
         <mat-label>Select Genre</mat-label>
         <mat-select formControlName="genreId" (selectionChange)="optionGenreSelected($event.value)">
           <mat-option *ngFor="let genre of genres$ | async" [value]="genre.id">{{ genre.genre_name }}</mat-option>
         </mat-select>
       </mat-form-field>
-
       <label for="productImage" class="font-small">Product Image:</label>
       <input type="file" id="productImage" (change)="uploadImage($event)">
-
       Image preview
       <div *ngIf="productForm.get('product_image')?.value">
         <img [src]="productForm.get('product_image')?.value" alt="Product Image" width="200">
       </div>
       <!-- Toggle for in_bundle property -->
-      <mat-slide-toggle class="margin__bottom--md" formControlName="in_bundle">Is it part of a bundle?</mat-slide-toggle>
-
+      <mat-slide-toggle class="margin__bottom--md" formControlName="in_bundle">Is it part of a bundle?
+      </mat-slide-toggle>
     </div>
-      <div class="product__edit--right margin__left--md margin__top--md">
-        <div class="container margin__bottom--md font-primary">Description</div>
-        <label for="productTitle">Product Description:</label>
-        <input matInput type="text" id="productTitle" formControlName="product_title" required>
-
-        <label for="productDescription" class="margin__top--sm">Product Details:</label>
-        <textarea type="text" id="productDescription" formControlName="product_description" required rows="9" cols="50"></textarea>
-
-        <button mat-raised-button class="button margin__top--sm" [disabled]="productForm.invalid">Update Product</button>
-      </div>
-
+    <div class="product__edit--right margin__left--md margin__top--md">
+      <div class="container margin__bottom--md font-primary">Description</div>
+      <label for="productTitle">Product Description:</label>
+      <input matInput type="text" id="productTitle" formControlName="product_title" required>
+      <label for="productDescription" class="margin__top--sm">Product Details:</label>
+      <textarea type="text" id="productDescription" formControlName="product_description" required rows="9"
+                cols="50"></textarea>
+      <button mat-raised-button class="button margin__top--sm" [disabled]="productForm.invalid">Update Product</button>
+    </div>
   </form>
-  <button mat-raised-button class="button-secondary"[routerLink]='["/manage-products"]'>Back</button>
+  <button mat-raised-button class="button-secondary" [routerLink]='["/manage-products"]'>Back</button>
 
 </mat-card>

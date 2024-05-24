@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   BehaviorSubject,
   catchError,
@@ -54,37 +54,49 @@ export class ProductService {
   addProduct(product: Product): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       this.firestore.collection('products')
-        .add(product)
-        .then(ref => {
-          product.id = +ref.id;
-          this.firestore.collection('products')
-            .doc(ref.id).update({id: ref.id})
-            .then(() => {
-              resolve()
-              this.snackbarService.showSnackbar(`Product Added successfully.`);
+      .add(product)
+      .then(ref => {
+        product.id = +ref.id;
+        this.firestore.collection('products')
+        .doc(ref.id).update({id: ref.id})
+        .then(() => {
+          resolve()
+          this.snackbarService.showSnackbar(`Product Added successfully.`);
 
-            }).catch(error => {
-            reject(error);
-          });
         }).catch(error => {
+          reject(error);
+        });
+      }).catch(error => {
         reject(error);
       });
     });
   }
+
   updateProduct(productId: string, product: Product): Observable<void> {
     return new Observable((observer) => {
       this.firestore.collection('products').doc(productId).update(product)
-        .then(() => {
-          observer.next();
-          observer.complete();
-          this.snackbarService.showSnackbar(`Product updated successfully.`);
-        })
-        .catch((error) => {
-          console.error('Error updating product: ', error);
-          observer.error('Something went wrong while updating the product');
-        });
+      .then(() => {
+        observer.next();
+        observer.complete();
+        this.snackbarService.showSnackbar(`Product updated successfully.`);
+      })
+      .catch((error) => {
+        console.error('Error updating product: ', error);
+        observer.error('Something went wrong while updating the product');
+      });
     });
 
+  }
+
+  deleteProduct(id: string): Promise<void> {
+    return this.firestore.collection('products').doc(id).delete()
+    .then(() => {
+      this.snackbarService.showSnackbar(`Product deleted successfully.`);
+    })
+    .catch((error) => {
+      console.error('Error deleting product: ', error);
+      return Promise.reject('Something went wrong while deleting the product');
+    });
   }
 
   // Observable for retrieving products from the mock API
@@ -204,7 +216,6 @@ export class ProductService {
     this.unsubscribe$.next(); // Emit a signal to unsubscribe
     this.unsubscribe$.complete(); // Complete the unsubscribe$ subject
   }
-
 
 
 }

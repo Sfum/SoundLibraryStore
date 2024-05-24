@@ -1,9 +1,8 @@
-
 <div class="container">
   <div class="button_wrapper">
     <button mat-raised-button [routerLink]="['/add-product']">Create Product</button>
   </div>
-  <mat-table [dataSource]="dataSource" >
+  <mat-table [dataSource]="dataSource">
     <!-- Product ID Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> Product ID </mat-header-cell>
@@ -13,12 +12,10 @@
     <!-- Product Name Column -->
     <ng-container matColumnDef="product_name">
       <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
-      <mat-cell class="cell_hover"
-                *matCellDef="let product"
-                [routerLink]="['/', 'edit', product.id]">
+      <mat-cell class="cell_hover" *matCellDef="let product" [routerLink]="['/', 'edit', product.id]">
         <div class="cell--main">
-        <div class="font-secondary">{{ product.product_name }}</div>
-        <div class="font-small">{{ product.brandId }}</div>
+          <div class="font-secondary">{{ product.product_name }}</div>
+          <div class="font-small">{{ product.brandId }}</div>
         </div>
       </mat-cell>
     </ng-container>
@@ -29,25 +26,37 @@
       <mat-cell *matCellDef="let product"> {{ product.genreId }} </mat-cell>
     </ng-container>
 
+    <!-- Product Image Column -->
     <ng-container matColumnDef="product_image">
       <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
-      <mat-cell *matCellDef="let product"><img [src]="product.product_image" alt="Product Image" style="max-width: 100px; max-height: 100px;">
+      <mat-cell *matCellDef="let product">
+        <img [src]="product.product_image" alt="Product Image" style="max-width: 100px; max-height: 100px;">
       </mat-cell>
     </ng-container>
 
+    <!-- Bundle Column -->
     <ng-container matColumnDef="in_bundle">
       <mat-header-cell *matHeaderCellDef> Bundle? </mat-header-cell>
       <mat-cell *matCellDef="let product"> {{ product.in_bundle }} </mat-cell>
     </ng-container>
 
+    <!-- Price Column -->
     <ng-container matColumnDef="price">
       <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
       <mat-cell *matCellDef="let product"> ${{ product.price }} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell *matCellDef="let product">
+        <button mat-button (click)="deleteProduct(product.id)">Delete</button>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons=""></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
 </div>
