@@ -12,8 +12,8 @@ export class PriceFilterComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private productService: ProductService) {
     this.priceForm = this.fb.group({
-      minPrice: [0, Validators.min(0)],
-      maxPrice: [Infinity, [ Validators.min(0)]]
+      minPrice: [10, Validators.min(5)],
+      maxPrice: [20, [ Validators.max(30)]]
     });
   }
 

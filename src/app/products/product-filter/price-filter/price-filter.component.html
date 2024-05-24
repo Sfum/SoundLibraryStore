@@ -1,5 +1,4 @@
-<mat-card class="align__items">
-<form [formGroup]="priceForm" (ngSubmit)="onSubmit()" class="padding--md margin__top--md">
+<form [formGroup]="priceForm" (ngSubmit)="onSubmit()">
   <div class="price">
     <label class="font-secondary" for="minPrice">Min Price</label>
     <input matInput id="minPrice" formControlName="minPrice" type="number" min="0" />
@@ -18,6 +17,5 @@
     </div>
   </div>
 
-  <button mat-raised-button type="submit" [disabled]="priceForm.invalid">Filter</button>
+  <button mat-raised-button class="margin__bottom--sm" type="submit" [disabled]="priceForm.invalid">Filter</button>
 </form>
-</mat-card>

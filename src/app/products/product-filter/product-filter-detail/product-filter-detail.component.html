@@ -1,8 +1,6 @@
-
-<div class="sidebar__container">
+<label class="font-secondary">Select Genre</label>
   <mat-form-field appearance="fill">
     <mat-select
-      class="sidebar__form--control"
       (selectionChange)="optionGenreSelected($any($event.value))"
     >
       <mat-option value="0">- All genres -</mat-option>
@@ -14,12 +12,9 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-</div>
-
-<div class="sidebar__container">
+  <label class="font-secondary">Select Brand</label>
   <mat-form-field appearance="fill">
     <mat-select
-      class="sidebar__form--control"
       (selectionChange)="optionBrandSelected($any($event.value))"
     >
       <mat-option value="0">- All brands</mat-option>
@@ -31,5 +26,3 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-
-</div>
