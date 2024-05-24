@@ -50,7 +50,7 @@
     <ng-container matColumnDef="delete">
       <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
       <mat-cell *matCellDef="let product">
-        <button mat-button (click)="deleteProduct(product.id)">Delete</button>
+        <mat-icon (click)="deleteProduct(product.id)">delete</mat-icon>
       </mat-cell>
     </ng-container>
 

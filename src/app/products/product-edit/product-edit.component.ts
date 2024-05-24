@@ -40,6 +40,7 @@ export class ProductEditComponent implements OnInit {
       genreId: ['', Validators.required],
       product_image: ['', Validators.required],
       in_bundle: ['', Validators.required],
+      price: ['', Validators.required],
 
     });
     this.productEdit$ = this.productService.getFilteredProductCollection();

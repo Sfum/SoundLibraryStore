@@ -35,6 +35,9 @@
         <img [src]="productForm.get('product_image')?.value" alt="Product Image" width="200">
       </div>
 
+      <label for="price" class="font-secondary">Price:</label>
+      <input type="text" id="price" formControlName="price" required>
+
       <mat-slide-toggle class="margin__top--sm margin__bottom--sm" formControlName="in_bundle">Is it part of a bundle?</mat-slide-toggle>
 
       <hr>
