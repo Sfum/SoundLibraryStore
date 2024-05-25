@@ -1,35 +1,30 @@
 <div class="product__cards--container">
   <div class="product-card" *ngFor="let product of filteredProducts">
-  <img [src]="product.product_image" [routerLink]="'/products/' + product.id" alt="Product Image" class="product-image">
-  <div class="product-details">
-    <h2 class="title-main">{{ product.product_name }}</h2>
-    <h3 class="text-primary">{{ product.product_title | slice:0:100 }}...</h3>
-    <div class="product-card__bottom">
-      <div class="price">${{product.price}}</div>
-      <div class="product-card__bottom--left">
-        <button
-          mat-mini-fab color="primary"
-          aria-label="icon"
-          (click)="addToCart(product)"
-          [routerLink]="['/shopping-cart']"
+    <img [src]="product.product_image" [routerLink]="'/products/' + product.id" alt="Product Image"
+         class="product-image">
+    <div class="product-details">
+      <h2 class="title-main opacity--md">{{ product.product_name }}</h2>
+      <h3 class="text-primary opacity--lg">{{ product.product_title | slice:0:100 }}...</h3>
+      <div class="product-card__bottom margin__top--sm">
+        <div class="title-main opacity--lg">${{product.price}}</div>
+        <div class="product-card__bottom--left">
+          <button mat-raised-button class="pi pi-shopping-cart"
+                  (click)="addToCart(product)"
+          >
+          </button>
+        </div>
+      </div>
+      <div>
+        <button class="product-card__bottom--left-icon"
+                mat-mini-fab
+                aria-label="icon"
+                (click)="addToWishlist(product)"
         >
           <mat-icon
-          >shopping_cart
+          >favorite
           </mat-icon>
         </button>
       </div>
-    </div>
-    <div>
-      <button class="product-card__bottom--left-icon"
-              mat-mini-fab
-              aria-label="icon"
-              (click)="addToWishlist(product)"
-              [routerLink]="['/wishlist']"
-      >
-        <mat-icon
-        >favorite
-        </mat-icon>
-      </button>
     </div>
   </div>
 </div>

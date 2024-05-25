@@ -74,18 +74,32 @@
     </div>
     <div>
       <hr class="margin-line opacity--xlg margin__bottom--md margin__top--md">
-      <div class="margin-primary">
+      <div class="margin-primary margin__bottom--md">
         <div *ngIf="relatedProducts.length > 0">
-          <h3 class="font-primary">Related Products:</h3>
+          <h3 class="font-primary">More from this genre:</h3>
           <div class="related-products">
-            <div *ngFor="let relatedProduct of relatedProducts" class="related-product">
+            <a *ngFor="let relatedProduct of relatedProducts" class="related-product">
+              <img [src]="relatedProduct.product_image" alt="Product Image" width="150px"
+              >
+            </a>
+          </div>
+        </div>
+        <div *ngIf="relatedProducts.length === 0">
+          <p>No related products found.</p>
+        </div>
+      </div>
+      <div class="margin-primary">
+        <div *ngIf="relatedProductBrands.length > 0">
+          <h3 class="font-primary">More from this brand:</h3>
+          <div class="related-products">
+            <div *ngFor="let relatedProduct of relatedProductBrands" class="related-product">
               <img [src]="relatedProduct.product_image" alt="Product Image" width="150px"
               >
             </div>
           </div>
         </div>
-        <div *ngIf="relatedProducts.length === 0">
-          <p>No related products found.</p>
+        <div *ngIf="relatedProductBrands.length === 0">
+          <p>No related brands found.</p>
         </div>
       </div>
     </div>

@@ -1,7 +1,12 @@
 @import url('../../../../src/styles.sass')
 
+.product-card__container
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))
 
 .product-card
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))
   border-radius: 6px
   overflow: hidden
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
