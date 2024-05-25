@@ -56,6 +56,15 @@ export class ProductService {
 
   addProduct(product: Product): Promise<void> {
     return new Promise<void>((resolve, reject) => {
+      if (product.discountPercentage) {
+        product.salePrice =
+          product.price * (1 - product.discountPercentage / 100);
+        product.onSale = true;
+      } else {
+        product.salePrice = product.price;
+        product.onSale = false;
+      }
+
       this.firestore
         .collection('products')
         .add(product)
@@ -67,7 +76,7 @@ export class ProductService {
             .update({ id: ref.id })
             .then(() => {
               resolve();
-              this.snackbarService.showSnackbar(`Product Added successfully.`);
+              this.snackbarService.showSnackbar(`Product added successfully.`);
             })
             .catch((error) => {
               reject(error);
@@ -81,6 +90,15 @@ export class ProductService {
 
   updateProduct(productId: string, product: Product): Observable<void> {
     return new Observable((observer) => {
+      if (product.discountPercentage) {
+        product.salePrice =
+          product.price * (1 - product.discountPercentage / 100);
+        product.onSale = true;
+      } else {
+        product.salePrice = product.price;
+        product.onSale = false;
+      }
+
       this.firestore
         .collection('products')
         .doc(productId)
@@ -209,7 +227,7 @@ export class ProductService {
       return EMPTY;
     }),
   );
-
+  onSaleProducts$ = this.getOnSaleProducts().pipe(shareReplay(1));
   // Combining price-filtered products with additional information (brand and genre names)
   productsArrayFiltered$ = combineLatest([
     this.priceActionStream$,
@@ -229,6 +247,30 @@ export class ProductService {
             ],
           }) as unknown as Product,
       ),
+    ),
+    shareReplay(1),
+  );
+
+  productsArrayOnSale$ = combineLatest([
+    this.onSaleProducts$,
+    this.brands$,
+    this.genres$,
+  ]).pipe(
+    map(([products, brands, genres]) =>
+      products
+        .map(
+          (product) =>
+            ({
+              ...product,
+              genreId: genres.find((c) => product.genreId === c.id)?.[
+                'genre_name'
+              ],
+              brandId: brands.find((c) => product.brandId === c.id)?.[
+                'brand_name'
+              ],
+            }) as unknown as Product,
+        )
+        .filter((product) => product.onSale),
     ),
     shareReplay(1),
   );
@@ -277,5 +319,18 @@ export class ProductService {
   ngOnDestroy() {
     this.unsubscribe$.next(); // Emit a signal to unsubscribe
     this.unsubscribe$.complete(); // Complete the unsubscribe$ subject
+  }
+  getOnSaleProducts(): Observable<Product[]> {
+    return this.firestore
+      .collection<Product>('products', (ref) => ref.where('onSale', '==', true))
+      .valueChanges()
+      .pipe(
+        catchError((error) => {
+          console.error('Error getting on sale products: ', error);
+          return throwError(
+            'Something went wrong while fetching the on sale products',
+          );
+        }),
+      );
   }
 }
