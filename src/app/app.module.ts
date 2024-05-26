@@ -124,6 +124,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { OnSaleDetailComponent } from './on-sale/on-sale-detail/on-sale-detail.component';
 import { ShoppingCartPaymentComponent } from './shopping-cart/shopping-cart-payment/shopping-cart-payment.component';
+import { OnSaleBrandComponent } from './on-sale/on-sale-brand/on-sale-brand.component';
+import { OnSaleGenreComponent } from './on-sale/on-sale-genre/on-sale-genre.component';
 
 @NgModule({
   declarations: [
@@ -172,6 +174,8 @@ import { ShoppingCartPaymentComponent } from './shopping-cart/shopping-cart-paym
     OnSaleComponent,
     OnSaleDetailComponent,
     ShoppingCartPaymentComponent,
+    OnSaleBrandComponent,
+    OnSaleGenreComponent,
   ],
   imports: [
     CommonModule,

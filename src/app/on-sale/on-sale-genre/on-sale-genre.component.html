@@ -1,0 +1,22 @@
+<div class="set-genre-on-sale-container">
+  <mat-card>
+    <h2>Set Genre On Sale</h2>
+    <form [formGroup]="genreOnSaleForm" (ngSubmit)="setGenreOnSale()">
+      <mat-form-field>
+        <mat-label>Select Genre</mat-label>
+        <mat-select formControlName="genreId">
+          <mat-option *ngFor="let genre of genres$ | async" [value]="genre.id">
+            {{ genre.genre_name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Discount Percentage</mat-label>
+        <input matInput type="number" formControlName="discountPercentage" min="0" max="100">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Set On Sale</button>
+    </form>
+  </mat-card>
+</div>

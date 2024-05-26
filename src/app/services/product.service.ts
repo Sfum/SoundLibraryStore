@@ -307,6 +307,20 @@ export class ProductService {
       )
       .valueChanges();
   }
+  getProductsByBrand(brandId: number): Observable<Product[]> {
+    return this.firestore
+      .collection<Product>('products', (ref) =>
+        ref.where('brandId', '==', brandId),
+      )
+      .valueChanges();
+  }
+  getProductsByGenre(genreId: number): Observable<Product[]> {
+    return this.firestore
+      .collection<Product>('products', (ref) =>
+        ref.where('genreId', '==', genreId),
+      )
+      .valueChanges();
+  }
 
   ngOnDestroy() {
     this.unsubscribe$.next(); // Emit a signal to unsubscribe

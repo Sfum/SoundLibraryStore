@@ -1,5 +1,4 @@
 <mat-card class="cart__items-container mat-elevation-z24 margin__bottom--sm" *ngFor="let product of products; let i = index">
-
   <img class="cart__product-image margin__top--md margin__left--md"
        [src]="product.product_image"
        height="90"
@@ -17,30 +16,29 @@
       <div class="font-secondary opacity--md">{{ product.brandId }}</div>
       <div class="font-primary">{{ product.product_name }}</div>
 
-      <div class="cart__quantity-label margin__top--md margin__bottom--sm">
-        <input [(ngModel)]="product.quantity"
-               [ngModelOptions]="{ standalone: true }"
-               min="1"
-               type="number"
-               value="1"/>
+      <div *ngIf="!product.onSale" class="font-primary margin__top--sm">
+        <div class=" font-primary margin__top--sm">
+          <div *ngIf="!product.onSale" class="font-primary margin__top--sm">
+            ${{ product.price | number : "1.2-2" }}
+          </div>
+        </div>
       </div>
-      <div class="cart__card_price-amount font-primary margin__top--sm">
-        ${{ product.price | number : "1.2-2" }}
-      </div>
-      <div class="cart__card_price-amount-sale font-primary margin__top--sm">
-        ${{ product.salePrice | number : "1.2-2" }}
+
+      <div *ngIf="product.onSale" class="cart__card_price-amount font-primary margin__top--sm">
+        <div class="cart__card_price-amount font-primary margin__top--sm">
+          <div *ngIf="product.onSale" class="margin__top--sm">
+           Sale: ${{ product.salePrice | number : "1.2-2" }}
+          </div>
+          <div class="discount-banner">{{ product.discountPercentage }}% Off</div>
+        </div>
       </div>
     </div>
-    <div class="discount-banner">{{ product.discountPercentage }}% Off</div>
+
     <div class="cart__remove-button">
-      <button mat-fab
-              class="cart__wishlist-button"
-              (click)="addToWishlist(product)">
+      <button mat-fab class="cart__wishlist-button" (click)="addToWishlist(product)">
         <mat-icon>favorite_border</mat-icon>
       </button>
-      <button mat-fab
-              class="cart__wishlist-button"
-              (click)="removeFromCart(product)">
+      <button mat-fab class="cart__wishlist-button" (click)="removeFromCart(product)">
         <mat-icon>delete_forever</mat-icon>
       </button>
     </div>
