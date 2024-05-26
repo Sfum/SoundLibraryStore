@@ -1,10 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Product } from '../models/product';
 import { ProductService } from '../services/product.service';
 import { BrandService } from '../services/brand.service';
 import { GenreService } from '../services/genre.service';
 import { WishlistService } from '../services/wishlist.service';
 import { CartService } from '../services/cart.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-bundles',
@@ -13,6 +21,7 @@ import { CartService } from '../services/cart.service';
 })
 export class BundlesComponent implements OnInit {
   products: Product[] = [];
+  filteredProducts: Product[] = [];
 
   constructor(
     private productService: ProductService,
@@ -23,13 +32,21 @@ export class BundlesComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getFilteredProductCollection().subscribe((products) => {
       this.products = products;
+      this.filterProducts();
     });
   }
-  onAddToWishlist(product: any) {
+
+  filterProducts(): void {
+    this.filteredProducts = this.products.filter(
+      (product) => product.in_bundle,
+    );
+  }
+
+  onAddToWishlist(product: Product) {
     this.wishlistService.addToWishlist(product);
   }
 
-  onAddToCart(product: any) {
+  onAddToCart(product: Product) {
     this.cartService.addToCart(product);
   }
 }

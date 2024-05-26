@@ -22,7 +22,6 @@ import { ProfileComponent } from './auth/profile/profile.component';
 import { AdminGuard } from './guards/admin.guard';
 import { BrandListComponent } from './brands/brand-list/brand-list.component';
 import { GenreListComponent } from './genres/genre-list/genre-list.component';
-import { OnSaleComponent } from './on-sale/on-sale.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -75,7 +74,6 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'on-sale', component: OnSaleComponent },
 ];
 
 @NgModule({

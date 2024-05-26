@@ -1,18 +1,35 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Product} from "../../models/product";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { Product } from '../../models/product';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-bundle-detail',
   templateUrl: './bundle-detail.component.html',
-  styleUrl: './bundle-detail.component.sass'
+  styleUrl: './bundle-detail.component.sass',
 })
-export class BundleDetailComponent implements OnInit {
+export class BundleDetailComponent implements OnInit, OnChanges {
   @Input() products: Product[] = [];
-  filteredProducts: Product[] = [];
+  @Output() addToWishlistEvent: EventEmitter<Product> =
+    new EventEmitter<Product>();
+  @Output() addToCartEvent: EventEmitter<Product> = new EventEmitter<Product>();
 
-  @Input() product!: Product
-  @Output() addToWishlistEvent: EventEmitter<any> = new EventEmitter<any>();
-  @Output() addToCartEvent: EventEmitter<any> = new EventEmitter<any>();
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['products']) {
+      this.products = changes['products'].currentValue;
+    }
+  }
 
   addToWishlist(product: Product) {
     this.addToWishlistEvent.emit(product);
@@ -20,19 +37,5 @@ export class BundleDetailComponent implements OnInit {
 
   addToCart(product: Product) {
     this.addToCartEvent.emit(product);
-  }
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.filterProducts();
-  }
-
-  ngOnChanges(): void {
-    this.filterProducts();
-  }
-
-  filterProducts(): void {
-    this.filteredProducts = this.products.filter(product => product.in_bundle);
   }
 }

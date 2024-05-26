@@ -111,9 +111,7 @@ import {
   MatStepperPrevious,
 } from '@angular/material/stepper';
 import { MatSlider } from '@angular/material/slider';
-
-import { OnSaleComponent } from './on-sale/on-sale.component';
-import { OnSaleDetailComponent } from './on-sale/on-sale-detail/on-sale-detail.component';
+import { ProductGridComponent } from './products/product-grid/product-grid.component';
 
 @NgModule({
   declarations: [
@@ -158,8 +156,7 @@ import { OnSaleDetailComponent } from './on-sale/on-sale-detail/on-sale-detail.c
     ProfileComponent,
     StorageComponent,
     PriceFilterComponent,
-    OnSaleComponent,
-    OnSaleDetailComponent,
+    ProductGridComponent,
   ],
   imports: [
     CommonModule,
@@ -228,6 +225,7 @@ import { OnSaleDetailComponent } from './on-sale/on-sale-detail/on-sale-detail.c
     LogoBarComponent,
     BrandListComponent,
     ProductFilterComponent,
+    ProductCardDetailComponent,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

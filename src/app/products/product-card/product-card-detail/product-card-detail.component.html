@@ -6,21 +6,13 @@
     <div class="product-card__bottom margin__top--sm">
       <div class="title-main opacity--lg">${{product.price}}</div>
       <div class="product-card__bottom--left">
-        <button mat-raised-button class="pi pi-shopping-cart"
-                (click)="addToCart(product)"
-        >
+        <button mat-raised-button class="pi pi-shopping-cart" (click)="addToCart(product)">
         </button>
       </div>
     </div>
     <div>
-      <button class="product-card__bottom--left-icon"
-              mat-mini-fab
-              aria-label="icon"
-              (click)="addToWishlist(product)"
-      >
-        <mat-icon
-        >favorite
-        </mat-icon>
+      <button class="product-card__bottom--left-icon" mat-mini-fab aria-label="icon" (click)="addToWishlist(product)">
+        <mat-icon>favorite</mat-icon>
       </button>
     </div>
   </div>

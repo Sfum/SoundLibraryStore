@@ -3,8 +3,11 @@
     <app-product-filter></app-product-filter>
   </div>
   <div class="product-card-middle">
-    <app-bundle-detail      (addToWishlistEvent)="onAddToWishlist($event)"
-                            (addToCartEvent)="onAddToCart($event)"
-                            [products]="products"></app-bundle-detail>
+    <div class="bundles-grid">
+    <app-bundle-detail [products]="filteredProducts"
+                       (addToWishlistEvent)="onAddToWishlist($event)"
+                       (addToCartEvent)="onAddToCart($event)">
+    </app-bundle-detail>
+    </div>
   </div>
 </div>

@@ -1,17 +1,16 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Product} from "../../../models/product";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Product } from '../../../models/product';
 
 @Component({
   selector: 'app-product-card-detail',
   templateUrl: './product-card-detail.component.html',
-  styleUrl: './product-card-detail.component.sass'
+  styleUrl: './product-card-detail.component.sass',
 })
 export class ProductCardDetailComponent {
-
-  @Input() product!: Product
-  @Output() addToWishlistEvent: EventEmitter<any> = new EventEmitter<any>();
-  @Output() addToCartEvent: EventEmitter<any> = new EventEmitter<any>();
-
+  @Input() product!: Product;
+  @Output() addToWishlistEvent: EventEmitter<Product> =
+    new EventEmitter<Product>();
+  @Output() addToCartEvent: EventEmitter<Product> = new EventEmitter<Product>();
 
   addToWishlist(product: Product) {
     this.addToWishlistEvent.emit(product);
@@ -20,5 +19,4 @@ export class ProductCardDetailComponent {
   addToCart(product: Product) {
     this.addToCartEvent.emit(product);
   }
-
 }
