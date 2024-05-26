@@ -30,39 +30,37 @@
       background: linear-gradient(to top right, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 1) 100%)
       z-index: 1
 
-.product-details
-  display: grid
-  grid-template-rows: auto auto auto
-  padding: 0 20px 20px 20px
+  .product-details
+    display: grid
+    grid-template-rows: auto auto auto
+    padding: 0 20px 20px 20px
 
-.price
-  align-self: center
+  .price
+    align-self: center
 
-
-.product-card__bottom
-  display: flex
-  justify-content: space-between
-  align-items: center
-
-  &--price
-    font-size: 18px
-    font-weight: 550
-
-  &--right
+  .product-card__bottom
     display: flex
-    flex-direction: row
-    align-items: baseline
+    justify-content: space-between
+    align-items: center
 
-    &-icon
-      margin-right: 10px
+    &--price
+      font-size: 18px
+      font-weight: 550
 
-
-    &-label
+    &--right
       display: flex
-      font-size: 20px
-      font-weight: 600
+      flex-direction: row
+      align-items: baseline
 
-  &--left
+      &-icon
+        margin-right: 10px
+
+      &-label
+        display: flex
+        font-size: 20px
+        font-weight: 600
+
+    &--left
       display: flex
       flex-direction: row
       align-items: baseline
@@ -70,3 +68,30 @@
         position: absolute
         left: 220px
         top: 20px
+
+  .original-price
+    text-decoration: line-through
+    color: gray
+
+  .discounted-price
+    color: red
+    font-weight: bold
+
+  .discount-banner
+
+    background-color: red
+    color: white
+    font-weight: bold
+    padding: 2px 8px
+    position: absolute
+    top: 0
+    right: 0
+    border-radius: 0 0 0 8px
+    transform-origin: top left
+    z-index: 1
+.cart__bottom
+  display: flex
+  flex-direction: column
+
+.product-card__highlight
+  font-size: 22px
