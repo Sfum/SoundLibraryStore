@@ -1,8 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-//
-// import { AngularFireStorageModule } from '@angular/fire/storage';
-
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { RouterLink } from '@angular/router';
@@ -58,7 +55,11 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { BrandDetailComponent } from './brands/brand-detail/brand-detail.component';
 import { GenreDetailComponent } from './genres/genre-detail/genre-detail.component';
 import { MatCard } from '@angular/material/card';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
+import {
+  MatFormField,
+  MatLabel,
+  MatSuffix,
+} from '@angular/material/form-field';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { MatInput } from '@angular/material/input';
 import { BundleDetailComponent } from './bundles/bundle-detail/bundle-detail.component';
@@ -112,7 +113,7 @@ import {
 } from '@angular/material/stepper';
 import { MatSlider } from '@angular/material/slider';
 import { ProductGridComponent } from './products/product-grid/product-grid.component';
-import { OnsaleComponent } from './on-sale/on-sale.component';
+import { OnSaleComponent } from './on-sale/on-sale.component';
 import {
   MatDatepicker,
   MatDatepickerInput,
@@ -165,8 +166,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     ProfileComponent,
     StorageComponent,
     PriceFilterComponent,
+    ProductGridComponent,
     OnSaleComponent,
-    OnSaleDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -215,6 +216,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatStepper,
     MatStepLabel,
     MatSlider,
+    MatDatepicker,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSuffix,
   ],
   providers: [
     provideAnimationsAsync(),

@@ -22,7 +22,7 @@ import { ProfileComponent } from './auth/profile/profile.component';
 import { AdminGuard } from './guards/admin.guard';
 import { BrandListComponent } from './brands/brand-list/brand-list.component';
 import { GenreListComponent } from './genres/genre-list/genre-list.component';
-import { OnsaleComponent } from './on-sale/on-sale.component';
+import { OnSaleComponent } from './on-sale/on-sale.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },

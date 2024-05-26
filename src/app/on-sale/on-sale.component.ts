@@ -12,7 +12,7 @@ import { CartService } from '../services/cart.service';
   templateUrl: './on-sale.component.html',
   styleUrl: './on-sale.component.sass',
 })
-export class OnsaleComponent implements OnInit {
+export class OnSaleComponent implements OnInit {
   onSaleProducts$: Observable<Product[]> | null;
 
   constructor(

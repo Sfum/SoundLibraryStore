@@ -20,7 +20,7 @@
       </mat-cell>
     </ng-container>
 
-    <!-- Category ID Column -->
+    <!-- Genre ID Column -->
     <ng-container matColumnDef="genreId">
       <mat-header-cell *matHeaderCellDef> Genre </mat-header-cell>
       <mat-cell *matCellDef="let product"> {{ product.genreId }} </mat-cell>
@@ -40,10 +40,28 @@
       <mat-cell *matCellDef="let product"> {{ product.in_bundle }} </mat-cell>
     </ng-container>
 
+    <!-- On Sale Column -->
+    <ng-container matColumnDef="onSale">
+      <mat-header-cell *matHeaderCellDef> On Sale </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.onSale ? 'Yes' : 'No' }} </mat-cell>
+    </ng-container>
+
+    <!-- Sale Price Column -->
+    <ng-container matColumnDef="salePrice">
+      <mat-header-cell *matHeaderCellDef> Sale Price </mat-header-cell>
+      <mat-cell *matCellDef="let product"> ${{ product.salePrice | number:'1.2-2' }} </mat-cell>
+    </ng-container>
+
+    <!-- Discount Percentage Column -->
+    <ng-container matColumnDef="discountPercentage">
+      <mat-header-cell *matHeaderCellDef> Discount Percentage </mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.discountPercentage }}% </mat-cell>
+    </ng-container>
+
     <!-- Price Column -->
     <ng-container matColumnDef="price">
       <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-      <mat-cell *matCellDef="let product"> ${{ product.price }} </mat-cell>
+      <mat-cell *matCellDef="let product"> ${{ product.price | number:'1.2-2' }} </mat-cell>
     </ng-container>
 
     <!-- Actions Column -->
@@ -58,5 +76,5 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons=""></mat-paginator>
 </div>
