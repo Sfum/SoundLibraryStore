@@ -24,12 +24,14 @@
                type="number"
                value="1"/>
       </div>
-
       <div class="cart__card_price-amount font-primary margin__top--sm">
-        ${{ product.quantity * product.price | number : "1.2-2" }}
+        ${{ product.price | number : "1.2-2" }}
+      </div>
+      <div class="cart__card_price-amount-sale font-primary margin__top--sm">
+        ${{ product.salePrice | number : "1.2-2" }}
       </div>
     </div>
-
+    <div class="discount-banner">{{ product.discountPercentage }}% Off</div>
     <div class="cart__remove-button">
       <button mat-fab
               class="cart__wishlist-button"

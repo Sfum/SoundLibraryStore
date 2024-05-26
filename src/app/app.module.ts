@@ -123,6 +123,7 @@ import {
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { OnSaleDetailComponent } from './on-sale/on-sale-detail/on-sale-detail.component';
+import { ShoppingCartPaymentComponent } from './shopping-cart/shopping-cart-payment/shopping-cart-payment.component';
 
 @NgModule({
   declarations: [
@@ -170,6 +171,7 @@ import { OnSaleDetailComponent } from './on-sale/on-sale-detail/on-sale-detail.c
     ProductGridComponent,
     OnSaleComponent,
     OnSaleDetailComponent,
+    ShoppingCartPaymentComponent,
   ],
   imports: [
     CommonModule,

@@ -1,20 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {environment} from "../../../environments/environment";
-import {Router} from "@angular/router";
-import {ICreateOrderRequest, IPayPalConfig, NgxPayPalModule} from "ngx-paypal";
-import {DecimalPipe} from "@angular/common";
+import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
+import {
+  ICreateOrderRequest,
+  IPayPalConfig,
+  NgxPayPalModule,
+} from 'ngx-paypal';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-shopping-cart-payment',
-  standalone: true,
-  imports: [
-    NgxPayPalModule,
-    DecimalPipe
-  ],
   templateUrl: './shopping-cart-payment.component.html',
-  styleUrl: './shopping-cart-payment.component.sass'
+  styleUrl: './shopping-cart-payment.component.sass',
 })
-export class ShoppingCartPaymentComponent  implements OnInit {
+export class ShoppingCartPaymentComponent implements OnInit {
   public payPalConfig?: IPayPalConfig;
   showSuccess!: any;
   cartTotal!: any;
@@ -72,19 +71,19 @@ export class ShoppingCartPaymentComponent  implements OnInit {
         console.log(
           'onApprove - transaction was approved, but not authorized',
           data,
-          actions
+          actions,
         );
         actions.order.get().then((details: any) => {
           console.log(
             'onApprove - you can get full order details inside onApprove: ',
-            details
+            details,
           );
         });
       },
       onClientAuthorization: (data) => {
         console.log(
           'onClientAuthorization - you should probably inform your server about completed transaction at this point',
-          data
+          data,
         );
         if (data.status === 'COMPLETED') {
           this.router.navigate(['/success']);
