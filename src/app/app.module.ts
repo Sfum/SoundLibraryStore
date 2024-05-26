@@ -122,6 +122,7 @@ import {
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { OnSaleDetailComponent } from './on-sale/on-sale-detail/on-sale-detail.component';
 
 @NgModule({
   declarations: [
@@ -168,6 +169,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     PriceFilterComponent,
     ProductGridComponent,
     OnSaleComponent,
+    OnSaleDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -242,6 +244,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     LogoBarComponent,
     BrandListComponent,
     ProductFilterComponent,
+    ProductGridComponent,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

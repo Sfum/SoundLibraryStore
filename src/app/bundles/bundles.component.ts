@@ -1,18 +1,8 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product';
 import { ProductService } from '../services/product.service';
-import { BrandService } from '../services/brand.service';
-import { GenreService } from '../services/genre.service';
 import { WishlistService } from '../services/wishlist.service';
 import { CartService } from '../services/cart.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-bundles',

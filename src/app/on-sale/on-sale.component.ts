@@ -1,9 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MatCard } from '@angular/material/card';
-import { AppModule } from '../app.module';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
 import { Product } from '../models/product';
-import { ProductService } from '../services/product.service';
 import { WishlistService } from '../services/wishlist.service';
 import { CartService } from '../services/cart.service';
 
@@ -12,16 +8,17 @@ import { CartService } from '../services/cart.service';
   templateUrl: './on-sale.component.html',
   styleUrl: './on-sale.component.sass',
 })
-export class OnSaleComponent implements OnInit {
-  onSaleProducts$: Observable<Product[]> | null;
-
+export class OnSaleComponent {
   constructor(
-    private productService: ProductService,
     private wishlistService: WishlistService,
     private cartService: CartService,
-  ) {
-    this.onSaleProducts$ = this.productService.productsArrayOnSale$;
+  ) {}
+
+  onAddToWishlist(product: Product) {
+    this.wishlistService.addToWishlist(product);
   }
 
-  ngOnInit(): void {}
+  onAddToCart(product: Product) {
+    this.cartService.addToCart(product);
+  }
 }
