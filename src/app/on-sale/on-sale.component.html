@@ -1,0 +1,6 @@
+<div class="on-sale-products">
+  <h1>On Sale Products</h1>
+  <ng-container *ngIf="(onSaleProducts$ | async) as onSaleProducts">
+    <app-product-grid [products]="onSaleProducts"></app-product-grid>
+  </ng-container>
+</div>
