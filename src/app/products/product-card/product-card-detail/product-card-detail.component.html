@@ -6,20 +6,10 @@
     <div class="product-card__bottom margin__top--sm">
       <div class="title-main opacity--lg">
         <!-- Display discounted price if available -->
-        <div *ngIf="product.salePrice && product.salePrice < product.price; else originalPrice" class="card__bottom">
-          <div class="discount-banner">{{product.discountPercentage}}% OFF!!!</div>
-          <div class="margin__bottom--xsm">
-            Was: <span class="original-price margin__left--sm">
-          {{ product.price | currency:'USD':'symbol':'1.2-2'}}
-               </span>
-          </div>
-          <div class="product-card__highlight">
-            Now: <span
-            class="discounted-price margin__left--sm">
-          {{ product.salePrice | currency:'USD':'symbol':'1.2-2'}}
+        <span *ngIf="product.salePrice && product.salePrice < product.price; else originalPrice">
+          Was:<span class="original-price">{{ product.price  | currency:'USD':'symbol':'1.2-2'}}</span>
+          Now:<span class="discounted-price margin__left--md">{{ product.salePrice  | currency:'USD':'symbol':'1.2-2'}}</span>
         </span>
-          </div>
-        </div>
         <ng-template #originalPrice>
           {{ product.price | currency:'USD':'symbol':'1.2-2'}}
         </ng-template>

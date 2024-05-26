@@ -41,8 +41,6 @@ export class ProductEditComponent implements OnInit {
       discountPercentage: [''],
       salePrice: [''],
       onSale: [false],
-      start_date: [''],
-      end_date: [''],
     });
     this.productEdit$ = this.productService.getFilteredProductCollection();
   }

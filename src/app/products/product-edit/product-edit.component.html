@@ -38,19 +38,6 @@
 
       <mat-slide-toggle class="margin__bottom--md" formControlName="onSale">On Sale</mat-slide-toggle>
 
-      <mat-form-field class="margin__top--sm">
-        <mat-label>Start Date</mat-label>
-        <input matInput [matDatepicker]="picker1" formControlName="start_date">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field class="margin__top--sm">
-        <mat-label>End Date</mat-label>
-        <input matInput [matDatepicker]="picker2" formControlName="end_date">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field>
     </div>
     <div class="product__edit--right margin__left--md margin__top--md">
       <div class="container margin__bottom--md font-primary">Description</div>

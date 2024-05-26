@@ -13,6 +13,6 @@ export interface Product {
   discountPercentage?: number;
   salePrice?: number;
   onSale: boolean;
-  start_date: Date;
-  end_date: Date;
+  start_date?: Date;
+  end_date?: Date;
 }
