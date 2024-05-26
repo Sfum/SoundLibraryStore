@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ProductService} from "../../services/product.service";
-import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs";
-import {Product} from "../../models/product";
-import {finalize} from "rxjs/operators";
-import {AngularFireStorage} from "@angular/fire/compat/storage";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProductService } from '../../services/product.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Product } from '../../models/product';
+import { finalize } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
-  styleUrl: './product-edit.component.sass'
+  styleUrls: ['./product-edit.component.sass'],
 })
 export class ProductEditComponent implements OnInit {
   productForm: FormGroup;
@@ -20,32 +20,33 @@ export class ProductEditComponent implements OnInit {
   selectedBrandId: number | undefined;
   selectedGenreId: number | undefined;
   productEdit$: Observable<Product[]> | undefined;
-  brands$ = this.productService.brands$
-  genres$ = this.productService.genres$
+  brands$ = this.productService.brands$;
+  genres$ = this.productService.genres$;
 
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
     private route: ActivatedRoute,
-    private afStorage: AngularFireStorage
-
-
+    private afStorage: AngularFireStorage,
   ) {
     this.productForm = this.fb.group({
-
       product_name: ['', Validators.required],
       product_title: ['', Validators.required],
       product_description: ['', Validators.required],
       brandId: ['', Validators.required],
       genreId: ['', Validators.required],
       product_image: ['', Validators.required],
-      in_bundle: ['', Validators.required],
+      in_bundle: [false, Validators.required],
       price: ['', Validators.required],
-
+      discountPercentage: [''],
+      salePrice: [''],
+      onSale: [false],
+      start_date: [''],
+      end_date: [''],
     });
     this.productEdit$ = this.productService.getFilteredProductCollection();
-
   }
+
   uploadImage(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -53,26 +54,29 @@ export class ProductEditComponent implements OnInit {
       const fileRef = this.afStorage.ref(filePath);
       const task = this.afStorage.upload(filePath, file);
 
-      task.snapshotChanges().pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe(
-            url => {
-              this.productForm.patchValue({ product_image: url });
-              console.log('File URL:', url);
-            },
-            error => {
-              console.error('Error getting download URL:', error);
-            }
-          );
-        })
-      ).subscribe(
-        snapshot => {
-          console.log('Upload progress:', snapshot);
-        },
-        error => {
-          console.error('Upload error:', error);
-        }
-      );
+      task
+        .snapshotChanges()
+        .pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe(
+              (url) => {
+                this.productForm.patchValue({ product_image: url });
+                console.log('File URL:', url);
+              },
+              (error) => {
+                console.error('Error getting download URL:', error);
+              },
+            );
+          }),
+        )
+        .subscribe(
+          (snapshot) => {
+            console.log('Upload progress:', snapshot);
+          },
+          (error) => {
+            console.error('Upload error:', error);
+          },
+        );
     } else {
       console.error('No file selected');
     }
@@ -84,12 +88,12 @@ export class ProductEditComponent implements OnInit {
     this.loadProduct();
   }
 
-  optionBrandSelected(selectedSupplierId: number) {
-    return this.productService.optionBrandSelected(selectedSupplierId);
+  optionBrandSelected(selectedBrandId: number) {
+    return this.productService.optionBrandSelected(selectedBrandId);
   }
 
-  optionGenreSelected(selectedCategoryId: number) {
-    return this.productService.optionGenreSelected(selectedCategoryId);
+  optionGenreSelected(selectedGenreId: number) {
+    return this.productService.optionGenreSelected(selectedGenreId);
   }
 
   loadProduct() {
@@ -103,23 +107,24 @@ export class ProductEditComponent implements OnInit {
       },
       (error) => {
         console.error('Error retrieving product: ', error);
-      }
+      },
     );
   }
 
   onSubmit() {
     if (this.productForm.valid) {
-      this.productService.updateProduct(this.productId, this.productForm.value).subscribe(
-        () => {
-          window.location.reload();
-        },
-        (error) => {
-          console.error('Error updating product: ', error);
-        }
-      );
+      this.productService
+        .updateProduct(this.productId, this.productForm.value)
+        .subscribe(
+          () => {
+            window.location.reload();
+          },
+          (error) => {
+            console.error('Error updating product: ', error);
+          },
+        );
     } else {
       console.log('Form is invalid. Please fill in all required fields.');
     }
   }
-
 }

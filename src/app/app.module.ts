@@ -112,6 +112,15 @@ import {
 } from '@angular/material/stepper';
 import { MatSlider } from '@angular/material/slider';
 import { ProductGridComponent } from './products/product-grid/product-grid.component';
+import { OnsaleComponent } from './on-sale/on-sale.component';
+import {
+  MatDatepicker,
+  MatDatepickerInput,
+  MatDatepickerToggle,
+} from '@angular/material/datepicker';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -156,7 +165,8 @@ import { ProductGridComponent } from './products/product-grid/product-grid.compo
     ProfileComponent,
     StorageComponent,
     PriceFilterComponent,
-    ProductGridComponent,
+    OnSaleComponent,
+    OnSaleDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -225,7 +235,6 @@ import { ProductGridComponent } from './products/product-grid/product-grid.compo
     LogoBarComponent,
     BrandListComponent,
     ProductFilterComponent,
-    ProductCardDetailComponent,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

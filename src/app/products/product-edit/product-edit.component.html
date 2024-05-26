@@ -23,11 +23,34 @@
       <div *ngIf="productForm.get('product_image')?.value">
         <img [src]="productForm.get('product_image')?.value" alt="Product Image" width="200">
       </div>
-      <!-- Toggle for in_bundle property -->
       <mat-slide-toggle class="margin__bottom--md" formControlName="in_bundle">Is it part of a bundle?
       </mat-slide-toggle>
       <label for="price" class="margin__top--sm">Price($):</label>
       <input matInput type="text" id="price" formControlName="price" class="margin__bottom--lg" required>
+
+      <!-- New fields -->
+      <label for="discountPercentage" class="margin__top--sm">Discount Percentage(%):</label>
+      <input matInput type="text" id="discountPercentage" formControlName="discountPercentage"
+             class="margin__bottom--lg">
+
+      <label for="salePrice" class="margin__top--sm">Sale Price($):</label>
+      <input matInput type="text" id="salePrice" formControlName="salePrice" class="margin__bottom--lg">
+
+      <mat-slide-toggle class="margin__bottom--md" formControlName="onSale">On Sale</mat-slide-toggle>
+
+      <mat-form-field class="margin__top--sm">
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="start_date">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="margin__top--sm">
+        <mat-label>End Date</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="end_date">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
     </div>
     <div class="product__edit--right margin__left--md margin__top--md">
       <div class="container margin__bottom--md font-primary">Description</div>
@@ -40,5 +63,4 @@
     </div>
   </form>
   <button mat-raised-button class="button-secondary" [routerLink]='["/manage-products"]'>Back</button>
-
 </mat-card>

@@ -4,7 +4,16 @@
     <h2 class="title-main opacity--md">{{ product.product_name }}</h2>
     <h3 class="text-primary opacity--lg">{{ product.product_title | slice:0:100 }}...</h3>
     <div class="product-card__bottom margin__top--sm">
-      <div class="title-main opacity--lg">${{product.price}}</div>
+      <div class="title-main opacity--lg">
+        <!-- Display discounted price if available -->
+        <span *ngIf="product.salePrice && product.salePrice < product.price; else originalPrice">
+          Was:<span class="original-price">{{ product.price  | currency:'USD':'symbol':'1.2-2'}}</span>
+          Now:<span class="discounted-price margin__left--md">{{ product.salePrice  | currency:'USD':'symbol':'1.2-2'}}</span>
+        </span>
+        <ng-template #originalPrice>
+          {{ product.price  | currency:'USD':'symbol':'1.2-2'}}
+        </ng-template>
+      </div>
       <div class="product-card__bottom--left">
         <button mat-raised-button class="pi pi-shopping-cart" (click)="addToCart(product)">
         </button>

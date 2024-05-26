@@ -42,16 +42,16 @@ export class ProductService {
   }
 
   getProduct(id: string): Observable<Product | undefined> {
-    const productRef = this.firestore
+    return this.firestore
       .collection('products')
-      .doc<Product>(id.toString());
-
-    return productRef.valueChanges().pipe(
-      catchError((error) => {
-        console.error('Error getting product: ', error);
-        return throwError('Something went wrong while fetching the product');
-      }),
-    );
+      .doc<Product>(id)
+      .valueChanges()
+      .pipe(
+        catchError((error) => {
+          console.error('Error getting product: ', error);
+          return throwError('Something went wrong while fetching the product');
+        }),
+      );
   }
 
   addProduct(product: Product): Promise<void> {
@@ -308,14 +308,6 @@ export class ProductService {
       .valueChanges();
   }
 
-  getSameBrandProducts(brandId: number): Observable<Product[]> {
-    return this.firestore
-      .collection<Product>('brands', (ref) =>
-        ref.where('brandId', '==', brandId),
-      )
-      .valueChanges();
-  }
-
   ngOnDestroy() {
     this.unsubscribe$.next(); // Emit a signal to unsubscribe
     this.unsubscribe$.complete(); // Complete the unsubscribe$ subject
@@ -325,6 +317,7 @@ export class ProductService {
       .collection<Product>('products', (ref) => ref.where('onSale', '==', true))
       .valueChanges()
       .pipe(
+        map((products) => products || []), // Ensure products is an array
         catchError((error) => {
           console.error('Error getting on sale products: ', error);
           return throwError(
