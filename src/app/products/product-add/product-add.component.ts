@@ -37,11 +37,6 @@ export class ProductAddComponent implements OnInit {
       product_image: [''],
       in_bundle: [false, Validators.required],
       price: ['', Validators.required],
-      discountPercentage: [0],
-      salePrice: [0],
-      onSale: [false],
-      start_date: [null],
-      end_date: [null],
     });
 
     this.onSubmitSubject.pipe(debounceTime(1000)).subscribe(() => {

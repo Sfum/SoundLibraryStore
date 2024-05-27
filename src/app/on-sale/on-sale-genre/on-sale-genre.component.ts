@@ -64,8 +64,6 @@ export class OnSaleGenreComponent implements OnInit, OnDestroy {
               },
             });
         });
-
-        this.snackbarService.showSnackbar('Products set on sale successfully.');
       }),
     );
   }

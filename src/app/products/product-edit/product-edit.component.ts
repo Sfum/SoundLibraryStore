@@ -84,6 +84,18 @@ export class ProductEditComponent implements OnInit {
     // @ts-ignore
     this.productId = this.route.snapshot.paramMap.get('id');
     this.loadProduct();
+    this.productForm.get('onSale')?.valueChanges.subscribe((onSale) => {
+      const discountPercentageControl =
+        this.productForm.get('discountPercentage');
+      const salePriceControl = this.productForm.get('salePrice');
+      if (onSale) {
+        discountPercentageControl?.enable();
+        salePriceControl?.enable();
+      } else {
+        discountPercentageControl?.disable();
+        salePriceControl?.disable();
+      }
+    });
   }
 
   optionBrandSelected(selectedBrandId: number) {

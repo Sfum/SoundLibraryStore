@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 import { Router } from '@angular/router';
@@ -12,16 +12,17 @@ import { SnackbarService } from '../../services/snackbar.service';
   styleUrls: ['./product-list.component.sass'],
 })
 export class ProductListComponent implements OnInit {
+  @Input() product!: Product;
+
   displayedColumns: string[] = [
-    'id',
+    'product_image',
     'product_name',
     'genreId',
-    'product_image',
     'in_bundle',
     'onSale',
+    'price',
     'salePrice',
     'discountPercentage',
-    'price',
     'delete',
   ];
   dataSource!: MatTableDataSource<Product>;
@@ -58,5 +59,8 @@ export class ProductListComponent implements OnInit {
           this.snackbarService.showSnackbar('Failed to delete product');
         });
     }
+  }
+  editProduct() {
+    this.router.navigate(['edit', this.product.id]);
   }
 }

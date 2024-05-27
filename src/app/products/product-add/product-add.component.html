@@ -40,24 +40,6 @@
 
       <mat-slide-toggle class="margin__top--sm margin__bottom--sm" formControlName="in_bundle">Is it part of a bundle?</mat-slide-toggle>
 
-      <mat-slide-toggle class="margin__top--sm margin__bottom--sm" formControlName="onSale">Is it on sale?</mat-slide-toggle>
-
-      <label for="salePrice" class="font-secondary">Sale Price:</label>
-      <input type="text" id="salePrice" formControlName="salePrice">
-
-      <label for="discountPercentage" class="font-secondary">Discount Percentage:</label>
-      <input type="text" id="discountPercentage" formControlName="discountPercentage">
-
-      <label for="startDate" class="font-secondary">Sale Start Date:</label>
-      <input matInput [matDatepicker]="startDatePicker" formControlName="start_date">
-      <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-      <mat-datepicker #startDatePicker></mat-datepicker>
-
-      <label for="endDate" class="font-secondary">Sale End Date:</label>
-      <input matInput [matDatepicker]="endDatePicker" formControlName="end_date">
-      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-      <mat-datepicker #endDatePicker></mat-datepicker>
-
       <hr>
 
       <button class="margin__top--xsm" type="submit" mat-raised-button>Add Product</button>
