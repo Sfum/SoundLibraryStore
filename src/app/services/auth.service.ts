@@ -12,7 +12,6 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { ref } from '@angular/fire/storage';
 import { user } from '@angular/fire/auth';
-
 @Injectable({
   providedIn: 'root',
 })

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SnackbarService } from '../../services/snackbar.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-product-list',
@@ -34,9 +35,21 @@ export class ProductListComponent implements OnInit {
     private productService: ProductService,
     private router: Router,
     public snackbarService: SnackbarService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
+    this.authService.user$.subscribe((user) => {
+      if (user) {
+        this.productService
+          .getFilteredProductCollection()
+          .subscribe((products) => {
+            this.products = products;
+            this.dataSource = new MatTableDataSource<Product>(this.products);
+            this.dataSource.paginator = this.paginator;
+          });
+      }
+    });
     this.productService.getFilteredProductCollection().subscribe((products) => {
       this.products = products;
       this.dataSource = new MatTableDataSource<Product>(this.products);

@@ -42,7 +42,7 @@ export class ProductEditComponent implements OnInit {
       salePrice: [''],
       onSale: [false],
     });
-    this.productEdit$ = this.productService.getFilteredProductCollection();
+    this.productEdit$ = this.productService.productsArrayFiltered$;
   }
 
   uploadImage(event: any) {

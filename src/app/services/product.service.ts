@@ -8,6 +8,7 @@ import {
   Observable,
   shareReplay,
   Subject,
+  switchMap,
   takeUntil,
   throwError,
 } from 'rxjs';
@@ -19,6 +20,7 @@ import { Genre } from '../models/genre';
 import { Brand } from '../models/brand';
 import { SnackbarService } from './snackbar.service';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +32,7 @@ export class ProductService {
     private brandService: BrandService,
     public snackbarService: SnackbarService,
     public router: Router,
+    private authService: AuthService,
   ) {
     this.brandSelectedSubject.pipe(takeUntil(this.unsubscribe$)).subscribe();
     this.genreSelectedSubject.pipe(takeUntil(this.unsubscribe$)).subscribe();
@@ -292,6 +295,23 @@ export class ProductService {
     return this.productsArrayFiltered$;
   }
 
+  getFilteredUserState(userId: string): Observable<Product[]> {
+    return this.authService.isAdmin().pipe(
+      switchMap((isAdmin) => {
+        if (isAdmin) {
+          // If the user is an admin, return all products
+          return this.firestore.collection<Product>('products').valueChanges();
+        } else {
+          // If the user is not an admin, filter products based on the user's ID
+          return this.firestore
+            .collection<Product>('products', (ref) =>
+              ref.where('userId', '==', userId),
+            )
+            .valueChanges();
+        }
+      }),
+    );
+  }
   getRelatedProducts(genreId: number): Observable<Product[]> {
     return this.firestore
       .collection<Product>('products', (ref) =>

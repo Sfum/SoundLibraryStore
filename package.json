@@ -27,6 +27,7 @@
     "body-parser": "^1.20.2",
     "express": "^4.19.2",
     "firebase": "^10.12.1",
+    "firebase-admin": "^12.1.1",
     "jquery": "^3.7.1",
     "ngx-bootstrap": "^12.0.0",
     "ngx-owl-carousel-o": "^17.0.0",
@@ -57,5 +58,4 @@
   "resolutions": {
     "angular2-useful-swiper/@angular/common": "17.3.0"
   }
-
 }
