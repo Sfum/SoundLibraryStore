@@ -16,18 +16,18 @@
       <div class="font-secondary opacity--md">{{ product.brandId }}</div>
       <div class="font-primary">{{ product.product_name }}</div>
 
-      <div *ngIf="!product.onSale" class="font-primary margin__top--sm">
-        <div class=" font-primary margin__top--sm">
-          <div *ngIf="!product.onSale" class="font-primary margin__top--sm">
-            ${{ product.price | number : "1.2-2" }}
+      <div *ngIf="!product.onSale" class="font-secondary margin__top--sm">
+        <div class="font-secondary margin__top--sm">
+          <div *ngIf="!product.onSale" class="margin__top--sm">
+            Our Price: ${{ product.price | number : "1.2-2" }}
           </div>
         </div>
       </div>
 
-      <div *ngIf="product.onSale" class="cart__card_price-amount font-primary margin__top--sm">
-        <div class="cart__card_price-amount font-primary margin__top--sm">
-          <div *ngIf="product.onSale" class="margin__top--sm">
-           Sale: ${{ product.salePrice | number : "1.2-2" }}
+      <div *ngIf="product.onSale" class="cart__card_price-amount font-secondary margin__top--sm">
+        <div class="cart__card_price-amount font-secondary margin__top--sm">
+          <div *ngIf="product.onSale" class="margin__top--sm price-tag">
+            On Sale: ${{ product.salePrice | number : "1.2-2" }}
           </div>
           <div class="discount-banner">{{ product.discountPercentage }}% Off</div>
         </div>

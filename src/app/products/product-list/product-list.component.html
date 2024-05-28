@@ -1,6 +1,8 @@
 <div class="container">
   <div class="button_wrapper">
     <button mat-raised-button class="button-primary" [routerLink]="['/add-product']">Create Product</button>
+    <button mat-raised-button class="button-primary margin__left--xsm" [routerLink]="['/manage-brands']">Brands</button>
+    <button mat-raised-button class="button-primary margin__left--xsm" [routerLink]="['/manage-genres']">Genres</button>
     <button mat-raised-button class="button-primary margin__left--xsm" [routerLink]="['/on-sale-brand']">Set Brand On Sale</button>
     <button mat-raised-button class="button-primary margin__left--xsm" [routerLink]="['/on-sale-genre']">Set Genre On Sale</button>
   </div>
@@ -19,7 +21,7 @@
       <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
       <mat-cell *matCellDef="let product">
         <div class="cell--main">
-          <div class="font-secondary">{{ product.product_name }}</div>
+          <div class="font-secondary box-width">{{ product.product_name }}</div>
           <div class="font-small">{{ product.brandId }}</div>
         </div>
       </mat-cell>
@@ -66,7 +68,9 @@
     <!-- Discount Percentage Column -->
     <ng-container matColumnDef="discountPercentage">
       <mat-header-cell *matHeaderCellDef> Discount Percentage </mat-header-cell>
-      <mat-cell *matCellDef="let product"> {{ product.discountPercentage }}% </mat-cell>
+      <mat-cell  *matCellDef="let product">
+        <div *ngIf="product.onSale"> {{ product.discountPercentage }}%</div>
+      </mat-cell>
     </ng-container>
 
     <!-- Actions Column -->

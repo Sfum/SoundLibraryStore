@@ -1,0 +1,5 @@
+<form (submit)="handlePayment($event)">
+  <div id="card-element"><!-- Stripe's Card Element will be inserted here --></div>
+  <button type="submit" [disabled]="loading">Pay</button>
+  <div *ngIf="errorMessage">{{ errorMessage }}</div>
+</form>

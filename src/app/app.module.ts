@@ -126,6 +126,7 @@ import { OnSaleDetailComponent } from './on-sale/on-sale-detail/on-sale-detail.c
 import { ShoppingCartPaymentComponent } from './shopping-cart/shopping-cart-payment/shopping-cart-payment.component';
 import { OnSaleBrandComponent } from './on-sale/on-sale-brand/on-sale-brand.component';
 import { OnSaleGenreComponent } from './on-sale/on-sale-genre/on-sale-genre.component';
+import { PaymentComponent } from './shopping-cart/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -176,6 +177,7 @@ import { OnSaleGenreComponent } from './on-sale/on-sale-genre/on-sale-genre.comp
     ShoppingCartPaymentComponent,
     OnSaleBrandComponent,
     OnSaleGenreComponent,
+    PaymentComponent,
   ],
   imports: [
     CommonModule,

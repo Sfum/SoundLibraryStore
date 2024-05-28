@@ -25,6 +25,7 @@ import { GenreListComponent } from './genres/genre-list/genre-list.component';
 import { OnSaleComponent } from './on-sale/on-sale.component';
 import { OnSaleBrandComponent } from './on-sale/on-sale-brand/on-sale-brand.component';
 import { OnSaleGenreComponent } from './on-sale/on-sale-genre/on-sale-genre.component';
+import { PaymentComponent } from './shopping-cart/payment/payment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -80,6 +81,7 @@ const routes: Routes = [
   { path: 'on-sale', component: OnSaleComponent },
   { path: 'on-sale-brand', component: OnSaleBrandComponent },
   { path: 'on-sale-genre', component: OnSaleGenreComponent },
+  { path: 'checkout', component: PaymentComponent },
 ];
 
 @NgModule({

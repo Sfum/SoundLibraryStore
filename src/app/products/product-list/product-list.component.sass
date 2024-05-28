@@ -1,33 +1,19 @@
-@import url('../../../../src/styles.sass')
+
+/* Product Name Column */
+.mat-cell.product_name
+  width: calc(100% - 60px) /* Adjust the width to fit your needs, subtracting the width of the image column */
+
 
 .cell--main
   display: flex
   flex-direction: column
+  align-items: flex-start
 
 
 .mat-table
   width: 100%
   margin-top: 20px
   border: 1px solid #ddd
-
-  th.mat-header-cell,
-  td.mat-cell
-    text-align: left
-    padding: 12px
-
-
-  th.mat-header-cell
-    background-color: #3498db
-    color: #fff
-
-
-  tr.mat-row:nth-child(even)
-    background-color: #f2f2f2
-
-
-  tr.mat-row:hover
-    background-color: #e0e0e0
-
 
 .cell_hover:hover
   background-color: whitesmoke
@@ -44,8 +30,11 @@
 
 .mat-row
   cursor: pointer
+  height: 80px
 
 
 .sale-price-red
   color: red
 
+.box-width
+  width: 400px
