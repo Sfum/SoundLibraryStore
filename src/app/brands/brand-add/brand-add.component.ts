@@ -10,7 +10,7 @@ import { dateTimestampProvider } from 'rxjs/internal/scheduler/dateTimestampProv
   templateUrl: './brand-add.component.html',
   styleUrl: './brand-add.component.sass',
 })
-export class BrandAddComponent implements OnInit {
+export class BrandAddComponent {
   brandForm: FormGroup;
 
   constructor(
@@ -20,13 +20,11 @@ export class BrandAddComponent implements OnInit {
   ) {
     this.brandForm = this.formBuilder.group({
       _id: [''],
-      id: ['', Validators.required],
+      id: [''],
       brand_name: ['', Validators.required],
       brand_description: ['', Validators.required],
     });
   }
-
-  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.brandForm.valid) {

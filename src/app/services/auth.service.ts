@@ -41,6 +41,7 @@ export class AuthService {
         this.snackbarService.showSnackbar(`Sign In failed: ${error.message}`);
       });
   }
+
   signUp(
     email: string,
     password: string,
@@ -63,12 +64,16 @@ export class AuthService {
             throw new Error('User not found after creation');
           }
 
-          return user.updateProfile({
-            displayName: displayName,
-            photoURL: photoURL,
-          });
+          return user
+            .updateProfile({
+              displayName: displayName,
+              photoURL: photoURL,
+            })
+            .then(() => user); // Ensure user is returned for the next then() block
         })
-        .then(() => {
+        // @ts-ignore
+
+        .then((user) => {
           let userData: any = {
             displayName: displayName,
             photoURL: photoURL,
@@ -79,18 +84,20 @@ export class AuthService {
           };
 
           if (isContentProvider) {
+            const randomId = this.generateRandomId(); // Generating random 6-digit number
+
             const brandData = {
+              id: randomId, // Generating random 6-digit number
               brand_name: brand_name,
               brand_description: brand_description,
               createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+              moderators: [user.uid], // Add the user UID as a moderator
             };
 
             return this.firestore
               .collection('brands')
               .add(brandData)
               .then((ref) => {
-                // @ts-ignore
-                brandData['_id'] = ref.id;
                 userData = {
                   ...userData,
                   role: 'brand',
@@ -99,21 +106,21 @@ export class AuthService {
                   brand_description: brand_description,
                 };
 
-                return this.firestore
-                  .collection('brands')
-                  .doc(ref.id)
-                  .update({ _id: ref.id })
-                  .then(() => {
-                    return this.firestore
-                      .collection('users')
-                      .doc(ref.id)
-                      .set(userData);
-                  });
+                return Promise.all([
+                  this.firestore
+                    .collection('users')
+                    .doc(user.uid)
+                    .set(userData),
+                  this.firestore
+                    .collection('brands')
+                    .doc(ref.id)
+                    .update({ _id: ref.id, id: randomId }),
+                ]);
               });
           } else {
             return this.firestore
               .collection('users')
-              .doc(user.name)
+              .doc(user.uid) // Use user.uid to save under the user's UID
               .set(userData);
           }
         })
@@ -126,6 +133,11 @@ export class AuthService {
           this.snackbarService.showSnackbar(`Sign Up failed: ${error.message}`);
         });
     });
+  }
+
+  generateRandomId(): number {
+    // Generate a random 6-digit number
+    return Math.floor(100000 + Math.random() * 900000);
   }
 
   async signOut() {
