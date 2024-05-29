@@ -20,5 +20,5 @@ const setCustomUserClaims = async (uid, role) => {
 };
 
 // Example usage for setting moderator role
-const userId = 'UkNOhwjlA9e5xYhzzVdbk8L1rR13'; // Replace with the actual user's UID
+const userId = 'v6INzHAPz2QBbQWxmRvEobbWGrG3'; // Replace with the actual user's UID
 setCustomUserClaims(userId, 'moderator');

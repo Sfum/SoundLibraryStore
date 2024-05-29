@@ -1,3 +1,4 @@
+<div class="align__items">
 <mat-card class="product__edit--container">
   <form class="form-container" [formGroup]="productForm" (ngSubmit)="onSubmit()" *ngIf="(productEdit$ | async) as asyncFilterPipe">
     <div class="product__edit--left margin--md">
@@ -49,3 +50,4 @@
   </form>
   <button mat-raised-button class="button-secondary" [routerLink]='["/manage-products"]'>Back</button>
 </mat-card>
+</div>
