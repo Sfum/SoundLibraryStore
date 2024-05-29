@@ -33,7 +33,7 @@ export class ProductEditComponent implements OnInit {
       product_name: ['', Validators.required],
       product_title: ['', Validators.required],
       product_description: ['', Validators.required],
-      brandId: ['', Validators.required],
+      brandId: [''],
       genreId: ['', Validators.required],
       product_image: ['', Validators.required],
       in_bundle: [false, Validators.required],
