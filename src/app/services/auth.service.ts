@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { WishlistService } from './wishlist.service';
 import { CartService } from './cart.service';
@@ -150,6 +150,25 @@ export class AuthService {
     // @ts-ignore
     return this.user$.pipe(
       map((user) => user && user.email === 'pulsedrecords@gmail.com'),
+    );
+  }
+  isModerator(): Observable<boolean> {
+    return this.afAuth.authState.pipe(
+      switchMap((user) => {
+        if (!user) {
+          return of(false); // No user logged in, so not a moderator
+        } else {
+          return this.afAuth.idTokenResult.pipe(
+            switchMap((idTokenResult) => {
+              if (idTokenResult?.claims?.['moderator']) {
+                return of(true); // User has moderator claim
+              } else {
+                return of(false); // User does not have moderator claim
+              }
+            }),
+          );
+        }
+      }),
     );
   }
 }

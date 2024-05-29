@@ -17,6 +17,23 @@
       </div>
     </ng-template>
 </ng-container>
+<ng-container *ngIf="user$ | async as user; else notAuthenticated">
+  <div *ngIf="isModerator; else notModerator">
+    <div class="product-list">
+      <app-product-list-moderators class="container"></app-product-list-moderators>
+    </div>
+  </div>
+  <ng-template #notModerator>
+    <div class="product-card">
+      <div class="product-card-left">
+        <app-product-filter></app-product-filter>
+      </div>
+      <div class="product-card-right">
+        <app-product-card *ngIf="user && user.uid"></app-product-card>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>
 <ng-template #notAuthenticated>
   <div class="component-body">
     <app-product-card></app-product-card>
