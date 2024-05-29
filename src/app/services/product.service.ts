@@ -360,4 +360,11 @@ export class ProductService {
         }),
       );
   }
+  getProductsByUploader(uploaderId: string): Observable<Product[]> {
+    return this.firestore
+      .collection<Product>('products', (ref) =>
+        ref.where('uploaderId', '==', uploaderId),
+      )
+      .valueChanges();
+  }
 }

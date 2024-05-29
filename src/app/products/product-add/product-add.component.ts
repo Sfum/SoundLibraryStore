@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { debounceTime, finalize } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-product-add',
@@ -26,6 +27,7 @@ export class ProductAddComponent implements OnInit {
     private afs: AngularFirestore,
     private router: Router,
     private afStorage: AngularFireStorage,
+    private authService: AuthService,
   ) {
     this.productId = this.afs.createId();
     this.productForm = this.fb.group({
@@ -90,17 +92,26 @@ export class ProductAddComponent implements OnInit {
 
   onSubmit() {
     if (this.productForm.valid) {
-      const productData = this.productForm.value;
-      this.productService
-        .addProduct(productData)
-        .then(() => {
-          console.log('Product added successfully.');
-          this.productForm.reset();
-          this.router.navigate(['/manage-products']);
-        })
-        .catch((error) => {
-          console.error('Error adding product: ', error);
-        });
+      this.authService.user$.subscribe((user) => {
+        if (user) {
+          const productData = {
+            ...this.productForm.value,
+            uploaderId: user.uid, // Add uploaderId here
+          };
+          this.productService
+            .addProduct(productData)
+            .then(() => {
+              console.log('Product added successfully.');
+              this.productForm.reset();
+              this.router.navigate(['/manage-products']);
+            })
+            .catch((error) => {
+              console.error('Error adding product: ', error);
+            });
+        } else {
+          console.log('No user logged in.');
+        }
+      });
     } else {
       console.log('Form is invalid. Please fill in all required fields.');
     }

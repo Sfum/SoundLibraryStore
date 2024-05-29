@@ -15,4 +15,5 @@ export interface Product {
   onSale: boolean;
   start_date?: Date;
   end_date?: Date;
+  uploaderId: string;
 }
