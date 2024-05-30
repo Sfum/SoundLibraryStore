@@ -15,6 +15,12 @@ import { CartService } from '../../services/cart.service';
   styleUrl: './product-card.component.sass',
 })
 export class ProductCardComponent implements OnInit {
+  // @ts-ignore
+  products$: Observable<Product[]>;
+  paginatedProducts: Product[] = [];
+  currentPage = 0;
+  itemsPerPage = 8;
+
   @Input() products!: Product[];
   @Input() product!: Product;
   productCollection$!: Observable<Product[]>;
@@ -33,6 +39,10 @@ export class ProductCardComponent implements OnInit {
     this.productCollection$ = this.productService.productsArrayFiltered$;
     this.brandCollection$ = this.brandService.brands$;
     this.genreCollection$ = this.genreService.genres$;
+    this.products$ = this.productService.productsArrayFiltered$;
+    this.products$.subscribe((products) => {
+      this.paginate(products);
+    });
   }
   onAddToWishlist(product: any) {
     this.wishlistService.addToWishlist(product);
@@ -40,5 +50,17 @@ export class ProductCardComponent implements OnInit {
 
   onAddToCart(product: any) {
     this.cartService.addToCart(product);
+  }
+  paginate(products: Product[]) {
+    const start = this.currentPage * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    this.paginatedProducts = products.slice(start, end);
+  }
+
+  onPageChange(event: any) {
+    this.currentPage = event.pageIndex;
+    this.products$.subscribe((products) => {
+      this.paginate(products);
+    });
   }
 }

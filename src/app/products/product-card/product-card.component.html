@@ -2,12 +2,18 @@
 
 
 <div class="product-card__container">
-  <app-product-card-detail *ngFor="let product of productCollection$ | async"
+  <app-product-card-detail *ngFor="let product of paginatedProducts"
                            [product]="product"
-                           (addToWishlistEvent)="onAddToWishlist($event)"
-                           (addToCartEvent)="onAddToCart($event)"
+                           (addToWishlistEvent)="onAddToWishlist(product)"
+                           (addToCartEvent)="onAddToCart(product)"
   >
-{{ product.id }}
   </app-product-card-detail>
 </div>
+
+<mat-paginator class="margin__bottom--md"
+  [length]="(products$ | async)?.length || 0"
+  [pageSize]="itemsPerPage"
+  (page)="onPageChange($event)"
+></mat-paginator>
+
 
