@@ -127,6 +127,7 @@ import { OnSaleBrandComponent } from './on-sale/on-sale-brand/on-sale-brand.comp
 import { OnSaleGenreComponent } from './on-sale/on-sale-genre/on-sale-genre.component';
 import { PaymentComponent } from './shopping-cart/payment/payment.component';
 import { ProductListModeratorsComponent } from './products/product-list-moderators/product-list-moderators.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -233,6 +234,7 @@ import { ProductListModeratorsComponent } from './products/product-list-moderato
     MatDatepickerModule,
     MatNativeDateModule,
     MatSuffix,
+    NgxPayPalModule,
   ],
   providers: [
     provideAnimationsAsync(),

@@ -8,7 +8,6 @@ import {
   Observable,
   shareReplay,
   Subject,
-  switchMap,
   takeUntil,
   throwError,
 } from 'rxjs';
@@ -32,7 +31,6 @@ export class ProductService {
     private brandService: BrandService,
     public snackbarService: SnackbarService,
     public router: Router,
-    private authService: AuthService,
   ) {
     this.brandSelectedSubject.pipe(takeUntil(this.unsubscribe$)).subscribe();
     this.genreSelectedSubject.pipe(takeUntil(this.unsubscribe$)).subscribe();
@@ -139,10 +137,6 @@ export class ProductService {
   brands$: Observable<Brand[]> = this.brandService.getBrands();
 
   private products: Product[] = [];
-
-  private productsFilteredSubject = new BehaviorSubject<Product[]>(
-    this.products,
-  );
 
   optionBrandSelected(selectedBrandId: number) {
     this.brandSelectedSubject.next(0);
