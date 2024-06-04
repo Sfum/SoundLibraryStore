@@ -10,8 +10,10 @@ import firebase from 'firebase/compat/app';
 })
 export class HomeComponent {
   user$: Observable<firebase.User> | undefined;
+
   isAdmin: boolean | undefined;
   isModerator: boolean | undefined;
+
   constructor(private authService: AuthService) {}
 
   ngOnInit() {

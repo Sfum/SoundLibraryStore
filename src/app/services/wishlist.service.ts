@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {SnackbarService} from "./snackbar.service";
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,29 +14,37 @@ export class WishlistService {
       product.quantity = 1;
       this.addProductToWishlist(product);
       this.products = [...this.getProduct()];
-      this.snackbarService.showSnackbar(`\`${product.product_name}\` by \`${product.brandId}\` added to Wishlist`);
+      this.snackbarService.showSnackbar(
+        `\`${product.product_name}\` by \`${product.brandId}\` added to Wishlist`,
+      );
       product.in_wishlist = !product.in_wishlist;
     } else {
       this.snackbarService.showSnackbar('Item is Already In Wishlist');
     }
   }
+
   getProduct() {
     return this.products;
   }
+
   addProductToWishlist(addedProduct: any) {
     this.products.push(addedProduct);
     this.saveCart();
   }
+
   saveCart(): void {
     localStorage.setItem('wishlist_items', JSON.stringify(this.products));
   }
+
   loadCart(): void {
     this.products =
       JSON.parse(localStorage.getItem('wishlist_items') as any) || [];
   }
+
   productInCart(product: any): boolean {
     return this.products.findIndex((x: any) => x.id === product.id) > -1;
   }
+
   removeProduct(product: any) {
     const index = this.products.findIndex((x: any) => x.id === product.id);
 
@@ -45,6 +53,7 @@ export class WishlistService {
       this.saveCart();
     }
   }
+
   clearWishlist(): void {
     localStorage.removeItem('wishlist_items');
     this.products = [];

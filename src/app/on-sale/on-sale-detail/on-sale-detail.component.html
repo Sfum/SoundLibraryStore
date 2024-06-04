@@ -1,8 +1,7 @@
-
-  <ng-container *ngIf="(onSaleProducts$ | async) as onSaleProducts">
-      <app-product-grid class="container" [products]="onSaleProducts"
-                        (addToWishlistEvent)="addToWishlist($event)"
-                        (addToCartEvent)="addToCart($event)">
-      </app-product-grid>
-  </ng-container>
+<ng-container *ngIf="(onSaleProducts$ | async) as onSaleProducts">
+  <app-product-grid class="container" [products]="onSaleProducts"
+                    (addToWishlistEvent)="addToWishlist($event)"
+                    (addToCartEvent)="addToCart($event)">
+  </app-product-grid>
+</ng-container>
 

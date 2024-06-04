@@ -5,19 +5,20 @@ import { ProductService } from '../../../services/product.service';
 @Component({
   selector: 'app-price-filter',
   templateUrl: './price-filter.component.html',
-  styleUrls: ['./price-filter.component.sass']
+  styleUrls: ['./price-filter.component.sass'],
 })
-export class PriceFilterComponent implements OnInit {
+export class PriceFilterComponent {
   priceForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private productService: ProductService) {
+  constructor(
+    private fb: FormBuilder,
+    private productService: ProductService,
+  ) {
     this.priceForm = this.fb.group({
       minPrice: [10, Validators.min(5)],
-      maxPrice: [20, [ Validators.max(30)]]
+      maxPrice: [20, [Validators.max(30)]],
     });
   }
-
-  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.priceForm.valid) {

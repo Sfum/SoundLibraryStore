@@ -8,8 +8,7 @@ import { Product } from '../../../models/product';
 })
 export class ProductCardDetailComponent {
   @Input() product!: Product;
-  @Output() addToWishlistEvent: EventEmitter<Product> =
-    new EventEmitter<Product>();
+  @Output() addToWishlistEvent: EventEmitter<Product> = new EventEmitter<Product>();
   @Output() addToCartEvent: EventEmitter<Product> = new EventEmitter<Product>();
 
   addToWishlist(product: Product) {

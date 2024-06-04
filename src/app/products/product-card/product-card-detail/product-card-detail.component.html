@@ -5,7 +5,6 @@
     <h3 class="text-primary opacity--lg">{{ product.product_title | slice:0:100 }}...</h3>
     <div class="product-card__bottom margin__top--sm">
       <div class="title-main opacity--lg">
-        <!-- Display discounted price if available -->
         <div *ngIf="product.salePrice && product.salePrice < product.price; else originalPrice">
           <div class="product__card--discount">
             <div class="product__card--discount-row">Was:
@@ -17,7 +16,6 @@
                 {{ product.salePrice  | currency:'USD':'symbol':'1.2-2'}}</div>
             </div>
           </div>
-          <!-- Add discount banner -->
           <div class="discount-banner">{{ product.discountPercentage }}% Off</div>
         </div>
         <ng-template #originalPrice>

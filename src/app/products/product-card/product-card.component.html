@@ -1,6 +1,11 @@
-
-
-
+<div class="search-container">
+  <input matInput type="text" [(ngModel)]="searchQuery" (input)="filterProducts(products)" placeholder="Search...">
+</div>
+<div class="sorting-bar margin__bottom--md margin__top--md">
+  <button mat-raised-button (click)="sortByPrice('asc')">Price (Low to High)</button>
+  <button mat-raised-button (click)="sortByPrice('desc')">Price (High to Low)</button>
+  <button mat-raised-button (click)="sortByPopularity()">Popularity</button>
+</div>
 <div class="product-card__container">
   <app-product-card-detail *ngFor="let product of paginatedProducts"
                            [product]="product"
@@ -9,8 +14,7 @@
   >
   </app-product-card-detail>
 </div>
-
-<mat-paginator class="margin__bottom--md"
+<mat-paginator class="margin__top--md"
   [length]="(products$ | async)?.length || 0"
   [pageSize]="itemsPerPage"
   (page)="onPageChange($event)"

@@ -2,8 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from '../../../models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
-import { Genre } from '../../../models/genre';
-import { WishlistService } from '../../../services/wishlist.service';
 
 @Component({
   selector: 'app-product-page-detail',

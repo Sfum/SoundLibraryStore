@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/product';
-import { AsyncPipe } from '@angular/common';
-import { AppModule } from '../../app.module';
 import { Observable } from 'rxjs';
 import { ProductService } from '../../services/product.service';
 

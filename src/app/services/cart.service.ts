@@ -48,9 +48,6 @@ export class CartService {
       this.saveCart();
     }
   }
-  clearProducts() {
-    localStorage.clear();
-  }
   addWishlistToCart(product: any) {
     if (!this.productInCart(product)) {
       product.quantity = 1;

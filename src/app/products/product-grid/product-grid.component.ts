@@ -8,8 +8,7 @@ import { Product } from '../../models/product';
 })
 export class ProductGridComponent {
   @Input() products: Product[] = [];
-  @Output() addToWishlistEvent: EventEmitter<Product> =
-    new EventEmitter<Product>();
+  @Output() addToWishlistEvent: EventEmitter<Product> = new EventEmitter<Product>();
   @Output() addToCartEvent: EventEmitter<Product> = new EventEmitter<Product>();
 
   onAddToWishlist(product: Product) {
