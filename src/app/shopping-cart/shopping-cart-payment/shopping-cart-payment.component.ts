@@ -6,7 +6,6 @@ import {
   IPayPalConfig,
   NgxPayPalModule,
 } from 'ngx-paypal';
-import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-shopping-cart-payment',

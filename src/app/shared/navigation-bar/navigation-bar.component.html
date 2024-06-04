@@ -7,11 +7,9 @@
       <i class="material-icons">search</i>
     </span>
   </div>
-
   <div class="right-icons">
     <ng-container *ngIf="user$ | async as user; else loggedOut">
       <span class="nav-button">Hello, {{ user.displayName }}</span>
-
     </ng-container>
     <span class="nav-item" [routerLink]="['/profile']">
       <i class="material-icons">account_circle</i>
@@ -25,9 +23,7 @@
       <i class="material-icons">shopping_cart</i>
       Cart
     </span>
-
     <div class="auth-field">
-
       <ng-template #loggedOut>
         <button mat-raised-button class="nav-button" routerLink="/login">Login</button>
         <button mat-raised-button class="nav-button" routerLink="/signup">SignUp</button>

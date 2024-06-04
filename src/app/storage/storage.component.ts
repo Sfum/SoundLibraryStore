@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {Observable} from "rxjs";
-import {StorageService} from "../services/storage.service";
+import { Observable } from 'rxjs';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-storage',
   templateUrl: './storage.component.html',
-  styleUrl: './storage.component.sass'
+  styleUrl: './storage.component.sass',
 })
 export class StorageComponent {
   // @ts-ignore

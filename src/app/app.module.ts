@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ProductCarouselComponent } from './products/product-carousel/product-carousel.component';
 import { StorageComponent } from './storage/storage.component';
-// @ts-ignore
 
 import { AppRoutingModule } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';

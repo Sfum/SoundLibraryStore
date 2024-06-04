@@ -10,8 +10,7 @@ import { SnackbarService } from './snackbar.service';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import { ref } from '@angular/fire/storage';
-import { user } from '@angular/fire/auth';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -152,6 +151,7 @@ export class AuthService {
       map((user) => user && user.email === 'pulsedrecords@gmail.com'),
     );
   }
+
   isModerator(): Observable<boolean> {
     return this.afAuth.authState.pipe(
       switchMap((user) => {

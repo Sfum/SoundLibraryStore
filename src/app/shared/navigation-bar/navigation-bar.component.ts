@@ -3,7 +3,6 @@ import {Observable} from "rxjs";
 import firebase from "firebase/compat";
 import {AuthService} from "../../services/auth.service";
 
-
 @Component({
   selector: 'app-navigation-bar',
   templateUrl: './navigation-bar.component.html',

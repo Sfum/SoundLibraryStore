@@ -134,32 +134,25 @@ export class ProductService {
       });
   }
 
-  // Observable for retrieving products from the mock API
   products$: Observable<Product[]> = this.getProducts();
-  // Observables for genre and brand data from their respective services
   genres$: Observable<Genre[]> = this.genreService.getGenres();
   brands$: Observable<Brand[]> = this.brandService.getBrands();
 
-  // Private variables for product data and filtered product subject
   private products: Product[] = [];
 
   private productsFilteredSubject = new BehaviorSubject<Product[]>(
     this.products,
   );
-  productsFiltered$ = this.productsFilteredSubject.asObservable();
 
-  // Method to handle selecting a brand
   optionBrandSelected(selectedBrandId: number) {
     this.brandSelectedSubject.next(0);
     this.genreSelectedSubject.next(0);
     this.brandSelectedSubject.next(+selectedBrandId);
   }
 
-  // Subject and Observable for selected brand
   public brandSelectedSubject = new BehaviorSubject<number>(0);
   brandSelectedAction$ = this.brandSelectedSubject.asObservable();
 
-  // Combining products and selected brand to filter products by brand
   brandActionStream$ = combineLatest([
     this.products$,
     this.brandSelectedAction$,
@@ -174,18 +167,15 @@ export class ProductService {
     }),
   );
 
-  // Method to handle changing the selected genre
   optionGenreSelected(selectedGenreId: number) {
     this.brandSelectedSubject.next(0);
     this.genreSelectedSubject.next(0);
     this.genreSelectedSubject.next(+selectedGenreId);
   }
 
-  // Subject and Observable for selected genre
   public genreSelectedSubject = new BehaviorSubject<number>(0);
   genreSelectedAction$ = this.genreSelectedSubject.asObservable();
 
-  // Combining brand-filtered products and selected genre to filter products by genre
   genreActionStream$ = combineLatest([
     this.brandActionStream$,
     this.genreSelectedAction$,
@@ -200,7 +190,6 @@ export class ProductService {
     }),
   );
 
-  // Subject and Observable for selected price range
   private priceRangeSelectedSubject = new BehaviorSubject<{
     min: number;
     max: number;
@@ -210,12 +199,10 @@ export class ProductService {
   });
   priceRangeSelectedAction$ = this.priceRangeSelectedSubject.asObservable();
 
-  // Method to handle selecting a price range
   optionPriceRangeSelected(minPrice: number, maxPrice: number) {
     this.priceRangeSelectedSubject.next({ min: minPrice, max: maxPrice });
   }
 
-  // Combining genre-filtered products and selected price range to filter products by price
   priceActionStream$ = combineLatest([
     this.genreActionStream$,
     this.priceRangeSelectedAction$,
@@ -278,54 +265,8 @@ export class ProductService {
     shareReplay(1),
   );
 
-  // Combining filtered products with brands and genres
-  filteredProducts$ = combineLatest([
-    this.productsArrayFiltered$,
-    this.brands$,
-    this.genres$,
-  ]).pipe(
-    map(([products, brands, genres]) => ({
-      products,
-      brands,
-      genres,
-    })),
-  );
-
   getFilteredProductCollection() {
     return this.productsArrayFiltered$;
-  }
-
-  getFilteredUserState(userId: string): Observable<Product[]> {
-    return this.authService.isAdmin().pipe(
-      switchMap((isAdmin) => {
-        if (isAdmin) {
-          // If the user is an admin, return all products
-          return this.firestore.collection<Product>('products').valueChanges();
-        } else {
-          // If the user is not an admin, filter products based on the user's ID
-          return this.firestore
-            .collection<Product>('products', (ref) =>
-              ref.where('userId', '==', userId),
-            )
-            .valueChanges();
-        }
-      }),
-    );
-  }
-  getRelatedProducts(genreId: number): Observable<Product[]> {
-    return this.firestore
-      .collection<Product>('products', (ref) =>
-        ref.where('genreId', '==', genreId),
-      )
-      .valueChanges();
-  }
-
-  getRelatedProductsbyBrand(brandId: number): Observable<Product[]> {
-    return this.firestore
-      .collection<Product>('products', (ref) =>
-        ref.where('brandId', '==', brandId),
-      )
-      .valueChanges();
   }
   getProductsByBrand(brandId: number): Observable<Product[]> {
     return this.firestore
@@ -340,11 +281,6 @@ export class ProductService {
         ref.where('genreId', '==', genreId),
       )
       .valueChanges();
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe$.next(); // Emit a signal to unsubscribe
-    this.unsubscribe$.complete(); // Complete the unsubscribe$ subject
   }
   getOnSaleProducts(): Observable<Product[]> {
     return this.firestore
@@ -366,5 +302,9 @@ export class ProductService {
         ref.where('uploaderId', '==', uploaderId),
       )
       .valueChanges();
+  }
+  ngOnDestroy() {
+    this.unsubscribe$.next(); // Emit a signal to unsubscribe
+    this.unsubscribe$.complete(); // Complete the unsubscribe$ subject
   }
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {
   StripeCardElementOptions,
   StripeElementsOptions,
-  StripeError,
 } from '@stripe/stripe-js';
 import { StripeService } from '../../services/stripe.service';
 

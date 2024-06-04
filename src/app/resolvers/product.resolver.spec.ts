@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { ResolveFn } from '@angular/router';
 
+// @ts-ignore
 import { productResolver } from './product.resolver';
 
 describe('productResolver', () => {
-  const executeResolver: ResolveFn<boolean> = (...resolverParameters) => 
+  const executeResolver: ResolveFn<boolean> = (...resolverParameters) =>
       TestBed.runInInjectionContext(() => productResolver(...resolverParameters));
 
   beforeEach(() => {

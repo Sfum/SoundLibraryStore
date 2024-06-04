@@ -2,8 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from '../../../models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
-import { Genre } from '../../../models/genre';
-import { WishlistService } from '../../../services/wishlist.service';
 
 @Component({
   selector: 'app-product-page-detail',
@@ -35,12 +33,12 @@ export class ProductPageDetailComponent implements OnInit {
         if (product) {
           // Fetch related products based on genreId
           this.productService
-            .getRelatedProducts(product.genreId)
+            .getProductsByGenre(product.genreId)
             .subscribe((products) => {
               this.relatedProducts = products.filter((p) => p.id !== productId); // Exclude current product
             });
           this.productService
-            .getRelatedProductsbyBrand(product.brandId)
+            .getProductsByBrand(product.brandId)
             .subscribe((products) => {
               this.relatedProductBrands = products.filter(
                 (p) => p.id !== productId,

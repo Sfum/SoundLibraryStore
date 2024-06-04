@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './provider.component.html',
   styleUrl: './provider.component.sass'
 })
+
 export class ProviderComponent {
 
 }

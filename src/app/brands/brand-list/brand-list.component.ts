@@ -1,21 +1,16 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource} from "@angular/material/table";
-import {MatPaginator} from "@angular/material/paginator";
-import {Brand} from "../../models/brand";
-import {BrandService} from "../../services/brand.service";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { Brand } from '../../models/brand';
+import { BrandService } from '../../services/brand.service';
 
 @Component({
   selector: 'app-brand-list',
   templateUrl: './brand-list.component.html',
-  styleUrl: './brand-list.component.sass'
+  styleUrl: './brand-list.component.sass',
 })
 export class BrandListComponent implements OnInit {
-  displayedColumns: string[] = [
-    // '_id',
-    // 'id',
-    'brand_name',
-    'brand_description',
-  ];
+  displayedColumns: string[] = ['brand_name', 'brand_description'];
   // @ts-ignore
   dataSource: MatTableDataSource<Brand>;
   brands: Brand[] = [];

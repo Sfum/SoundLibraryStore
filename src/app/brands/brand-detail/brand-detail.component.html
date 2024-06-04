@@ -1,8 +1,7 @@
 <mat-card class="container mat-elevation-z24">
   <div class="brand-info margin__top--lg margin__left--lg margin__right--lg">
-    <h2 class="title-main">{{ brand?.brand_name }}</h2>
-
-    <h4 class="text-primary">{{ brand?.brand_description | slice: 0:180 }}...read more</h4>
+    <div class="title-main">{{ brand?.brand_name }}</div>
+    <div class="text-primary">{{ brand?.brand_description | slice: 0:180 }}...read more</div>
   </div>
   <div class="product-card margin__left--lg">
     <a *ngFor="let product of getBrandProducts() | slice: 0: 4" [href]="'/products/' + product.id">

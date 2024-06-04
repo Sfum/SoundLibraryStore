@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Format } from '../../models/format';
 import { FormatService } from '../../services/format.service';
 import { Observable } from 'rxjs';
-import firebase from 'firebase/compat';
 import { AuthService } from '../../services/auth.service';
+import firebase from 'firebase/compat';
 
 @Component({
   selector: 'app-logo-bar',

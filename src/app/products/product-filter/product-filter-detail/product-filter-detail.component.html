@@ -1,28 +1,23 @@
 <label class="font-secondary">Select Genre</label>
-  <mat-form-field appearance="fill">
-    <mat-select
-      (selectionChange)="optionGenreSelected($any($event.value))"
-    >
-      <mat-option value="0">- All genres -</mat-option>
-      <mat-option
-        *ngFor="let genreItem of filterGenreField$ | async as genre"
-        [value]="genreItem.id"
-      >
-        {{ genreItem.genre_name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <label class="font-secondary">Select Brand</label>
-  <mat-form-field appearance="fill">
-    <mat-select
-      (selectionChange)="optionBrandSelected($any($event.value))"
-    >
-      <mat-option value="0">- All brands</mat-option>
-      <mat-option
-        *ngFor="let brandItem of filterField$ | async as brand"
-        [value]="brandItem.id"
-      >
-        {{ brandItem.brand_name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+<mat-form-field appearance="fill">
+  <mat-select (selectionChange)="optionGenreSelected($any($event.value))">
+    <mat-option value="0">- All genres -</mat-option>
+    <mat-option
+      *ngFor="let genreItem of filterGenreField$ | async as genre"
+      [value]="genreItem.id">
+      {{ genreItem.genre_name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<label class="font-secondary">Select Brand</label>
+<mat-form-field appearance="fill">
+  <mat-select
+    (selectionChange)="optionBrandSelected($any($event.value))">
+    <mat-option value="0">- All brands</mat-option>
+    <mat-option
+      *ngFor="let brandItem of filterField$ | async as brand"
+      [value]="brandItem.id">
+      {{ brandItem.brand_name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

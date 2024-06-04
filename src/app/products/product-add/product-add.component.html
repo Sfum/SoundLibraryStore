@@ -1,47 +1,36 @@
 <div class="align__items">
   <mat-card class="container">
     <div class="font-primary margin__left--md margin__top--md">Add New Product</div>
-    <form class="form-container margin__top--md margin__left--md margin__bottom--md margin__right--xlg" [formGroup]="productForm" (ngSubmit)="onSubmitWithDebounce()">
-
-      <!-- Existing form fields -->
+    <form class="form-container margin__top--md margin__left--md margin__bottom--md margin__right--xlg"
+          [formGroup]="productForm" (ngSubmit)="onSubmitWithDebounce()">
       <label for="productName" class="font-secondary">Product Name:</label>
       <input type="text" id="productName" formControlName="product_name" required>
-
       <label for="productTitle" class="font-secondary">Short:</label>
       <input type="text" id="productTitle" formControlName="product_title" required>
-
       <label for="productDescription" class="font-secondary">Product Description:</label>
       <textarea id="productDescription" formControlName="product_description" required></textarea>
-
       <mat-form-field class="form-control">
         <mat-label>Select Brand</mat-label>
         <mat-select formControlName="brandId" (selectionChange)="optionBrandSelected($event.value)">
           <mat-option *ngFor="let brand of brands$ | async" [value]="brand.id">{{ brand.brand_name }}</mat-option>
         </mat-select>
       </mat-form-field>
-
       <mat-form-field class="form-control margin__left--md">
         <mat-label>Select Genre</mat-label>
         <mat-select formControlName="genreId" (selectionChange)="optionGenreSelected($event.value)">
           <mat-option *ngFor="let genre of genres$ | async" [value]="genre.id">{{ genre.genre_name }}</mat-option>
         </mat-select>
       </mat-form-field>
-
       <label for="productImage" class="font-small">Product Image:</label>
       <input type="file" id="productImage" (change)="uploadImage($event)">
-
-      <!-- Image preview -->
       <div *ngIf="productForm.get('product_image')?.value">
         <img [src]="productForm.get('product_image')?.value" alt="Product Image" width="200">
       </div>
-
       <label for="price" class="font-secondary">Price:</label>
       <input type="text" id="price" formControlName="price" required>
-
-      <mat-slide-toggle class="margin__top--sm margin__bottom--sm" formControlName="in_bundle">Is it part of a bundle?</mat-slide-toggle>
-
+      <mat-slide-toggle class="margin__top--sm margin__bottom--sm" formControlName="in_bundle">Is it part of a bundle?
+      </mat-slide-toggle>
       <hr>
-
       <button class="margin__top--xsm" type="submit" mat-raised-button>Add Product</button>
     </form>
   </mat-card>

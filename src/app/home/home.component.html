@@ -1,10 +1,9 @@
-<app-product-carousel></app-product-carousel>
-
 <ng-container *ngIf="user$ | async as user; else notAuthenticated">
+
   <!-- Admin Section -->
   <div *ngIf="isAdmin; else notAdmin">
     <div class="product-list">
-      <app-product-list class="container"></app-product-list>
+      <app-product-list></app-product-list>
     </div>
   </div>
 
@@ -12,7 +11,7 @@
   <ng-template #notAdmin>
     <div *ngIf="isModerator; else notModerator">
       <div class="product-list">
-        <app-product-list-moderators class="container"></app-product-list-moderators>
+        <app-product-list-moderators></app-product-list-moderators>
       </div>
     </div>
   </ng-template>
@@ -32,7 +31,7 @@
 
 <!-- Not Authenticated Section -->
 <ng-template #notAuthenticated>
-  <div class="component-body">
+  <div>
     <app-product-card></app-product-card>
   </div>
 </ng-template>
