@@ -1,5 +1,8 @@
 <mat-card class="product-card mat-elevation-z24">
-  <img [src]="product.product_image" [routerLink]="'/products/' + product.id" alt="Product Image" class="product-image">
+  <img [src]="product.product_image" [routerLink]="'/products/' + product.id"
+       alt="Product Image"
+       class="product-image"
+       matTooltip="Details">
   <div class="product-details">
     <h2 class="title-main opacity--md">{{ product.product_name }}</h2>
     <h3 class="text-primary opacity--lg">{{ product.product_title | slice:0:100 }}...</h3>
@@ -23,12 +26,12 @@
         </ng-template>
       </div>
       <div class="product-card__bottom--left">
-        <button mat-raised-button class="pi pi-shopping-cart" (click)="addToCart(product)">
+        <button mat-raised-button class="pi pi-shopping-cart" (click)="addToCart(product)" matTooltip="Add To Cart">
         </button>
       </div>
     </div>
     <div>
-      <button class="product-card__bottom--left-icon" mat-mini-fab aria-label="icon" (click)="addToWishlist(product)">
+      <button class="product-card__bottom--left-icon" mat-mini-fab aria-label="icon" (click)="addToWishlist(product)" matTooltip="Add To Wishlist">
         <mat-icon>favorite</mat-icon>
       </button>
     </div>

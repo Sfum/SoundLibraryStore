@@ -20,6 +20,13 @@
       <mat-cell class="cell_hover" *matCellDef="let genre" [routerLink]="['/', 'genre-edit', genre._id]"> {{ genre.genre_description | slice: 0: 70 }}...read more </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+      <mat-cell *matCellDef="let genre">
+        <mat-icon (click)="deleteGenre(genre.id)">delete</mat-icon>
+      </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>

@@ -116,20 +116,14 @@ export class ProductService {
     });
   }
 
-  deleteProduct(id: string): Promise<void> {
-    return this.firestore
-      .collection('products')
-      .doc(id)
-      .delete()
-      .then(() => {
-        this.snackbarService.showSnackbar(`Product deleted successfully.`);
-      })
-      .catch((error) => {
-        console.error('Error deleting product: ', error);
-        return Promise.reject(
-          'Something went wrong while deleting the product',
-        );
-      });
+  async deleteProduct(id: string): Promise<void> {
+    try {
+      await this.firestore.collection('products').doc(id).delete();
+      this.snackbarService.showSnackbar(`Product deleted successfully.`);
+    } catch (error) {
+      console.error('Error deleting product: ', error);
+      throw 'Something went wrong while deleting the product';
+    }
   }
 
   products$: Observable<Product[]> = this.getProducts();
@@ -297,6 +291,40 @@ export class ProductService {
       )
       .valueChanges();
   }
+  filteredProducts$ = new BehaviorSubject<Product[]>([]);
+
+  updateProductQuantity(
+    productId: string,
+    quantitySold: number,
+  ): Observable<void> {
+    return new Observable((observer) => {
+      this.getProduct(productId).subscribe((product) => {
+        if (product) {
+          const newQuantity = product.quantity - quantitySold;
+          this.firestore
+            .collection('products')
+            .doc(productId)
+            .update({ quantity: newQuantity })
+            .then(() => {
+              observer.next();
+              observer.complete();
+              this.snackbarService.showSnackbar(
+                `Inventory updated successfully.`,
+              );
+            })
+            .catch((error) => {
+              console.error('Error updating inventory: ', error);
+              observer.error(
+                'Something went wrong while updating the inventory',
+              );
+            });
+        } else {
+          observer.error('Product not found');
+        }
+      });
+    });
+  }
+
   ngOnDestroy() {
     this.unsubscribe$.next(); // Emit a signal to unsubscribe
     this.unsubscribe$.complete(); // Complete the unsubscribe$ subject

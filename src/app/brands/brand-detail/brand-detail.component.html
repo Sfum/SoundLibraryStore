@@ -5,8 +5,8 @@
   </div>
   <div class="product-card margin__left--lg">
     <a *ngFor="let product of getBrandProducts() | slice: 0: 4" [href]="'/products/' + product.id">
-      <img class="image" [src]="product.product_image" alt="Product Image" width="80px" height="80px">
-    </a>
+      <img class="image" [src]="product.product_image" alt="Product Image" width="80px" height="80px"
+           [matTooltip]="'View ' + product.product_name + '!'">    </a>
   </div>
 </mat-card>
 

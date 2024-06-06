@@ -29,6 +29,10 @@ export class AuthService {
   user$: Observable<User | null> = this.afAuth
     .authState as Observable<User | null>;
 
+  getCurrentUser(): Observable<User | null> {
+    return this.user$;
+  }
+
   signIn(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)

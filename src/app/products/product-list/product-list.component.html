@@ -1,5 +1,6 @@
 <div class="align__items">
   <div class="container">
+
     <mat-card>
       <mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="product_image">
@@ -54,11 +55,12 @@
         <ng-container matColumnDef="delete">
           <mat-header-cell *matHeaderCellDef> Delete</mat-header-cell>
           <mat-cell *matCellDef="let product">
-            <mat-icon (click)="deleteProduct(product.id)">delete</mat-icon>
+            <mat-icon (click)="deleteProduct(product.id)" matTooltip="Delete">delete</mat-icon>
           </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;" class="cell_hover"
+                 matTooltip="Click for details"
                  [routerLink]="['/edit', row.id]"></mat-row>
       </mat-table>
       <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons=""></mat-paginator>

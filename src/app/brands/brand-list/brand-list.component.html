@@ -1,27 +1,31 @@
-<div class="align__items">
+<section class="align__items">
   <div class="container-brand">
-    <div class="button_wrapper">
-      <button class="button-primary" mat-raised-button [routerLink]="['/add-brand']">Create Brand</button>
-    </div>
-    <div class="button_wrapper">
-      <button class="button-primary" mat-raised-button [routerLink]="['/manage-products']">Back</button>
-    </div>
-    <mat-table [dataSource]="dataSource">
+    <nav>
+      <ul>
+        <li class="button_wrapper">
+          <button class="button-primary" mat-raised-button [routerLink]="['/add-brand']">Create Brand</button>
+        </li>
+        <li class="button_wrapper">
+          <button class="button-primary" mat-raised-button [routerLink]="['/manage-products']">Back</button>
+        </li>
+      </ul>
+    </nav>
+    <table mat-table [dataSource]="dataSource" class="mat-table">
       <ng-container matColumnDef="brand_name">
-        <mat-header-cell *matHeaderCellDef> Brand Name</mat-header-cell>
-        <mat-cell class="cell_hover" *matCellDef="let brand"
-                  [routerLink]="['/', 'brand-edit', brand._id]"> {{ brand.brand_name }} </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Brand Name </th>
+        <td mat-cell class="cell_hover" *matCellDef="let brand" [routerLink]="['/', 'brand-edit', brand._id]">
+          {{ brand.brand_name }}
+        </td>
       </ng-container>
       <ng-container matColumnDef="brand_description">
-        <mat-header-cell *matHeaderCellDef> Brand Description</mat-header-cell>
-        <mat-cell class="cell_hover" *matCellDef="let brand"
-                  [routerLink]="['/', 'brand-edit', brand._id]"> {{ brand.brand_description | slice: 0: 70 }}...read
-          more
-        </mat-cell>
+        <th mat-header-cell *matHeaderCellDef> Brand Description </th>
+        <td mat-cell class="cell_hover" *matCellDef="let brand" [routerLink]="['/', 'brand-edit', brand._id]">
+          {{ brand.brand_description | slice: 0:70 }}...read more
+        </td>
       </ng-container>
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons=""></mat-paginator>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
   </div>
-</div>
+</section>

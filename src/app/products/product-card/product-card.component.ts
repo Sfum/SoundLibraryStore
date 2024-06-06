@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../models/product';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { ProductService } from '../../services/product.service';
 import { WishlistService } from '../../services/wishlist.service';
 import { CartService } from '../../services/cart.service';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-card',
@@ -14,8 +14,7 @@ import { map } from 'rxjs/operators';
 export class ProductCardComponent implements OnInit {
   // @ts-ignore
   products$: Observable<Product[]>;
-  // @ts-ignore
-  filteredProducts$: Observable<Product[]>;
+  filteredProducts$ = new BehaviorSubject<Product[]>([]);
   paginatedProducts: Product[] = [];
   currentPage = 0;
   itemsPerPage = 8;
@@ -32,41 +31,51 @@ export class ProductCardComponent implements OnInit {
 
   ngOnInit() {
     this.products$ = this.productService.productsArrayFiltered$;
-    this.filteredProducts$ = this.products$;
-    this.filteredProducts$ = this.filteredProducts$.pipe(
-      map((products) => this.filterProducts(products)),
-    );
-    this.filteredProducts$.subscribe((products) => {
-      this.paginate(products);
+    this.products$.subscribe((products) => {
+      this.applyFilter(products);
     });
   }
 
-  filterProducts(products: Product[]) {
-    return products.filter((product) => {
+  applyFilter(products: Product[]) {
+    let filtered = products.filter((product) => {
       return product.product_name
         .toLowerCase()
         .includes(this.searchQuery.toLowerCase());
     });
+    this.filteredProducts$.next(filtered);
+    this.paginate(filtered);
+  }
+
+  filterProducts(products: Product[]) {
+    this.applyFilter(products);
   }
 
   sortByPrice(order: 'asc' | 'desc') {
-    this.filteredProducts$ = this.filteredProducts$.pipe(
-      map((products) =>
-        products.sort((a, b) => {
-          if (order === 'asc') {
-            return a.price - b.price;
-          } else {
-            return b.price - a.price;
-          }
-        }),
-      ),
-    );
+    this.filteredProducts$
+      .pipe(
+        map((products) =>
+          products.sort((a, b) => {
+            if (order === 'asc') {
+              return a.price - b.price;
+            } else {
+              return b.price - a.price;
+            }
+          }),
+        ),
+      )
+      .subscribe((sortedProducts) => {
+        this.filteredProducts$.next(sortedProducts);
+        this.paginate(sortedProducts);
+      });
   }
 
   sortByPopularity() {
-    this.filteredProducts$ = this.filteredProducts$.pipe(
-      map((products) => products.sort((a, b) => b.quantity - a.quantity)),
-    );
+    this.filteredProducts$
+      .pipe(map((products) => products.sort((a, b) => b.quantity - a.quantity)))
+      .subscribe((sortedProducts) => {
+        this.filteredProducts$.next(sortedProducts);
+        this.paginate(sortedProducts);
+      });
   }
 
   onPageChange(event: any) {

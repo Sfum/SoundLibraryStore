@@ -73,4 +73,13 @@ export class GenreService {
         });
     });
   }
+  async deleteGenre(id: string): Promise<void> {
+    try {
+      await this.firestore.collection('genres').doc(id).delete();
+      this.snackbarService.showSnackbar(`Genre deleted successfully.`);
+    } catch (error) {
+      console.error('Error deleting genre: ', error);
+      throw 'Something went wrong while deleting the genre';
+    }
+  }
 }

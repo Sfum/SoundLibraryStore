@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BrandService } from '../../services/brand.service';
 import { Brand } from '../../models/brand';
 import { Router } from '@angular/router';
-import { dateTimestampProvider } from 'rxjs/internal/scheduler/dateTimestampProvider';
 
 @Component({
   selector: 'app-brand-add',

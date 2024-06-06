@@ -1,34 +1,43 @@
+section
+  display: flex
+  justify-content: center
 
 form
   display: grid
   gap: 1rem
 
-  label
-    display: block
-
-  input,
-  textarea
-    width: 100%
-    padding: 0.5rem
-
-  button
-    padding: 0.5rem 1rem
-    cursor: pointer
-    transition: background-color 0.3s
-
-    &:hover
-      background-color: whitesmoke
+form
+  display: block
 
 
-    &:disabled
-      background-color: darkgrey
-      cursor: not-allowed
+form input,
+form textarea
+  width: 100%
+  padding: 0.5rem
+
+
+form button
+  padding: 0.5rem 1rem
+  cursor: pointer
+  transition: background-color 0.3s
+
+  &:hover
+    background-color: whitesmoke
+
+
+  &:disabled
+    background-color: darkgrey
+    cursor: not-allowed
+
+
 
 .product__edit--container
   display: grid
   max-width: 600px
 
+
 .button-secondary
   position: absolute
   top: 20px
   left: 150px
+

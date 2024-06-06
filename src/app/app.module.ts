@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { AngularFireModule } from '@angular/fire/compat';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import {
   AngularFireAuthModule,
@@ -128,6 +129,10 @@ import { OnSaleGenreComponent } from './on-sale/on-sale-genre/on-sale-genre.comp
 import { PaymentComponent } from './shopping-cart/payment/payment.component';
 import { ProductListModeratorsComponent } from './products/product-list-moderators/product-list-moderators.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { MatTooltip } from '@angular/material/tooltip';
+
+import { AdminReportComponent } from './reports/admin-report/admin-report.component';
+import { ModeratorReportComponent } from './reports/moderator-report/moderator-report.component';
 
 @NgModule({
   declarations: [
@@ -180,6 +185,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     OnSaleGenreComponent,
     PaymentComponent,
     ProductListModeratorsComponent,
+    AdminReportComponent,
+    ModeratorReportComponent,
   ],
   imports: [
     CommonModule,
@@ -235,6 +242,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     MatNativeDateModule,
     MatSuffix,
     NgxPayPalModule,
+    MatTooltip,
+    MatTooltipModule,
   ],
   providers: [
     provideAnimationsAsync(),

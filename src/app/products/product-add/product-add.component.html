@@ -1,8 +1,7 @@
-<div class="align__items">
+<section class="align__items">
   <mat-card class="container">
     <div class="font-primary margin__left--md margin__top--md">Add New Product</div>
-    <form class="form-container margin__top--md margin__left--md margin__bottom--md margin__right--xlg"
-          [formGroup]="productForm" (ngSubmit)="onSubmitWithDebounce()">
+    <form class="form-container margin__top--md margin__left--md margin__bottom--md margin__right--xlg" [formGroup]="productForm" (ngSubmit)="onSubmitWithDebounce()">
       <label for="productName" class="font-secondary">Product Name:</label>
       <input type="text" id="productName" formControlName="product_name" required>
       <label for="productTitle" class="font-secondary">Short:</label>
@@ -34,4 +33,4 @@
       <button class="margin__top--xsm" type="submit" mat-raised-button>Add Product</button>
     </form>
   </mat-card>
-</div>
+</section>

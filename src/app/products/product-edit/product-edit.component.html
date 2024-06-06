@@ -1,4 +1,4 @@
-<div class="align__items">
+<section class="align__items">
   <mat-card class="product__edit--container">
     <form class="form-container" [formGroup]="productForm" (ngSubmit)="onSubmit()"
           *ngIf="(productEdit$ | async) as asyncFilterPipe">
@@ -36,23 +36,18 @@
         <label for="price" class="margin__top--sm">Price($):</label>
         <input matInput type="text" id="price" formControlName="price" class="margin__bottom--lg" required>
 
-        <!-- New fields -->
         <label for="discountPercentage" class="margin__top--sm">Discount Percentage(%):</label>
         <input matInput type="text" id="discountPercentage" formControlName="discountPercentage"
                class="margin__bottom--lg" [disabled]="!productForm.get('onSale')?.value">
-
         <label for="salePrice" class="margin__top--sm">Sale Price($):</label>
         <input matInput type="text" id="salePrice" formControlName="salePrice" class="margin__bottom--lg"
                [disabled]="!productForm.get('onSale')?.value">
-
         <mat-slide-toggle formControlName="onSale">On Sale</mat-slide-toggle>
-
       </div>
       <button mat-raised-button class="button margin__top--sm margin--md" [disabled]="productForm.invalid">Update
         Product
       </button>
-
     </form>
     <button mat-raised-button class="button-secondary" [routerLink]='["/manage-products"]'>Back</button>
   </mat-card>
-</div>
+</section>
