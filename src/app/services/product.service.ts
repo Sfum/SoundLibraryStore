@@ -324,6 +324,22 @@ export class ProductService {
       });
     });
   }
+  getProductsByIds(productIds: string[]): Observable<Product[]> {
+    // Create an array to store observables of individual product queries
+    const productQueries: Observable<Product | undefined>[] = [];
+
+    // Iterate through each product ID and create an observable for each product query
+    productIds.forEach((productId) => {
+      // Push the observable query to the array
+      productQueries.push(this.getProduct(productId));
+    });
+
+    // Combine all observables into a single observable using combineLatest
+    return combineLatest(productQueries).pipe(
+      // Filter out undefined values (products not found)
+      map((products) => products.filter((product) => !!product) as Product[]),
+    );
+  }
 
   ngOnDestroy() {
     this.unsubscribe$.next(); // Emit a signal to unsubscribe

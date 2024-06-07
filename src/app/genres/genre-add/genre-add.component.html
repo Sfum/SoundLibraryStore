@@ -1,7 +1,6 @@
-<div class="align__items">
   <mat-card class="container">
     <div class="font-primary margin__left--md margin__top--md">CREATE GENRE</div>
-    <form [formGroup]="genreForm" (ngSubmit)="onSubmit()" class="margin--md">
+    <form [formGroup]="genreForm" (ngSubmit)="onSubmit()" class="margin__bottom--sm margin__top--sm margin__left--md margin__top--md">
       <div class="form-group margin__bottom--sm">
         <input matInput class="field__input" type="text" id="_id" formControlName="_id" hidden>
       </div>
@@ -20,5 +19,5 @@
       </div>
       <button mat-raised-button type="submit">Add Genre</button>
     </form>
+    <button mat-raised-button class="margin__left--md margin__bottom--md" [routerLink]='["/manage-products"]'>Back</button>
   </mat-card>
-</div>

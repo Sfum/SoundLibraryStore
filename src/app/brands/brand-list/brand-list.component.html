@@ -1,31 +1,24 @@
-<section class="align__items">
-  <div class="container-brand">
-    <nav>
-      <ul>
-        <li class="button_wrapper">
-          <button class="button-primary" mat-raised-button [routerLink]="['/add-brand']">Create Brand</button>
-        </li>
-        <li class="button_wrapper">
-          <button class="button-primary" mat-raised-button [routerLink]="['/manage-products']">Back</button>
-        </li>
-      </ul>
-    </nav>
-    <table mat-table [dataSource]="dataSource" class="mat-table">
-      <ng-container matColumnDef="brand_name">
-        <th mat-header-cell *matHeaderCellDef> Brand Name </th>
-        <td mat-cell class="cell_hover" *matCellDef="let brand" [routerLink]="['/', 'brand-edit', brand._id]">
-          {{ brand.brand_name }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="brand_description">
-        <th mat-header-cell *matHeaderCellDef> Brand Description </th>
-        <td mat-cell class="cell_hover" *matCellDef="let brand" [routerLink]="['/', 'brand-edit', brand._id]">
-          {{ brand.brand_description | slice: 0:70 }}...read more
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
-  </div>
+<section class="container-brand">
+  <button mat-raised-button type="button" [matMenuTriggerFor]="settingsMenu">Settings</button>
+  <mat-menu #settingsMenu>
+    <menu mat-menu-item [routerLink]="['/manage-products']">Products</menu>
+    <menu mat-menu-item [routerLink]="['/add-brand']">Create Brand</menu>
+  </mat-menu>
+  <table mat-table [dataSource]="dataSource" class="mat-table">
+    <ng-container matColumnDef="brand_name">
+      <th mat-header-cell *matHeaderCellDef> Brand Name</th>
+      <td mat-cell class="cell_hover" *matCellDef="let brand" [routerLink]="['/', 'brand-edit', brand._id]">
+        {{ brand.brand_name }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="brand_description">
+      <th mat-header-cell *matHeaderCellDef> Brand Description</th>
+      <td mat-cell class="cell_hover" *matCellDef="let brand" [routerLink]="['/', 'brand-edit', brand._id]">
+        {{ brand.brand_description | slice: 0:70 }}...read more
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
 </section>

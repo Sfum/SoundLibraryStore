@@ -86,6 +86,7 @@ const routes: Routes = [
   { path: 'checkout', component: PaymentComponent },
   { path: 'admin-report', component: AdminReportComponent },
   { path: 'moderator-report', component: ModeratorReportComponent },
+  { path: 'payment', component: PaymentComponent },
 ];
 
 @NgModule({

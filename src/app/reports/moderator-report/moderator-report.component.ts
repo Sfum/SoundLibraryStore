@@ -12,7 +12,12 @@ import User = firebase.User;
   styleUrl: './moderator-report.component.sass',
 })
 export class ModeratorReportComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'productId', 'quantitySold', 'saleDate'];
+  displayedColumns: string[] = [
+    'id',
+    'productName',
+    'quantitySold',
+    'saleDate',
+  ];
   dataSource = new MatTableDataSource<Sale>();
 
   constructor(

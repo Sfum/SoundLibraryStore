@@ -9,7 +9,13 @@ import { SalesService } from '../../services/sales.service';
   styleUrl: './admin-report.component.sass',
 })
 export class AdminReportComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'productId', 'quantitySold', 'saleDate'];
+  displayedColumns: string[] = [
+    'id',
+    'productName',
+    'quantitySold',
+    'saleDate',
+    'uploaderId',
+  ];
   dataSource = new MatTableDataSource<Sale>();
 
   constructor(private salesService: SalesService) {}

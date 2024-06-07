@@ -1,48 +1,48 @@
 <nav class="navbar">
   <ul class="nav-links">
     <li>
-      <button class="font-primary" mat-button routerLink="/">Home</button>
+      <button class="font-primary button__menu" mat-button routerLink="/">Home</button>
     </li>
     <li>
-      <button class="font-primary" mat-button routerLink="/bundles">Bundles</button>
+      <button class="font-primary button__menu" mat-button routerLink="/bundles">Bundles</button>
     </li>
     <li>
-      <button class="font-primary" mat-button routerLink="/genres">Genres</button>
+      <button class="font-primary button__menu" mat-button routerLink="/genres">Genres</button>
     </li>
-    <button class="font-primary" mat-button [matMenuTriggerFor]="menu">Formats</button>
+    <button class="font-primary button__menu" mat-button [matMenuTriggerFor]="menu">Formats</button>
     <mat-menu #menu="matMenu">
-      <button class="font-primary" mat-menu-item *ngFor="let format of formats"
+      <button class="font-primary button__menu" mat-menu-item *ngFor="let format of formats"
               [value]="format.id">{{ format.format_name }}</button>
     </mat-menu>
     <li>
-      <button class="font-primary" mat-button routerLink="/brands">Brands</button>
+      <button class="font-primary button__menu" mat-button routerLink="/brands">Brands</button>
     </li>
     <button mat-button [matMenuTriggerFor]="providerMenu" *ngIf="isModerator" class="font-primary">Provider</button>
     <mat-menu #providerMenu="matMenu" yPosition="below">
       <div class="icon-align" *ngIf="!(isModerator || isAdmin | async)"><i class="pi pi-box margin__left--md"></i>
-        <button class="font-secondary bar-menu margin__right--md" mat-button routerLink="/manage-products"
+        <button class="font-secondary button__menu bar-menu margin__right--md" mat-button routerLink="/manage-products"
                 *ngIf="!(isModerator || isAdmin | async)">Product Management
         </button>
       </div>
       <div class="icon-align" *ngIf="(isAdmin| async)"><i class="pi pi-star-fill margin__left--md"></i>
-        <button class="font-secondary bar-menu margin__right--md" mat-button routerLink="/manage-brands"
+        <button class="font-secondary button__menu bar-menu margin__right--md" mat-button routerLink="/manage-brands"
                 *ngIf="(isAdmin| async)">Brand Management
         </button>
       </div>
       <div class="icon-align" *ngIf="(isAdmin| async)"><i class="pi pi-barcode margin__left--md"></i>
-        <button class="font-secondary bar-menu margin__right--md" mat-button routerLink="/manage-genres"
+        <button class="font-secondary button__menu bar-menu margin__right--md" mat-button routerLink="/manage-genres"
                 *ngIf="(isAdmin| async)">Genre Management
         </button>
       </div>
     </mat-menu>
     <li>
-      <button class="font-primary" mat-button routerLink="/login" *ngIf="!(user$| async)">Login</button>
+      <button class="font-primary button__menu" mat-button routerLink="/login" *ngIf="!(user$| async)">Login</button>
     </li>
     <li>
-      <button class="font-primary" mat-button routerLink="/signup" *ngIf="!(user$| async)">Signup</button>
+      <button class="font-primary button__menu" mat-button routerLink="/signup" *ngIf="!(user$| async)">Signup</button>
     </li>
     <li>
-      <button class="font-primary" mat-button routerLink="/on-sale" matTooltip="Limited time offers!!!">Sale!</button>
+      <button class="font-primary button__menu" mat-button routerLink="/on-sale" matTooltip="Limited time offers!!!">Sale!</button>
     </li>
 
   </ul>

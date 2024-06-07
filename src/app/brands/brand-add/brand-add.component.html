@@ -1,22 +1,21 @@
-<div class="align__items">
   <mat-card class="container">
     <div class="font-primary margin__left--md margin__top--md">CREATE BRAND</div>
-    <form [formGroup]="brandForm" (ngSubmit)="onSubmit()" class="margin--md">
+    <form [formGroup]="brandForm" (ngSubmit)="onSubmit()" class="margin__bottom--sm margin__top--sm margin__left--md margin__top--md">
       <div class="form-group margin__bottom--sm">
         <input matInput class="field__input" type="text" id="_id" formControlName="_id" hidden>
       </div>
       <div class="form-group margin__bottom--sm">
         <input matInput type="text" id="id" formControlName="id" hidden>
       </div>
-      <div class="form-group margin__bottom--sm">
+      <div class="form-group margin__bottom--sm margin__right--md">
         <label class="font-secondary" for="brand_name">Name:</label>
         <input matInput type="text" id="brand_name" formControlName="brand_name" required>
       </div>
-      <div class="form-group margin__bottom--sm">
+      <div class="form-group margin__bottom--sm margin__right--md">
         <label class="font-secondary" for="brand_description">Description:</label>
         <textarea id="brand_description" formControlName="brand_description" required></textarea>
       </div>
       <button mat-raised-button type="submit">Add Brand</button>
     </form>
+    <button mat-raised-button class="margin__left--md margin__bottom--md" [routerLink]='["/manage-products"]'>Back</button>
   </mat-card>
-</div>

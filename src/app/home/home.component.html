@@ -2,10 +2,10 @@
 
   <!-- Admin Section -->
   <div *ngIf="isAdmin; else notAdmin">
-    <div class="product-list">
-      <app-admin-report class="margin--md"></app-admin-report>
       <app-product-list></app-product-list>
-    </div>
+      <div class="font-primary margin__bottom--sm margin__top--lg">Reports:</div>
+      <app-admin-report class="margin--md"></app-admin-report>
+
   </div>
 
   <!-- Moderator Section -->

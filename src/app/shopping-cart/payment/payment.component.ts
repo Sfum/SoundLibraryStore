@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  loadStripe,
+  Stripe,
   StripeCardElementOptions,
   StripeElementsOptions,
 } from '@stripe/stripe-js';
 import { StripeService } from '../../services/stripe.service';
+import { environment } from '../../../environments/environment';
+import { SalesService } from '../../services/sales.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -11,70 +16,63 @@ import { StripeService } from '../../services/stripe.service';
   styleUrls: ['./payment.component.sass'],
 })
 export class PaymentComponent implements OnInit {
+  stripe: Stripe | null = null;
+  card: any;
   loading = false;
-  errorMessage = '';
-  cardElement: any;
+  errorMessage: string | null = null;
 
-  cardOptions: StripeCardElementOptions = {
-    style: {
-      base: {
-        color: '#32325d',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: 'antialiased',
-        fontSize: '16px',
-        '::placeholder': {
-          color: '#aab7c4',
-        },
-      },
-      invalid: {
-        color: '#fa755a',
-        iconColor: '#fa755a',
-      },
-    },
-  };
-
-  elementsOptions: StripeElementsOptions = {
-    locale: 'auto',
-  };
-
-  constructor(private stripeService: StripeService) {}
+  constructor(
+    private salesService: SalesService,
+    private router: Router,
+  ) {}
 
   async ngOnInit() {
-    const stripe = this.stripeService.getStripe();
+    this.stripe = await loadStripe(environment.stripePublicKey);
+
     // @ts-ignore
-    const elements = stripe.elements();
-    this.cardElement = elements.create('card', this.cardOptions);
-    this.cardElement.mount('#card-element');
+    const elements = this.stripe.elements();
+    this.card = elements.create('card');
+    this.card.mount('#card-element');
   }
 
-  async handlePayment(event: Event) {
+  handlePayment(event: Event) {
     event.preventDefault();
     this.loading = true;
+    this.errorMessage = null;
 
-    const stripe = this.stripeService.getStripe();
-    const { clientSecret } = await this.stripeService.createPaymentIntent(
-      5000,
-      'usd',
-    ); // example amount in cents
+    if (this.stripe) {
+      this.stripe.createToken(this.card).then((result) => {
+        this.loading = false;
+        if (result.error) {
+          // @ts-ignore
+          this.errorMessage = result.error.message;
+        } else {
+          this.processPayment(result.token);
+        }
+      });
+    }
+  }
 
-    // @ts-ignore
-    const { error, paymentIntent } = await stripe.confirmCardPayment(
-      clientSecret,
-      {
-        payment_method: {
-          card: this.cardElement,
-        },
+  processPayment(token: any) {
+    // Handle the payment process with your server here
+    console.log('Token:', token);
+    alert('Payment processed successfully!');
+  }
+  simulatePayment(): void {
+    this.loading = true;
+    this.errorMessage = null;
+
+    this.salesService.handlePurchase().subscribe(
+      () => {
+        this.loading = false;
+        // Redirect or show a success message
+        this.router.navigate(['/']);
+      },
+      (error) => {
+        this.loading = false;
+        this.errorMessage = error;
+        console.error('Error processing payment:', error);
       },
     );
-
-    if (error) {
-      // @ts-ignore
-      this.errorMessage = error.message;
-      this.loading = false;
-    } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-      // Handle successful payment here
-      alert('Payment successful!');
-      this.loading = false;
-    }
   }
 }
