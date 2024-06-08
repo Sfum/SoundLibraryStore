@@ -5,9 +5,9 @@
     <td mat-cell *matCellDef="let sale">{{ sale.id }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="productName">
+  <ng-container matColumnDef="product_name">
     <th mat-header-cell *matHeaderCellDef>Product Name</th>
-    <td mat-cell *matCellDef="let sale">{{ sale.productName }}</td>
+    <td mat-cell *matCellDef="let sale">{{ sale.product_name }}</td>
   </ng-container>
 
   <ng-container matColumnDef="quantitySold">
@@ -17,7 +17,7 @@
 
   <ng-container matColumnDef="saleDate">
     <th mat-header-cell *matHeaderCellDef>Sale Date</th>
-    <td mat-cell *matCellDef="let sale">{{ sale.saleDate | date }}</td>
+    <td mat-cell *matCellDef="let sale">{{ sale.saleDate }}</td>
   </ng-container>
 
   <!-- Add more columns as needed -->

@@ -133,6 +133,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 
 import { AdminReportComponent } from './reports/admin-report/admin-report.component';
 import { ModeratorReportComponent } from './reports/moderator-report/moderator-report.component';
+import { MatDrawer, MatDrawerContainer } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -244,6 +245,8 @@ import { ModeratorReportComponent } from './reports/moderator-report/moderator-r
     NgxPayPalModule,
     MatTooltip,
     MatTooltipModule,
+    MatDrawerContainer,
+    MatDrawer,
   ],
   providers: [
     provideAnimationsAsync(),

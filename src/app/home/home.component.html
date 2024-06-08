@@ -2,9 +2,10 @@
 
   <!-- Admin Section -->
   <div *ngIf="isAdmin; else notAdmin">
+    <div class="font-primary margin--md">Product Management</div>
       <app-product-list></app-product-list>
-      <div class="font-primary margin__bottom--sm margin__top--lg">Reports:</div>
-      <app-admin-report class="margin--md"></app-admin-report>
+    <div class="font-primary margin--md">Sales Reports</div>
+    <app-admin-report></app-admin-report>
 
   </div>
 
@@ -12,8 +13,10 @@
   <ng-template #notAdmin>
     <div *ngIf="isModerator; else notModerator">
       <div class="product-list">
-        <app-moderator-report class="margin--md"></app-moderator-report>
+        <div class="font-primary margin--md">Product Management</div>
         <app-product-list-moderators></app-product-list-moderators>
+        <div class="font-primary margin--md">Sales Reports</div>
+        <app-moderator-report class="margin--md"></app-moderator-report>
       </div>
     </div>
   </ng-template>

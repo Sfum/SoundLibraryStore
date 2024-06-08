@@ -17,7 +17,7 @@
     <li>
       <button class="font-primary button__menu" mat-button routerLink="/brands">Brands</button>
     </li>
-    <button mat-button [matMenuTriggerFor]="providerMenu" *ngIf="isModerator" class="font-primary">Provider</button>
+    <button mat-button [matMenuTriggerFor]="providerMenu" *ngIf="!(isModerator | async)" class="font-primary">Provider</button>
     <mat-menu #providerMenu="matMenu" yPosition="below">
       <div class="icon-align" *ngIf="!(isModerator || isAdmin | async)"><i class="pi pi-box margin__left--md"></i>
         <button class="font-secondary button__menu bar-menu margin__right--md" mat-button routerLink="/manage-products"

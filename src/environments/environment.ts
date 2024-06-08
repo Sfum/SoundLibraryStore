@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
-  stripePublicKey: 'your-stripe-public-key-here', // Replace with your actual Stripe public key
+  stripePublicKey:
+    'pk_test_51PKzdxCTuoqkDui13OcDk531ekNEHfGGuwuxIXX58UcmCxOF8o5bMl1DuFEMSm1PPXrlNTK3kYpcgaGTGd31l8iW003XwHPaER', // Replace with your actual Stripe public key
   useEmulators: false,
   firebase: {
     apiKey: 'AIzaSyD1JWXSFtIKr4X0shgaptYlEVzqYkBRoGI',

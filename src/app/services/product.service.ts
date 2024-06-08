@@ -44,10 +44,10 @@ export class ProductService {
 
   getProduct(id: string): Observable<Product | undefined> {
     return this.firestore
-      .collection('products')
-      .doc<Product>(id)
-      .valueChanges()
+      .collection<Product>('products', (ref) => ref.where('id', '==', id))
+      .valueChanges({ id: 'id' })
       .pipe(
+        map((products) => (products.length > 0 ? products[0] : undefined)),
         catchError((error) => {
           console.error('Error getting product: ', error);
           return throwError('Something went wrong while fetching the product');

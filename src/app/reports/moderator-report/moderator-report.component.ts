@@ -14,7 +14,7 @@ import User = firebase.User;
 export class ModeratorReportComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
-    'productName',
+    'product_name',
     'quantitySold',
     'saleDate',
   ];

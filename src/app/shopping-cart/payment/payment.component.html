@@ -2,10 +2,11 @@
 
 <app-shopping-cart-payment class="margin__bottom--md"></app-shopping-cart-payment>
 
-<form (submit)="handlePayment($event)">
-  <div id="card-element"><!-- Stripe's Card Element will be inserted here --></div>
-  <button mat-raised-button type="submit" [disabled]="loading">Pay</button>
-  <div *ngIf="errorMessage">{{ errorMessage }}</div>
+<form (submit)="simulatePayment()">
+  <!-- Stripe's Card Element will be inserted here if you decide to reintegrate later -->
+  <!-- <div id="card-element"></div> -->
+  <!-- <button mat-raised-button type="submit" [disabled]="loading">Pay</button> -->
+  <!-- <div *ngIf="errorMessage">{{ errorMessage }}</div> -->
 </form>
 
 <!-- New button for simulating a successful payment -->
