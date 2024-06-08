@@ -3,10 +3,7 @@
   <!-- Admin Section -->
   <div *ngIf="isAdmin; else notAdmin">
     <div class="font-primary margin--md">Product Management</div>
-      <app-product-list></app-product-list>
-    <div class="font-primary margin--md">Sales Reports</div>
-    <app-admin-report></app-admin-report>
-
+    <app-product-card></app-product-card>
   </div>
 
   <!-- Moderator Section -->
@@ -15,8 +12,6 @@
       <div class="product-list">
         <div class="font-primary margin--md">Product Management</div>
         <app-product-list-moderators></app-product-list-moderators>
-        <div class="font-primary margin--md">Sales Reports</div>
-        <app-moderator-report class="margin--md"></app-moderator-report>
       </div>
     </div>
   </ng-template>

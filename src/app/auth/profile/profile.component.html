@@ -1,11 +1,14 @@
-<div class="container align__items" *ngIf="user">
+<div class="container margin__top--md align__items" *ngIf="user">
   <h2>Welcome, {{ user.displayName }}</h2>
   <p>Email: {{ user.email }} </p>
   <p>Username: {{user.displayName}}</p>
   <img [src]="user.photoURL" width="200px" alt="Profile Picture">
-  <button mat-raised-button (click)="logout()" class="margin__top--md">Logout</button>
+  <button mat-raised-button  [routerLink]="['/downloads']" class="margin__top--sm">Downloads</button>
+  <button mat-raised-button (click)="logout()" class="margin__top--sm">Logout</button>
+
 </div>
 
 <div *ngIf="!user">
   <p>Please log in to view your profile!</p>
 </div>
+

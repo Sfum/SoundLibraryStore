@@ -28,6 +28,7 @@ import { OnSaleGenreComponent } from './on-sale/on-sale-genre/on-sale-genre.comp
 import { PaymentComponent } from './shopping-cart/payment/payment.component';
 import { AdminReportComponent } from './reports/admin-report/admin-report.component';
 import { ModeratorReportComponent } from './reports/moderator-report/moderator-report.component';
+import { DownloadReportComponent } from './reports/download-report/download-report.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -86,6 +87,7 @@ const routes: Routes = [
   { path: 'checkout', component: PaymentComponent },
   { path: 'admin-report', component: AdminReportComponent },
   { path: 'moderator-report', component: ModeratorReportComponent },
+  { path: 'downloads', component: DownloadReportComponent },
   { path: 'payment', component: PaymentComponent },
 ];
 

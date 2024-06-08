@@ -15,10 +15,28 @@
     <ng-container *ngIf="user$ | async as user; else loggedOut">
       <span class="nav-button">Hello, {{ user.displayName }}</span>
     </ng-container>
-    <span class="nav-item" [routerLink]="['/profile']">
-      <i class="material-icons">account_circle</i>
-      Profile
-    </span>
+
+    <div class="nav-item">
+      <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="user$ | async as user; else loggedOut">
+        <mat-icon *ngIf="user$ | async as user; else loggedOut">account_circle</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/profile']">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item [routerLink]="['/downloads']">
+          <mat-icon>cloud_download</mat-icon>
+          <span>Downloads</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>logout</mat-icon>
+          <span><app-logout></app-logout></span>
+        </button>
+      </mat-menu>
+    </div>
+
     <span class="nav-item" routerLink="/wishlist">
       <i class="material-icons">favorite</i>
       Wishlist
@@ -29,10 +47,9 @@
     </span>
     <div class="auth-field">
       <ng-template #loggedOut>
-        <button mat-raised-button class="nav-button" routerLink="/login">Login</button>
-        <button mat-raised-button class="nav-button" routerLink="/signup">SignUp</button>
+
       </ng-template>
-      <app-logout></app-logout>
+
     </div>
   </div>
 </div>

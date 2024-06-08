@@ -33,6 +33,7 @@ import { ProductCardDetailComponent } from './products/product-card/product-card
 import {
   MatButton,
   MatFabButton,
+  MatIconButton,
   MatMiniFabButton,
 } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -134,6 +135,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 import { AdminReportComponent } from './reports/admin-report/admin-report.component';
 import { ModeratorReportComponent } from './reports/moderator-report/moderator-report.component';
 import { MatDrawer, MatDrawerContainer } from '@angular/material/sidenav';
+import { DownloadReportComponent } from './reports/download-report/download-report.component';
 
 @NgModule({
   declarations: [
@@ -188,6 +190,7 @@ import { MatDrawer, MatDrawerContainer } from '@angular/material/sidenav';
     ProductListModeratorsComponent,
     AdminReportComponent,
     ModeratorReportComponent,
+    DownloadReportComponent,
   ],
   imports: [
     CommonModule,
@@ -247,6 +250,7 @@ import { MatDrawer, MatDrawerContainer } from '@angular/material/sidenav';
     MatTooltipModule,
     MatDrawerContainer,
     MatDrawer,
+    MatIconButton,
   ],
   providers: [
     provideAnimationsAsync(),

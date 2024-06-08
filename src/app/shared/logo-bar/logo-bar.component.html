@@ -17,11 +17,12 @@
     <li>
       <button class="font-primary button__menu" mat-button routerLink="/brands">Brands</button>
     </li>
-    <button mat-button [matMenuTriggerFor]="providerMenu" *ngIf="!(isModerator | async)" class="font-primary">Provider</button>
-    <mat-menu #providerMenu="matMenu" yPosition="below">
-      <div class="icon-align" *ngIf="!(isModerator || isAdmin | async)"><i class="pi pi-box margin__left--md"></i>
-        <button class="font-secondary button__menu bar-menu margin__right--md" mat-button routerLink="/manage-products"
-                *ngIf="!(isModerator || isAdmin | async)">Product Management
+    <li>
+      <button mat-button [matMenuTriggerFor]="providerMenu" *ngIf="(isAdmin || isModerator | async)" class="font-primary button__menu">Provider</button>
+    </li>
+    <mat-menu #providerMenu="matMenu" yPosition="below" >
+      <div class="icon-align"><i class="pi pi-box margin__left--md"></i>
+        <button mat-button class="font-secondary button__menu bar-menu margin__right--md" routerLink="/manage-products">Product Management
         </button>
       </div>
       <div class="icon-align" *ngIf="(isAdmin| async)"><i class="pi pi-star-fill margin__left--md"></i>
