@@ -18,7 +18,7 @@ export class PaymentComponent {
     private router: Router,
   ) {}
 
-  simulatePayment(): void {
+  simulatePayment(uploaderId: string): void {
     this.loading = true;
     this.errorMessage = null;
 

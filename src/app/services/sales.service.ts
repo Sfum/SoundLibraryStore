@@ -5,6 +5,7 @@ import { forkJoin, from, Observable, throwError } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { ProductService } from './product.service';
 import { Sale } from '../models/sale';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root',
@@ -16,26 +17,45 @@ export class SalesService {
     private afAuth: AngularFireAuth,
   ) {}
 
-  logSale(sale: Sale): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-      this.firestore
-        .collection('sales')
-        .add(sale)
-        .then((ref) => {
-          sale.id = Number(ref.id); // Ensure sale ID is correctly set
-          this.firestore
-            .collection('sales')
-            .doc(ref.id)
-            .update({ id: ref.id })
-            .then(() => resolve())
-            .catch((error) => reject(error));
-        })
-        .catch((error) => reject(error));
-    });
-  }
-
   getUserId(): Observable<string | null> {
     return this.afAuth.authState.pipe(map((user) => (user ? user.uid : null)));
+  }
+
+  logSale(products: Product[]): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      // Get the user ID
+      this.getUserId().subscribe((uploaderId) => {
+        if (!uploaderId) {
+          reject('User not authenticated');
+        } else {
+          // Create a new sale object
+          const sale: Sale = {
+            // @ts-ignore
+
+            id: '', // Let Firestore generate an ID
+            saleDate: new Date(), // Set the sale date to the current date/time
+            uploaderId: uploaderId, // Set the uploaderId to the current user's ID
+            product_name: '', // Not necessary, can be removed
+            totalPrice: 0, // To be calculated later
+            products: products, // Array of products in the sale
+          };
+
+          // Calculate total price based on the products in the sale
+          // @ts-ignore
+          sale.totalPrice = products.reduce(
+            (total, product) => total + product.price,
+            0,
+          );
+
+          // Add the sale to the user's cart collection
+          this.firestore
+            .collection(`users/${uploaderId}/cart`)
+            .add(sale)
+            .then(() => resolve())
+            .catch((error) => reject(error));
+        }
+      });
+    });
   }
 
   handlePurchase(): Observable<void> {
@@ -46,44 +66,28 @@ export class SalesService {
         }
 
         return this.firestore
-          .collection<any>('sales')
+          .collection<any>(`users/${uploaderId}/cart`)
           .valueChanges()
           .pipe(
             switchMap((cartItems) => {
-              const saleObservables: Observable<void>[] = cartItems.map(
-                (cartItem: any) => {
-                  return this.productService.getProduct(cartItem.id).pipe(
-                    switchMap((product) => {
-                      if (!product) {
-                        console.error(`Product found for ID: ${cartItem.id}`);
-                        return throwError(
-                          `Product not found for ID: ${cartItem.id}`,
-                        );
-                      }
+              const productObservables: Observable<Product | undefined>[] =
+                cartItems.map((cartItem: any) =>
+                  this.productService.getProduct(cartItem.productId),
+                );
 
-                      const sale: Sale = {
-                        id: cartItem.id,
-                        productId: cartItem.productId,
-                        quantitySold: cartItem.quantity,
-                        saleDate: new Date(),
-                        uploaderId: uploaderId,
-                        product_name: product.product_name,
-                        totalPrice: cartItem.totalPrice,
-                      };
-                      console.log('Logging sale:', sale); // Check if this line logs
+              return forkJoin(productObservables).pipe(
+                switchMap((products) => {
+                  const validProducts = products.filter((product) => !!product);
+                  if (validProducts.length !== cartItems.length) {
+                    console.error('Some products not found');
+                    return throwError('Some products not found');
+                  }
 
-                      return from(this.logSale(sale));
-                    }),
-                    catchError((error) => {
-                      console.error('Error fetching product: ', error);
-                      return throwError('Error fetching product');
-                    }),
-                  );
-                },
+                  // Call logSale with the array of valid products
+                  // @ts-ignore
+                  return from(this.logSale(validProducts));
+                }),
               );
-
-              console.log('Sale observables:', saleObservables); // Add this line to log saleObservables
-              return forkJoin(saleObservables).pipe(map(() => {}));
             }),
             catchError((error) => {
               console.error('Error fetching cart items: ', error);
@@ -98,13 +102,15 @@ export class SalesService {
     );
   }
 
-  getAllSales(): Observable<Sale[]> {
-    return this.firestore.collection<Sale>('sales').valueChanges();
+  getAllSales(uploaderId: string): Observable<Sale[]> {
+    return this.firestore
+      .collection<Sale>(`users/${uploaderId}/cart`)
+      .valueChanges();
   }
 
   getSalesByUploader(uploaderId: string): Observable<Sale[]> {
     return this.firestore
-      .collection<Sale>('sales', (ref) =>
+      .collection<Sale>(`users/${uploaderId}/cart`, (ref) =>
         ref.where('uploaderId', '==', uploaderId),
       )
       .valueChanges();

@@ -9,11 +9,13 @@ import { SalesService } from '../../services/sales.service';
   styleUrl: './admin-report.component.sass',
 })
 export class AdminReportComponent implements OnInit {
+  uploaderId: string = ''; // Define the uploaderId variable
   displayedColumns: string[] = [
     'id',
-    'productName',
+    'product_name',
     'quantitySold',
     'saleDate',
+    'totalPrice',
     'uploaderId',
   ];
   dataSource = new MatTableDataSource<Sale>();
@@ -21,8 +23,15 @@ export class AdminReportComponent implements OnInit {
   constructor(private salesService: SalesService) {}
 
   ngOnInit(): void {
-    this.salesService.getAllSales().subscribe((sales) => {
-      this.dataSource.data = sales;
+    // Get the uploaderId
+    this.salesService.getUserId().subscribe((uploaderId) => {
+      if (uploaderId) {
+        this.uploaderId = uploaderId;
+        // Call getAllSales with the uploaderId
+        this.salesService.getAllSales(this.uploaderId).subscribe((sales) => {
+          this.dataSource.data = sales;
+        });
+      }
     });
   }
 }

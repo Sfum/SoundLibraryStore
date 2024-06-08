@@ -84,28 +84,33 @@ export class CartService {
   syncCartWithFirestore(): Observable<void> {
     return this.afAuth.authState.pipe(
       switchMap((user) => {
-        if (!user) {
+        if (!user || !user.uid) {
           throw new Error('User not authenticated');
         }
+
+        const uploaderId = user.uid; // Extracting uploaderId from the authenticated user
 
         // Create a batch operation
         const batch = this.firestore.firestore.batch();
 
-        // Retrieve a reference to the 'sales' collection
-        const salesRef = this.firestore.collection('sales').ref;
+        // Retrieve a reference to the 'sales' collection for the specified uploaderId
+        const salesRef = this.firestore.collection(
+          `users/${uploaderId}/cart`,
+        ).ref;
 
         // Iterate over each product in the cart
         this.products.forEach((product) => {
           // Create a new sale object
           const sale: Sale = {
             // @ts-ignore
+
             id: '', // Let Firestore generate an ID
-            productId: product.id, // Assuming product.id is the product ID
-            quantitySold: product.quantity, // Assuming product.quantity is the quantity in the cart
-            saleDate: new Date(), // Set the sale date to the current date/time
-            uploaderId: user.uid, // Set the user ID as the uploader
-            product_name: product.product_name, // Assuming product.product_name is the product name
-            totalPrice: product.price, // Assuming product.totalPrice is the total price
+            productId: product.id,
+            quantitySold: product.quantity,
+            saleDate: new Date(),
+            uploaderId: uploaderId, // Assigning uploaderId here
+            product_name: product.product_name,
+            totalPrice: product.price,
           };
 
           // Add a set operation to the batch for each sale
