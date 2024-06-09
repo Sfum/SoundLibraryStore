@@ -1,12 +1,11 @@
 <mat-drawer-container>
   <mat-drawer #drawer mode="over">
-    <app-logo-bar  (click)="drawer.toggle(false)"></app-logo-bar>
+    <app-logo-bar (click)="drawer.toggle(false)"></app-logo-bar>
   </mat-drawer>
   <div>
-   <div class="wrapper">
-    <app-navigation-bar (click)="drawer.toggle(false)"></app-navigation-bar>
-
-    <router-outlet (click)="drawer.toggle(false)"></router-outlet>
-  </div>
+    <div class="container">
+      <app-navigation-bar (click)="drawer.toggle(false)"></app-navigation-bar>
+      <router-outlet (click)="drawer.toggle(false)"></router-outlet>
+    </div>
   </div>
 </mat-drawer-container>

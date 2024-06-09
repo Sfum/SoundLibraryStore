@@ -11,7 +11,7 @@
               matBadgeSize="large"
               matBadgeColor="warn">
     </mat-icon>
-    <div class="cart__label-wrapper margin__left--md">
+    <div class="margin__left--md">
       <div class="font-secondary opacity--md">{{ product.brandId }}</div>
       <div class="font-primary">{{ product.product_name }}</div>
       <div *ngIf="!product.onSale" class="font-secondary margin__top--sm">
@@ -21,8 +21,8 @@
           </div>
         </div>
       </div>
-      <div *ngIf="product.onSale" class="cart__card_price-amount font-secondary margin__top--sm">
-        <div class="cart__card_price-amount font-secondary margin__top--sm">
+      <div *ngIf="product.onSale" class="font-secondary margin__top--sm">
+        <div class="font-secondary margin__top--sm">
           <div *ngIf="product.onSale" class="margin__top--sm price-tag">
             On Sale: ${{ product.salePrice | number : "1.2-2" }}
           </div>
@@ -31,10 +31,10 @@
       </div>
     </div>
     <div class="cart__remove-button margin__top--sm margin__left--md">
-      <button mat-fab class="cart__wishlist-button" (click)="addToWishlist(product)">
+      <button mat-fab (click)="addToWishlist(product)">
         <mat-icon>favorite_border</mat-icon>
       </button>
-      <button mat-fab class="cart__wishlist-button" (click)="removeFromCart(product)">
+      <button mat-fab (click)="removeFromCart(product)">
         <mat-icon>delete_forever</mat-icon>
       </button>
     </div>

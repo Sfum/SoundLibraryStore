@@ -12,7 +12,7 @@
       <div class="text-primary margin__bottom--xsm">{{ product.brandId }}</div>
       <div class="text-field text-secondary opacity--md margin__right--md">{{ product.product_description }}</div>
 
-      <div class="wishlist__card_label font-primary">
+      <div class="font-primary">
         ${{ product.quantity * product.price | number : "1.2-2" }}
       </div>
 <!--      <div class="wishlist__icons">-->
@@ -33,12 +33,10 @@
       <div class="cart__remove-button margin__top--md">
 
         <button mat-fab
-                class="cart__wishlist-button"
                 (click)="addProductToCart(product)">
           <mat-icon>shopping_cart</mat-icon>
         </button>
         <button mat-fab
-                class="cart__wishlist-button"
                 (click)="removeFromWishlist(product)">
           <mat-icon>delete_forever</mat-icon>
         </button>
