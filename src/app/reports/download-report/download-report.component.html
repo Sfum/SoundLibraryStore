@@ -1,6 +1,5 @@
-<div class="font-primary margin--md">Sales Reports</div>
-
-<table mat-table class="margin--md" [dataSource]="dataSource">
+<div class="font-primary margin--md">Downloads</div>
+<table class="margin__bottom--md margin--md" mat-table [dataSource]="dataSource">
   <!-- Define columns for the table -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -15,6 +14,11 @@
   <ng-container matColumnDef="quantitySold">
     <th mat-header-cell *matHeaderCellDef>Quantity Sold</th>
     <td mat-cell *matCellDef="let sale">{{ sale.quantitySold }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Price</th>
+    <td mat-cell *matCellDef="let sale">{{ sale.price }}</td>
   </ng-container>
 
   <ng-container matColumnDef="saleDate">
