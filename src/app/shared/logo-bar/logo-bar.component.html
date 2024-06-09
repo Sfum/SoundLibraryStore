@@ -1,10 +1,16 @@
-<nav class="navbar">
+<nav class="container">
   <ul class="nav-links">
     <li>
       <button class="font-primary button__menu" mat-button routerLink="/">Home</button>
     </li>
     <li>
       <button class="font-primary button__menu" mat-button routerLink="/bundles">Bundles</button>
+    </li>
+    <li>
+      <button class="font-primary button__menu" mat-button routerLink="/on-sale" matTooltip="Limited time offers!!!">Sale!</button>
+    </li>
+    <li>
+      <button class="font-primary button__menu" mat-button routerLink="/brands">Brands</button>
     </li>
     <li>
       <button class="font-primary button__menu" mat-button routerLink="/genres">Genres</button>
@@ -14,9 +20,6 @@
       <button class="font-primary button__menu" mat-menu-item *ngFor="let format of formats"
               [value]="format.id">{{ format.format_name }}</button>
     </mat-menu>
-    <li>
-      <button class="font-primary button__menu" mat-button routerLink="/brands">Brands</button>
-    </li>
     <li>
       <button mat-button [matMenuTriggerFor]="providerMenu" *ngIf="(isAdmin || isModerator | async)" class="font-primary button__menu">Provider</button>
     </li>
@@ -42,10 +45,6 @@
     <li>
       <button class="font-primary button__menu" mat-button routerLink="/signup" *ngIf="!(user$| async)">Signup</button>
     </li>
-    <li>
-      <button class="font-primary button__menu" mat-button routerLink="/on-sale" matTooltip="Limited time offers!!!">Sale!</button>
-    </li>
-
   </ul>
 </nav>
 

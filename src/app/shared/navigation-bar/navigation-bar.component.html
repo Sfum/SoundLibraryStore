@@ -1,6 +1,8 @@
-<div class="top-nav color__primary--100">
+<div class="container color__primary--100">
   <div class="left-icons">
-    <mat-drawer #drawer mode="over" (click)="drawer.toggle(false)"><app-logo-bar></app-logo-bar></mat-drawer>
+    <mat-drawer #drawer mode="over"
+                (click)="drawer.toggle(false)">
+      <app-logo-bar></app-logo-bar></mat-drawer>
       <button type="button" mat-button (click)="drawer.toggle()">
           <span class="nav-item">
       <i class="material-icons">menu</i>
@@ -16,7 +18,6 @@
       <span class="nav-button">Hello, {{ user.displayName }}</span>
     </ng-container>
 
-    <div class="nav-item">
       <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="user$ | async as user; else loggedOut">
         <mat-icon *ngIf="user$ | async as user; else loggedOut">account_circle</mat-icon>
       </button>
@@ -35,15 +36,12 @@
           <span><app-logout></app-logout></span>
         </button>
       </mat-menu>
-    </div>
 
-    <span class="nav-item" routerLink="/wishlist">
+    <span class="margin__right--sm" routerLink="/wishlist">
       <i class="material-icons">favorite</i>
-      Wishlist
     </span>
-    <span class="nav-item" routerLink="/shopping-cart">
+    <span class="margin__right--md" routerLink="/shopping-cart">
       <i class="material-icons">shopping_cart</i>
-      Cart
     </span>
     <div class="auth-field">
       <ng-template #loggedOut>

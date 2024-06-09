@@ -2,8 +2,8 @@
           *ngFor="let product of products; let i = index">
   <img class="cart__product-image margin__top--md margin__left--md"
        [src]="product.product_image"
-       height="90"
-       width="90"
+       height="150"
+       width="150"
        alt=""/>
   <div class="cart__info margin__top--md">
     <mat-icon class="cart__badge"
@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="cart__remove-button">
+    <div class="cart__remove-button margin__top--sm margin__left--md">
       <button mat-fab class="cart__wishlist-button" (click)="addToWishlist(product)">
         <mat-icon>favorite_border</mat-icon>
       </button>
