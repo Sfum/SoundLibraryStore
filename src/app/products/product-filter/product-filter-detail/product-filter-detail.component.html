@@ -1,23 +1,30 @@
-<label class="font-secondary">Select Genre</label>
-<mat-form-field appearance="fill">
-  <mat-select (selectionChange)="optionGenreSelected($any($event.value))">
-    <mat-option value="0">- All genres -</mat-option>
-    <mat-option
-      *ngFor="let genreItem of filterGenreField$ | async as genre"
-      [value]="genreItem.id">
-      {{ genreItem.genre_name }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-<label class="font-secondary">Select Brand</label>
-<mat-form-field appearance="fill">
-  <mat-select
-    (selectionChange)="optionBrandSelected($any($event.value))">
-    <mat-option value="0">- All brands</mat-option>
-    <mat-option
-      *ngFor="let brandItem of filterField$ | async as brand"
-      [value]="brandItem.id">
+<div class="container margin__right--md">
+  <label class="font-secondary margin__right--md">Select Genre</label>
+  <mat-form-field class="product__select font-secondary margin__right--md" appearance="fill">
+    <mat-select class="screen__sm--hidden" (selectionChange)="optionGenreSelected($event.value)">
+      <mat-option value="0">- All genres -</mat-option>
+      <mat-option *ngFor="let genreItem of (filterGenreField$ | async)" [value]="genreItem.id">
+        {{ genreItem.genre_name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <label class="screen__lg--show font-secondary margin__right--md">Select Brand</label>
+  <mat-form-field class="screen__lg--show" appearance="fill">
+    <mat-select (selectionChange)="optionBrandSelected($event.value)">
+      <mat-option value="0">- All brands -</mat-option>
+      <mat-option *ngFor="let brandItem of (filterBrandField$ | async)" [value]="brandItem.id">
+        {{ brandItem.brand_name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <label class="screen__sm--hidden font-secondary">Select Brand</label>
+  <div *ngFor="let brandItem of (filterBrandField$ | async)">
+    <mat-checkbox class="screen__sm--hidden"
+      [value]="brandItem.id.toString()"
+      (change)="onBrandCheckboxChange($event, brandItem.id)">
       {{ brandItem.brand_name }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+    </mat-checkbox>
+  </div>
+</div>

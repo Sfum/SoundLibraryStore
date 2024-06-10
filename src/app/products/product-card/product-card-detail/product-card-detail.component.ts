@@ -7,8 +7,10 @@ import { Product } from '../../../models/product';
   styleUrl: './product-card-detail.component.sass',
 })
 export class ProductCardDetailComponent {
+  @Input() products!: Product[];
   @Input() product!: Product;
-  @Output() addToWishlistEvent: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output() addToWishlistEvent: EventEmitter<Product> =
+    new EventEmitter<Product>();
   @Output() addToCartEvent: EventEmitter<Product> = new EventEmitter<Product>();
 
   addToWishlist(product: Product) {

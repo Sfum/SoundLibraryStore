@@ -5,7 +5,7 @@
        matTooltip="Details">
   <div class="product-details">
     <h2 class="title-main opacity--md">{{ product.product_name }}</h2>
-    <h3 class="text-primary opacity--lg">{{ product.product_title | slice:0:100 }}...</h3>
+    <h3 class="product__card--title text-primary opacity--lg">{{ product.product_title | slice:0:100 }}...</h3>
     <div class="product-card__bottom margin__top--sm">
       <div class="title-main opacity--lg">
         <div *ngIf="product.salePrice && product.salePrice < product.price; else originalPrice">

@@ -136,6 +136,7 @@ import { AdminReportComponent } from './reports/admin-report/admin-report.compon
 import { ModeratorReportComponent } from './reports/moderator-report/moderator-report.component';
 import { MatDrawer, MatDrawerContainer } from '@angular/material/sidenav';
 import { DownloadReportComponent } from './reports/download-report/download-report.component';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -251,6 +252,7 @@ import { DownloadReportComponent } from './reports/download-report/download-repo
     MatDrawerContainer,
     MatDrawer,
     MatIconButton,
+    MatCheckbox,
   ],
   providers: [
     provideAnimationsAsync(),

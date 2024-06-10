@@ -1,2 +1,30 @@
+
+mat-form-field
+  width: 100%
+
+
 label
-  margin-bottom: 5px
+  .container
+    display: flex
+    flex-direction: row
+
+@media only screen and (max-width: 900px)
+  .container
+    display: flex
+    flex-direction: row
+
+    .screen__sm--hidden
+      display: none
+
+@media only screen and (max-width: 500px)
+  .container
+    display: flex
+    flex-direction: column
+
+    .screen__sm--hidden
+      display: none
+
+@media only screen and (min-width: 900px)
+
+    .screen__lg--show
+      display: none

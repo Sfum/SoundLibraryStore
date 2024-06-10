@@ -1,12 +1,12 @@
 <mat-card>
   <mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="product_image">
+    <ng-container matColumnDef="product_image" class="column column-lg">
       <mat-header-cell *matHeaderCellDef> Image</mat-header-cell>
       <mat-cell *matCellDef="let product">
         <img [src]="product.product_image" alt="Product Image" style="max-width: 60px; max-height: 60px;">
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="product_name">
+    <ng-container matColumnDef="product_name" class="column column-sm">
       <mat-header-cell *matHeaderCellDef> Product Name</mat-header-cell>
       <mat-cell *matCellDef="let product">
         <div class="cell--main">
@@ -15,41 +15,32 @@
         </div>
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="genreId">
-      <mat-header-cell *matHeaderCellDef> Genre</mat-header-cell>
-      <mat-cell *matCellDef="let product"> {{ product.genreId }} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="in_bundle">
+    <ng-container matColumnDef="in_bundle" class="column column-lg">
       <mat-header-cell *matHeaderCellDef> Bundle?</mat-header-cell>
       <mat-cell *matCellDef="let product"> {{ product.in_bundle }} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="onSale">
+    <ng-container matColumnDef="onSale" class="column column-lg">
       <mat-header-cell *matHeaderCellDef> On Sale</mat-header-cell>
       <mat-cell *matCellDef="let product"> {{ product.onSale ? 'Yes' : 'No' }} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="price">
+    <ng-container matColumnDef="price" class="column column-sm">
       <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
       <mat-cell *matCellDef="let product">
         <ng-container *ngIf="!product.onSale">
           ${{ product.price | number:'1.2-2' }}
         </ng-container>
-      </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="salePrice">
-      <mat-header-cell *matHeaderCellDef> Sale Price</mat-header-cell>
-      <mat-cell *matCellDef="let product">
         <ng-container *ngIf="product.onSale">
           <span class="sale-price">${{ product.salePrice | number:'1.2-2' }}</span>
         </ng-container>
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="discountPercentage">
+    <ng-container matColumnDef="discountPercentage" class="column column-lg">
       <mat-header-cell *matHeaderCellDef> Discount Percentage</mat-header-cell>
       <mat-cell *matCellDef="let product">
         <div *ngIf="product.onSale"> {{ product.discountPercentage }}%</div>
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="delete">
+    <ng-container matColumnDef="delete" class="column column-md">
       <mat-header-cell *matHeaderCellDef> Delete</mat-header-cell>
       <mat-cell *matCellDef="let product">
         <mat-icon (click)="deleteProduct(product.id)" matTooltip="Delete">delete</mat-icon>

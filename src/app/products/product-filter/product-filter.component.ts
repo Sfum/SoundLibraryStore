@@ -14,7 +14,7 @@ import { GenreService } from '../../services/genre.service';
 export class ProductFilterComponent {
   // user$: Observable<firebase.User>;
 
-  filterField$: Observable<Brand[]>;
+  filterBrandField$: Observable<Brand[]>;
   filterGenreField$: Observable<Genre[]>;
 
   constructor(
@@ -22,7 +22,7 @@ export class ProductFilterComponent {
     private brandService: BrandService,
     private genreService: GenreService,
   ) {
-    this.filterField$ = this.brandService.getBrands();
+    this.filterBrandField$ = this.brandService.getBrands();
     this.filterGenreField$ = this.genreService.getGenres();
   }
 
