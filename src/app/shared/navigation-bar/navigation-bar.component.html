@@ -9,9 +9,9 @@
     </span>
       </button>
 
-    <span class="nav-item">
-      <i class="material-icons">search</i>
-    </span>
+    <div class="search-container">
+      <input matInput type="text"  placeholder="Search...">
+    </div>
   </div>
   <div class="right-icons">
     <ng-container *ngIf="user$ | async as user; else loggedOut">

@@ -1,10 +1,15 @@
-
-<app-product-filter></app-product-filter>
 <ng-container *ngIf="user$ | async as user; else notAuthenticated">
 
   <!-- Admin Section -->
   <div *ngIf="isAdmin; else notAdmin">
-    <app-product-card></app-product-card>
+    <div class="product-card">
+      <div class="product-card-left">
+        <app-product-filter></app-product-filter>
+      </div>
+      <div class="product-card-right">
+      <app-product-card></app-product-card>
+      </div>
+    </div>
   </div>
 
   <!-- Moderator Section -->
@@ -32,7 +37,12 @@
 
 <!-- Not Authenticated Section -->
 <ng-template #notAuthenticated>
-  <div>
-    <app-product-card></app-product-card>
+  <div class="product-card">
+    <div class="product-card-left">
+      <app-product-filter></app-product-filter>
+    </div>
+    <div class="product-card-right">
+      <app-product-card></app-product-card>
+    </div>
   </div>
 </ng-template>
