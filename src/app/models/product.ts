@@ -3,6 +3,7 @@ export interface ProductComment {
   userName: string;
   comment: string;
   timestamp: Date;
+  rating: number;
 }
 
 export interface Product {
