@@ -66,7 +66,7 @@ export class ProductCardComponent implements OnInit {
         ),
       )
       .subscribe((sortedProducts) => {
-        this.filteredProducts$.next(sortedProducts);
+        this.filteredProducts$.next([...sortedProducts]); // Spread operator to create a new array
         this.paginate(sortedProducts);
       });
   }
@@ -85,10 +85,11 @@ export class ProductCardComponent implements OnInit {
         ),
       )
       .subscribe((sortedProducts) => {
-        this.filteredProducts$.next(sortedProducts);
+        this.filteredProducts$.next([...sortedProducts]); // Spread operator to create a new array
         this.paginate(sortedProducts);
       });
   }
+
   sortByPopularity() {
     this.filteredProducts$
       .pipe(map((products) => products.sort((a, b) => b.quantity - a.quantity)))

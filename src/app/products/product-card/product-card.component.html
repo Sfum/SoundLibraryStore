@@ -6,7 +6,7 @@
   <button class="button__menu margin__right--sm margin__bottom--sm" mat-raised-button (click)="sortByDiscount('desc')">Discount (High to Low)</button>
 </div>
 
-<div class="product-card__container">
+  <div class="product-card__container">
   <app-product-card-detail *ngFor="let product of paginatedProducts"
                            [product]="product"
                            (addToWishlistEvent)="onAddToWishlist(product)"
@@ -19,5 +19,6 @@
   [pageSize]="itemsPerPage"
   (page)="onPageChange($event)"
 ></mat-paginator>
+
 
 

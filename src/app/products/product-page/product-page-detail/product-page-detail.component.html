@@ -107,5 +107,24 @@
       </div>
     </div>
   </div>
+  <hr>
+  <div class="comments-section margin--md">
+    <h3>Comments</h3>
+    <div *ngIf="comments.length > 0; else noComments">
+      <div *ngFor="let comment of comments" class="comment">
+        <p><strong>{{ comment.userName }}</strong> ({{ comment.timestamp | date:'short' }}):</p>
+        <p>{{ comment.comment }}</p>
+      </div>
+    </div>
+    <ng-template #noComments>
+      <p>No comments yet. Be the first to comment!</p>
+    </ng-template>
+
+    <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+      <textarea formControlName="comment" placeholder="Add a comment"></textarea>
+      <button mat-raised-button [disabled]="commentForm.invalid">Submit</button>
+    </form>
+  </div>
 
 </mat-card>
+

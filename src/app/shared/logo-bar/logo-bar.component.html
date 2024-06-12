@@ -25,17 +25,17 @@
     </li>
     <mat-menu #providerMenu="matMenu" yPosition="below" >
       <div class="icon-align"><i class="pi pi-box margin__left--md"></i>
-        <button mat-button class="font-secondary button__menu bar-menu margin__right--md" routerLink="/manage-products">Product Management
+        <button mat-button class="font-secondary button__menu bar-menu margin__right--md" routerLink="/manage-products">Products
         </button>
       </div>
       <div class="icon-align" *ngIf="(isAdmin| async)"><i class="pi pi-star-fill margin__left--md"></i>
         <button class="font-secondary button__menu bar-menu margin__right--md" mat-button routerLink="/manage-brands"
-                *ngIf="(isAdmin| async)">Brand Management
+                *ngIf="(isAdmin| async)">Brands
         </button>
       </div>
       <div class="icon-align" *ngIf="(isAdmin| async)"><i class="pi pi-barcode margin__left--md"></i>
         <button class="font-secondary button__menu bar-menu margin__right--md" mat-button routerLink="/manage-genres"
-                *ngIf="(isAdmin| async)">Genre Management
+                *ngIf="(isAdmin| async)">Genres
         </button>
       </div>
     </mat-menu>

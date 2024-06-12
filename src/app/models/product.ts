@@ -1,3 +1,10 @@
+export interface ProductComment {
+  userId: string;
+  userName: string;
+  comment: string;
+  timestamp: Date;
+}
+
 export interface Product {
   id: number;
   product_name: string;
@@ -13,7 +20,7 @@ export interface Product {
   discountPercentage?: number;
   salePrice?: number;
   onSale: boolean;
-  start_date?: Date;
-  end_date?: Date;
+  date_created?: Date;
   uploaderId: string;
+  comments?: ProductComment[];
 }

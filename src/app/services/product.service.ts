@@ -12,7 +12,7 @@ import {
   throwError,
 } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Product } from '../models/product';
+import { Product, ProductComment } from '../models/product';
 import { GenreService } from './genre.service';
 import { BrandService } from './brand.service';
 import { Genre } from '../models/genre';
@@ -20,6 +20,9 @@ import { Brand } from '../models/brand';
 import { SnackbarService } from './snackbar.service';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -339,6 +342,34 @@ export class ProductService {
       // Filter out undefined values (products not found)
       map((products) => products.filter((product) => !!product) as Product[]),
     );
+  }
+  async addComment(productId: string, comment: ProductComment): Promise<void> {
+    try {
+      await this.firestore
+        .collection('products')
+        .doc(productId)
+        .update({
+          comments: firebase.firestore.FieldValue.arrayUnion(comment),
+        });
+      this.snackbarService.showSnackbar('Comment added successfully.');
+    } catch (error) {
+      console.error('Error adding comment: ', error);
+      throw new Error('Something went wrong while adding the comment');
+    }
+  }
+
+  getComments(productId: string): Observable<ProductComment[]> {
+    return this.firestore
+      .collection<Product>('products')
+      .doc(productId)
+      .valueChanges()
+      .pipe(
+        map((product) => (product?.comments as ProductComment[]) || []),
+        catchError((error) => {
+          console.error('Error getting comments: ', error);
+          return throwError('Something went wrong while fetching comments');
+        }),
+      );
   }
 
   ngOnDestroy() {

@@ -138,6 +138,8 @@ import { MatDrawer, MatDrawerContainer } from '@angular/material/sidenav';
 import { DownloadReportComponent } from './reports/download-report/download-report.component';
 import { MatCheckbox } from '@angular/material/checkbox';
 
+import { CommentComponent } from './comment/comment.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -192,6 +194,7 @@ import { MatCheckbox } from '@angular/material/checkbox';
     AdminReportComponent,
     ModeratorReportComponent,
     DownloadReportComponent,
+    CommentComponent,
   ],
   imports: [
     CommonModule,
