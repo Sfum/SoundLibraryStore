@@ -45,6 +45,26 @@ export class ProductPageDetailComponent implements OnInit {
           }
         });
     }
+    if (productId) {
+      this.productService.getProduct(productId).subscribe((product) => {
+        this.product = product;
+        if (product) {
+          // Fetch related products based on genreId
+          this.productService
+            .getProductsByGenre(product.genreId)
+            .subscribe((products) => {
+              this.relatedProducts = products.filter((p) => p.id !== productId); // Exclude current product
+            });
+          this.productService
+            .getProductsByBrand(product.brandId)
+            .subscribe((products) => {
+              this.relatedProductBrands = products.filter(
+                (p) => p.id !== productId,
+              ); // Exclude current product
+            });
+        }
+      });
+    }
 
     this.commentForm = this.fb.group({
       comment: ['', Validators.required],
@@ -91,7 +111,11 @@ export class ProductPageDetailComponent implements OnInit {
     this.averageRating = totalRating / this.comments.length;
   }
 
-  addComment() {
+  setRating(rating: number) {
+    this.commentForm.patchValue({ rating });
+  }
+
+  addComment(productId: string) {
     if (this.commentForm.invalid) {
       return;
     }
@@ -104,12 +128,9 @@ export class ProductPageDetailComponent implements OnInit {
       timestamp: new Date(),
     };
 
-    this.productService
-      .addComment(this.product!.id.toString(), comment)
-      .then(() => {
-        this.loadComments(this.product!.id.toString());
-        this.commentForm.reset();
-      });
+    this.productService.addComment(productId, comment).then(() => {
+      this.commentForm.reset();
+    });
   }
 
   addToWishlist(product: Product) {

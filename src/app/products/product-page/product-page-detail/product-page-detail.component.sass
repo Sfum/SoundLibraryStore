@@ -55,37 +55,33 @@ div
 
   p
     font-size: 16px
-.comments-section
-  margin-top: 20px
-
-.comment
-  margin-bottom: 10px
-  padding: 10px
-  border: 1px solid #ccc
-  border-radius: 5px
-
 form
   display: flex
   flex-direction: column
 
-textarea
-  margin-bottom: 10px
-  padding: 10px
-  border-radius: 5px
-  border: 1px solid #ccc
-
-button
-  align-self: flex-end
-  padding: 10px 20px
-  background-color: #007bff
-  color: white
-  border: none
-  border-radius: 5px
+.star
+  color: lightgray
   cursor: pointer
 
-button:disabled
-  background-color: #ccc
-  cursor: not-allowed
+  &.filled
+    color: gold
+
+
+
+.average-rating
+  display: flex
+  align-items: center
+
+  .star
+    margin-right: 2px
+
+
+.rating
+  display: flex
+  align-items: center
+
+  .star
+    margin-right: 2px
 
 @media only screen and (max-width: 1200px)
   .product__page--badge
