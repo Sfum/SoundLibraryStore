@@ -56,9 +56,11 @@ export class ProductCardComponent implements OnInit {
         map((products) =>
           products.sort((a, b) => {
             if (order === 'asc') {
-              return a.price - b.price;
+              // @ts-ignore
+              return a.price - b.price && a.salePrice - b.salePrice;
             } else {
-              return b.price - a.price;
+              // @ts-ignore
+              return b.price - a.price && b.salePrice - a.salePrice;
             }
           }),
         ),
@@ -69,6 +71,24 @@ export class ProductCardComponent implements OnInit {
       });
   }
 
+  sortByDiscount(order: 'asc' | 'desc') {
+    this.filteredProducts$
+      .pipe(
+        map((products) =>
+          products.sort((a, b) => {
+            if (order === 'desc') {
+              return (b.discountPercentage || 0) - (a.discountPercentage || 0);
+            } else {
+              return (a.discountPercentage || 0) - (b.discountPercentage || 0);
+            }
+          }),
+        ),
+      )
+      .subscribe((sortedProducts) => {
+        this.filteredProducts$.next(sortedProducts);
+        this.paginate(sortedProducts);
+      });
+  }
   sortByPopularity() {
     this.filteredProducts$
       .pipe(map((products) => products.sort((a, b) => b.quantity - a.quantity)))

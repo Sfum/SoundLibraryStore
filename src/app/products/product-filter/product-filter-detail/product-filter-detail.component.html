@@ -1,7 +1,6 @@
 <div class="container margin__right--md">
-  <label class="font-secondary margin__right--md">Select Genre</label>
-  <mat-form-field class="product__select font-secondary margin__right--md" appearance="fill">
-    <mat-select class="screen__sm--hidden" (selectionChange)="optionGenreSelected($event.value)">
+  <mat-form-field class="font-secondary margin__right--md" appearance="fill">
+    <mat-select class="product__select screen__sm--hidden" (selectionChange)="optionGenreSelected($event.value)">
       <mat-option value="0">- All genres -</mat-option>
       <mat-option *ngFor="let genreItem of (filterGenreField$ | async)" [value]="genreItem.id">
         {{ genreItem.genre_name }}
@@ -19,7 +18,7 @@
     </mat-select>
   </mat-form-field>
 
-  <label class="screen__sm--hidden font-secondary">Select Brand</label>
+  <label class="screen__sm--hidden font-secondary margin__bottom--md">Select Brand</label>
   <div *ngFor="let brandItem of (filterBrandField$ | async)">
     <mat-checkbox class="screen__sm--hidden"
       [value]="brandItem.id.toString()"
