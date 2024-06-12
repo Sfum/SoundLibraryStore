@@ -1,4 +1,5 @@
 <mat-card *ngIf="product" class="mat-elevation-z20 border-radius--sm">
+  <!-- Product details -->
   <div class="margin--lg">
     <div class="product-card-bottom__wrapper">
       <div class="product-card__left">
@@ -18,72 +19,25 @@
           <mat-icon class="icon opacity--lg">phone</mat-icon>
         </div>
         <div class="button-group">
-          <button mat-raised-button (click)="addToWishlist(product)"
-                  class="button pi pi-heart margin__top--md button-primary"
-
-          > Wishlist
-          </button>
-          <button mat-raised-button (click)="addToCart(product)"
-                  class="pi pi-shopping-cart margin__top--md margin__left--sm button-primary"
-          > ${{ product.price }}
-          </button>
+          <button mat-raised-button (click)="addToWishlist(product)" class="button pi pi-heart margin__top--md button-primary"> Wishlist </button>
+          <button mat-raised-button (click)="addToCart(product)" class="pi pi-shopping-cart margin__top--md margin__left--sm button-primary"> ${{ product.price }} </button>
         </div>
         <hr class="product-card__line">
-
       </div>
     </div>
     <hr class="product__page--badge margin-line opacity--xlg margin__bottom--md margin__top--md">
     <div class="product__page--badge">
-    <div class="container-banner opacity--md">
-      <div class="container-banner--table-one">
-        <div class="pi pi-download margin__auto align__items">
-          <div class="font-sm margin__left--xsm">Unlimited Usage
-          </div>
-        </div>
-        <div class="margin__auto">
-          100% Royalty Free
-        </div>
-
-      </div>
-      <div class="container-banner--table-two margin__left--md">
-        <div class="pi pi-history margin__auto align__items">
-          <div class="font-sm margin__left--xsm">24/7 Support
-          </div>
-        </div>
-        <div class="margin__auto">
-          0 800 3948 5922
-        </div>
-      </div>
-      <div class="container-banner--table-three">
-        <div class="pi pi-directions-alt margin__auto align__items">
-          <div class="font-sm margin__left--xsm">Product Returns
-          </div>
-        </div>
-        <div class="margin__auto">
-          File a return
-        </div>
-      </div>
-      <div class="container-banner--table-four">
-        <div class="pi pi-bolt margin__auto align__items">
-          <div class="font-sm margin__left--xsm">Fast Download
-          </div>
-        </div>
-        <div class="margin__auto">
-          up to 128MB/s
-        </div>
-      </div>
-
-    </div>
+      <!-- Banners -->
     </div>
     <div>
+      <!-- Related products -->
       <hr class="margin-line opacity--xlg margin__bottom--md margin__top--md">
       <div class="margin-primary margin__bottom--md">
         <div *ngIf="relatedProducts.length > 0">
           <h3 class="font-primary">More from this genre:</h3>
           <div class="related-products">
             <a *ngFor="let relatedProduct of relatedProducts" class="related-product">
-              <img [src]="relatedProduct.product_image" alt="Product Image" width="150px"
-              >
+              <img [src]="relatedProduct.product_image" alt="Product Image" width="150px">
             </a>
           </div>
         </div>
@@ -96,8 +50,7 @@
           <h3 class="font-primary">More from this brand:</h3>
           <div class="related-products">
             <div *ngFor="let relatedProduct of relatedProductBrands" class="related-product">
-              <img [src]="relatedProduct.product_image" alt="Product Image" width="150px"
-              >
+              <img [src]="relatedProduct.product_image" alt="Product Image" width="150px">
             </div>
           </div>
         </div>
@@ -121,10 +74,8 @@
     </ng-template>
 
     <form [formGroup]="commentForm" (ngSubmit)="addComment()">
-      <textarea formControlName="comment" placeholder="Add a comment"></textarea>
+      <input matInput formControlName="comment" placeholder="Add a comment">
       <button mat-raised-button [disabled]="commentForm.invalid">Submit</button>
     </form>
   </div>
-
 </mat-card>
-

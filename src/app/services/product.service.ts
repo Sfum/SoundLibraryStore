@@ -23,6 +23,8 @@ import { AuthService } from './auth.service';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import { firestore } from 'firebase-admin';
+import DocumentSnapshot = firestore.DocumentSnapshot;
 
 @Injectable({
   providedIn: 'root',
@@ -327,22 +329,12 @@ export class ProductService {
       });
     });
   }
-  getProductsByIds(productIds: string[]): Observable<Product[]> {
-    // Create an array to store observables of individual product queries
-    const productQueries: Observable<Product | undefined>[] = [];
-
-    // Iterate through each product ID and create an observable for each product query
-    productIds.forEach((productId) => {
-      // Push the observable query to the array
-      productQueries.push(this.getProduct(productId));
-    });
-
-    // Combine all observables into a single observable using combineLatest
-    return combineLatest(productQueries).pipe(
-      // Filter out undefined values (products not found)
-      map((products) => products.filter((product) => !!product) as Product[]),
-    );
+  getProductSnapShot(
+    id: string,
+  ): Observable<firebase.firestore.DocumentSnapshot<Product>> {
+    return this.firestore.collection<Product>('products').doc(id).get(); // Returns a snapshot
   }
+
   async addComment(productId: string, comment: ProductComment): Promise<void> {
     try {
       await this.firestore
@@ -351,7 +343,7 @@ export class ProductService {
         .update({
           comments: firebase.firestore.FieldValue.arrayUnion(comment),
         });
-      this.snackbarService.showSnackbar('Comment added successfully.');
+      console.log('Comment added successfully.');
     } catch (error) {
       console.error('Error adding comment: ', error);
       throw new Error('Something went wrong while adding the comment');
