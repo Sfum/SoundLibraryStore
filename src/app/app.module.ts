@@ -139,6 +139,10 @@ import { DownloadReportComponent } from './reports/download-report/download-repo
 import { MatCheckbox } from '@angular/material/checkbox';
 
 import { CommentComponent } from './comment/comment.component';
+import {
+  MatButtonToggle,
+  MatButtonToggleGroup,
+} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -256,6 +260,8 @@ import { CommentComponent } from './comment/comment.component';
     MatDrawer,
     MatIconButton,
     MatCheckbox,
+    MatButtonToggleGroup,
+    MatButtonToggle,
   ],
   providers: [
     provideAnimationsAsync(),
