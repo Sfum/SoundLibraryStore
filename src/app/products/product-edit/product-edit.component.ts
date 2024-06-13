@@ -4,8 +4,8 @@ import { ProductService } from '../../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Product } from '../../models/product';
-import { finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-edit',
@@ -13,12 +13,9 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
   styleUrls: ['./product-edit.component.sass'],
 })
 export class ProductEditComponent implements OnInit {
-  productForm: FormGroup;
   // @ts-ignore
   productId: string;
-
-  selectedBrandId: number | undefined;
-  selectedGenreId: number | undefined;
+  productForm: FormGroup;
   productEdit$: Observable<Product[]> | undefined;
   brands$ = this.productService.brands$;
   genres$ = this.productService.genres$;

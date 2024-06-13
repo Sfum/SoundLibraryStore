@@ -261,6 +261,7 @@ export class ProductService {
   getFilteredProductCollection() {
     return this.productsArrayFiltered$;
   }
+
   getProductsByBrand(brandId: number): Observable<Product[]> {
     return this.firestore
       .collection<Product>('products', (ref) =>
@@ -268,6 +269,7 @@ export class ProductService {
       )
       .valueChanges();
   }
+
   getProductsByGenre(genreId: number): Observable<Product[]> {
     return this.firestore
       .collection<Product>('products', (ref) =>
@@ -275,6 +277,7 @@ export class ProductService {
       )
       .valueChanges();
   }
+
   getOnSaleProducts(): Observable<Product[]> {
     return this.firestore
       .collection<Product>('products', (ref) => ref.where('onSale', '==', true))
@@ -289,6 +292,7 @@ export class ProductService {
         }),
       );
   }
+
   getProductsByUploader(uploaderId: string): Observable<Product[]> {
     return this.firestore
       .collection<Product>('products', (ref) =>
@@ -296,6 +300,7 @@ export class ProductService {
       )
       .valueChanges();
   }
+
   filteredProducts$ = new BehaviorSubject<Product[]>([]);
 
   updateProductQuantity(
@@ -329,10 +334,11 @@ export class ProductService {
       });
     });
   }
+
   getProductSnapShot(
     id: string,
   ): Observable<firebase.firestore.DocumentSnapshot<Product>> {
-    return this.firestore.collection<Product>('products').doc(id).get(); // Returns a snapshot
+    return this.firestore.collection<Product>('products').doc(id).get();
   }
 
   async addComment(productId: string, comment: ProductComment): Promise<void> {
@@ -365,7 +371,7 @@ export class ProductService {
   }
 
   ngOnDestroy() {
-    this.unsubscribe$.next(); // Emit a signal to unsubscribe
-    this.unsubscribe$.complete(); // Complete the unsubscribe$ subject
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

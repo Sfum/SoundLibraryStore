@@ -76,13 +76,14 @@
           <label for="comment" class="margin__right--md">Comment</label>
           <input matInput id="comment" formControlName="comment">
         </div>
-        <button mat-raised-button class="button-primary margin__top--md margin__bottom--md" type="submit">Submit</button>
+        <button mat-raised-button class="button-primary margin__top--md margin__bottom--md" type="submit">Submit
+        </button>
       </form>
     </div>
 
     <div *ngIf="comments.length > 0; else noComments">
       <div *ngFor="let comment of comments" class="comment margin__bottom--sm">
-        <p><strong>{{ comment.userName }}:</strong> {{ comment.timestamp | date:'short' }}</p>
+        <p><strong>{{ comment.userName }}:</strong></p>
         <p>{{ comment.comment }}</p>
         <div class="stars">
           <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">

@@ -5,6 +5,7 @@ import { SalesService } from '../../services/sales.service';
 import { AuthService } from '../../services/auth.service';
 import firebase from 'firebase/compat';
 import User = firebase.User;
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-download-report',
@@ -32,6 +33,18 @@ export class DownloadReportComponent implements OnInit {
         const uploaderId = user.uid;
         this.salesService.getSalesByUploader(uploaderId).subscribe((sales) => {
           this.dataSource.data = sales;
+        });
+      }
+    });
+    this.authService.getCurrentUser().subscribe((user: User | null) => {
+      if (user) {
+        const uploaderId = user.uid;
+        this.salesService.getSalesByUploader(uploaderId).subscribe((sales) => {
+          // Convert Firestore Timestamp to JavaScript Date
+          this.dataSource.data = sales.map((sale) => ({
+            ...sale,
+            saleDate: (sale.saleDate as unknown as Timestamp).toDate(),
+          }));
         });
       }
     });

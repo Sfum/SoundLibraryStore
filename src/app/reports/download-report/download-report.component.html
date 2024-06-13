@@ -23,7 +23,7 @@
 
   <ng-container matColumnDef="saleDate">
     <th mat-header-cell *matHeaderCellDef>Sale Date</th>
-    <td mat-cell *matCellDef="let sale">{{ sale.saleDate }}</td>
+    <td mat-cell *matCellDef="let sale">{{ sale.saleDate | date:'short' }}</td>
   </ng-container>
 
   <!-- Add more columns as needed -->

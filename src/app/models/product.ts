@@ -1,8 +1,10 @@
+import { firestore } from 'firebase-admin';
+
 export interface ProductComment {
   userId: string;
   userName: string;
   comment: string;
-  timestamp: Date;
+  timestamp: firestore.Timestamp | Date;
   rating: number;
 }
 

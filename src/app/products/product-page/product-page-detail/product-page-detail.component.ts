@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 // @ts-ignore
 import { DocumentSnapshot } from 'firebase/compat/firestore';
+import { firestore } from 'firebase-admin';
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-product-page-detail',
@@ -45,26 +47,6 @@ export class ProductPageDetailComponent implements OnInit {
           }
         });
     }
-    if (productId) {
-      this.productService.getProduct(productId).subscribe((product) => {
-        this.product = product;
-        if (product) {
-          // Fetch related products based on genreId
-          this.productService
-            .getProductsByGenre(product.genreId)
-            .subscribe((products) => {
-              this.relatedProducts = products.filter((p) => p.id !== productId); // Exclude current product
-            });
-          this.productService
-            .getProductsByBrand(product.brandId)
-            .subscribe((products) => {
-              this.relatedProductBrands = products.filter(
-                (p) => p.id !== productId,
-              ); // Exclude current product
-            });
-        }
-      });
-    }
 
     this.commentForm = this.fb.group({
       comment: ['', Validators.required],
@@ -93,7 +75,10 @@ export class ProductPageDetailComponent implements OnInit {
 
   loadComments(productId: string) {
     this.productService.getComments(productId).subscribe((comments) => {
-      this.comments = comments;
+      this.comments = comments.map((comment) => ({
+        ...comment,
+        timestamp: (comment.timestamp as Timestamp).toDate(),
+      }));
       this.calculateAverageRating();
     });
   }
