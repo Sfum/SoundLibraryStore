@@ -1,11 +1,14 @@
 <mat-card>
   <mat-table [dataSource]="dataSource">
+    <!-- Product Image Column -->
     <ng-container matColumnDef="product_image" class="column column-lg">
       <mat-header-cell *matHeaderCellDef> Image</mat-header-cell>
       <mat-cell *matCellDef="let product">
         <img [src]="product.product_image" alt="Product Image" style="max-width: 60px; max-height: 60px;">
       </mat-cell>
     </ng-container>
+
+    <!-- Product Name Column -->
     <ng-container matColumnDef="product_name" class="column column-sm">
       <mat-header-cell *matHeaderCellDef> Product Name</mat-header-cell>
       <mat-cell *matCellDef="let product">
@@ -15,14 +18,26 @@
         </div>
       </mat-cell>
     </ng-container>
+
+    <!-- Date Created Column -->
+    <ng-container matColumnDef="date_created" class="column column-lg">
+      <mat-header-cell *matHeaderCellDef> Date Created</mat-header-cell>
+      <mat-cell *matCellDef="let product"> {{ product.date_created | date }} </mat-cell>
+    </ng-container>
+
+    <!-- In Bundle Column -->
     <ng-container matColumnDef="in_bundle" class="column column-lg">
       <mat-header-cell *matHeaderCellDef> Bundle?</mat-header-cell>
       <mat-cell *matCellDef="let product"> {{ product.in_bundle }} </mat-cell>
     </ng-container>
+
+    <!-- On Sale Column -->
     <ng-container matColumnDef="onSale" class="column column-lg">
       <mat-header-cell *matHeaderCellDef> On Sale</mat-header-cell>
       <mat-cell *matCellDef="let product"> {{ product.onSale ? 'Yes' : 'No' }} </mat-cell>
     </ng-container>
+
+    <!-- Price Column -->
     <ng-container matColumnDef="price" class="column column-sm">
       <mat-header-cell *matHeaderCellDef> Price</mat-header-cell>
       <mat-cell *matCellDef="let product">
@@ -34,18 +49,24 @@
         </ng-container>
       </mat-cell>
     </ng-container>
+
+    <!-- Discount Percentage Column -->
     <ng-container matColumnDef="discountPercentage" class="column column-lg">
       <mat-header-cell *matHeaderCellDef> Discount Percentage</mat-header-cell>
       <mat-cell *matCellDef="let product">
         <div *ngIf="product.onSale"> {{ product.discountPercentage }}%</div>
       </mat-cell>
     </ng-container>
+
+    <!-- Delete Column -->
     <ng-container matColumnDef="delete" class="column column-md">
       <mat-header-cell *matHeaderCellDef> Delete</mat-header-cell>
       <mat-cell *matCellDef="let product">
         <mat-icon (click)="deleteProduct(product.id)" matTooltip="Delete">delete</mat-icon>
       </mat-cell>
     </ng-container>
+
+    <!-- Header and Row Definitions -->
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" class="cell_hover"
              matTooltip="Click for details"

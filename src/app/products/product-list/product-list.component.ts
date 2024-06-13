@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SnackbarService } from '../../services/snackbar.service';
 import { AuthService } from '../../services/auth.service';
+import firebase from 'firebase/compat';
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-product-list',
@@ -18,6 +20,7 @@ export class ProductListComponent implements OnInit {
   displayedColumns: string[] = [
     'product_image',
     'product_name',
+    'date_created',
     'in_bundle',
     'onSale',
     'price',
@@ -42,7 +45,13 @@ export class ProductListComponent implements OnInit {
         this.productService
           .getFilteredProductCollection()
           .subscribe((products) => {
-            this.products = products;
+            // Convert Firestore Timestamp to JavaScript Date
+            this.products = products.map((product) => ({
+              ...product,
+              date_created: (
+                product.date_created as unknown as Timestamp
+              ).toDate(),
+            }));
             this.dataSource = new MatTableDataSource<Product>(this.products);
             this.dataSource.paginator = this.paginator;
           });
