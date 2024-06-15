@@ -23,6 +23,8 @@ export class DownloadReportComponent implements OnInit {
   ];
   dataSource = new MatTableDataSource<Sale>();
   sales: Sale[] = [];
+  totalQuantitySold: number = 0;
+  totalPrice: number = 0;
 
   constructor(
     private salesService: SalesService,
@@ -39,6 +41,7 @@ export class DownloadReportComponent implements OnInit {
             saleDate: (sale.saleDate as unknown as Timestamp).toDate(),
           }));
           this.dataSource.data = this.sales;
+          this.calculateTotals(this.dataSource.data);
         });
       }
     });
@@ -47,6 +50,7 @@ export class DownloadReportComponent implements OnInit {
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.calculateTotals(this.dataSource.filteredData);
   }
 
   filterByDate(period: string): void {
@@ -71,5 +75,14 @@ export class DownloadReportComponent implements OnInit {
     this.dataSource.data = this.sales.filter(
       (sale) => (sale.saleDate as Date) >= startDate,
     );
+    this.calculateTotals(this.dataSource.data);
+  }
+
+  calculateTotals(data: Sale[]): void {
+    this.totalQuantitySold = data.reduce(
+      (sum, sale) => sum + sale.quantitySold,
+      0,
+    );
+    this.totalPrice = data.reduce((sum, sale) => sum + sale.totalPrice, 0);
   }
 }
