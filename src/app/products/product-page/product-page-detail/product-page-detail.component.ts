@@ -6,7 +6,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 // @ts-ignore
 import { DocumentSnapshot } from 'firebase/compat/firestore';
-import { firestore } from 'firebase-admin';
 import { Timestamp } from 'firebase/firestore';
 
 @Component({
@@ -77,7 +76,7 @@ export class ProductPageDetailComponent implements OnInit {
     this.productService.getComments(productId).subscribe((comments) => {
       this.comments = comments.map((comment) => ({
         ...comment,
-        timestamp: (comment.timestamp as Timestamp).toDate(),
+        timestamp: (comment.date_created as Timestamp).toDate(),
       }));
       this.calculateAverageRating();
     });
@@ -110,7 +109,7 @@ export class ProductPageDetailComponent implements OnInit {
       userName: this.userName,
       comment: this.commentForm.value.comment,
       rating: this.commentForm.value.rating,
-      timestamp: new Date(),
+      date_created: new Date(),
     };
 
     this.productService.addComment(productId, comment).then(() => {

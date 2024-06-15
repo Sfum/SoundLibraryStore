@@ -57,6 +57,7 @@ import { BrandDetailComponent } from './brands/brand-detail/brand-detail.compone
 import { GenreDetailComponent } from './genres/genre-detail/genre-detail.component';
 import { MatCard } from '@angular/material/card';
 import {
+  MatError,
   MatFormField,
   MatLabel,
   MatSuffix,
@@ -262,6 +263,7 @@ import {
     MatCheckbox,
     MatButtonToggleGroup,
     MatButtonToggle,
+    MatError,
   ],
   providers: [
     provideAnimationsAsync(),

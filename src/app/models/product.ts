@@ -1,10 +1,10 @@
-import { firestore } from 'firebase-admin';
+import { Timestamp } from 'firebase/firestore';
 
 export interface ProductComment {
   userId: string;
   userName: string;
   comment: string;
-  timestamp: firestore.Timestamp | Date;
+  date_created?: Timestamp | Date;
   rating: number;
 }
 
@@ -23,7 +23,7 @@ export interface Product {
   discountPercentage?: number;
   salePrice?: number;
   onSale: boolean;
-  date_created?: Date;
+  date_created?: Timestamp | Date;
   uploaderId: string;
   comments?: ProductComment[];
 }
