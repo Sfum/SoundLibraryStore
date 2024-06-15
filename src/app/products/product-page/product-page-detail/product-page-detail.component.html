@@ -24,7 +24,8 @@
           </button>
           <button mat-raised-button (click)="addToCart(product)"
                   class="pi pi-shopping-cart margin__top--md margin__left--sm button-primary">
-            ${{ product.price }} </button>
+            ${{ product.price }}
+          </button>
         </div>
         <hr class="product-card__line">
       </div>
@@ -32,28 +33,28 @@
     <hr class="product__page--badge margin-line opacity--xlg margin__bottom--md margin__top--md">
     <div>
       <div class="margin-primary margin__bottom--md">
-        <div *ngIf="relatedProducts.length > 0">
+        <div *ngIf="relatedProductsByGenre.length > 0">
           <h3 class="font-primary margin__top--md">More from this genre:</h3>
           <div class="related-products">
-            <a *ngFor="let relatedProduct of relatedProducts" class="related-product">
+            <a *ngFor="let relatedProduct of relatedProductsByGenre" class="related-product">
               <img [src]="relatedProduct.product_image" alt="Product Image" width="150px">
             </a>
           </div>
         </div>
-        <div *ngIf="relatedProducts.length === 0">
+        <div *ngIf="relatedProductsByGenre.length === 0">
           <p>No related products found.</p>
         </div>
       </div>
       <div class="margin-primary">
-        <div *ngIf="relatedProductBrands.length > 0">
+        <div *ngIf="relatedProductsByBrand.length > 0">
           <h3 class="font-primary">More from this brand:</h3>
           <div class="related-products">
-            <div *ngFor="let relatedProduct of relatedProductBrands" class="related-product">
+            <div *ngFor="let relatedProduct of relatedProductsByBrand" class="related-product">
               <img [src]="relatedProduct.product_image" alt="Product Image" width="150px">
             </div>
           </div>
         </div>
-        <div *ngIf="relatedProductBrands.length === 0">
+        <div *ngIf="relatedProductsByBrand.length === 0">
           <p>No related brands found.</p>
         </div>
       </div>
@@ -61,6 +62,7 @@
   </div>
   <hr class="margin-line opacity--md margin__top--md">
 
+  <!-- Comments Section -->
   <div class="comments-section margin__left--lg margin__right--lg margin__bottom--lg">
     <div *ngIf="product">
       <form [formGroup]="commentForm" class="margin__top--md" (ngSubmit)="addComment(product.id.toString())">
@@ -79,6 +81,19 @@
         <button mat-raised-button class="button-primary margin__top--md margin__bottom--md" type="submit">Submit
         </button>
       </form>
+    </div>
+
+    <!-- Average Rating Section -->
+    <div class="average-rating margin__left--lg margin__right--lg" *ngIf="comments.length > 0">
+      <h4>Average Rating</h4>
+      <div class="stars">
+        <mat-icon class="star" [ngClass]="{'filled': averageRating >= 1}">star</mat-icon>
+        <mat-icon class="star" [ngClass]="{'filled': averageRating >= 2}">star</mat-icon>
+        <mat-icon class="star" [ngClass]="{'filled': averageRating >= 3}">star</mat-icon>
+        <mat-icon class="star" [ngClass]="{'filled': averageRating >= 4}">star</mat-icon>
+        <mat-icon class="star" [ngClass]="{'filled': averageRating >= 5}">star</mat-icon>
+      </div>
+      <p class="rating-value">{{ averageRating.toFixed(1) }}</p>
     </div>
 
     <div *ngIf="comments.length > 0; else noComments">

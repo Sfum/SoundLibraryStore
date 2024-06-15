@@ -125,7 +125,7 @@ export class ProductCardComponent implements OnInit {
       const dateA = this.getDate(a.date_created);
       const dateB = this.getDate(b.date_created);
 
-      if (order === 'desc') {
+      if (order === 'asc') {
         return dateB.getTime() - dateA.getTime();
       } else {
         return dateA.getTime() - dateB.getTime();

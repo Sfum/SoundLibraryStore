@@ -14,10 +14,11 @@ import { Timestamp } from 'firebase/firestore';
   styleUrls: ['./product-page-detail.component.sass'],
 })
 export class ProductPageDetailComponent implements OnInit {
-  product!: Product | undefined;
-  relatedProducts: Product[] = [];
-  relatedProductBrands: Product[] = [];
+  relatedProductsByGenre: Product[] = [];
+  relatedProductsByBrand: Product[] = [];
   comments: ProductComment[] = [];
+
+  product!: Product | undefined;
   commentForm!: FormGroup;
   userId!: string;
   userName!: string;
@@ -36,13 +37,16 @@ export class ProductPageDetailComponent implements OnInit {
   ngOnInit(): void {
     const productId = this.route.snapshot.params['id'];
     if (productId) {
+      // Load product details and related products
       this.productService
         .getProductSnapShot(productId)
         .subscribe((snapshot: DocumentSnapshot<any>) => {
           const productData = snapshot.data();
           if (productData) {
             this.product = { id: snapshot.id, ...productData } as Product;
-            this.fetchRelatedProducts();
+            this.fetchRelatedProductsByGenre();
+            this.fetchRelatedProductsByBrand();
+            this.loadComments(productId); // Load comments after product data is loaded
           }
         });
     }
@@ -60,12 +64,23 @@ export class ProductPageDetailComponent implements OnInit {
     this.loadComments(productId);
   }
 
-  private fetchRelatedProducts(): void {
+  fetchRelatedProductsByGenre(): void {
     if (this.product) {
       this.productService
         .getProductsByGenre(this.product.genreId)
         .subscribe((products) => {
-          this.relatedProducts = products.filter(
+          this.relatedProductsByGenre = products.filter(
+            (p) => p.id !== this.product?.id,
+          );
+        });
+    }
+  }
+  fetchRelatedProductsByBrand(): void {
+    if (this.product) {
+      this.productService
+        .getProductsByBrand(this.product.brandId)
+        .subscribe((products) => {
+          this.relatedProductsByBrand = products.filter(
             (p) => p.id !== this.product?.id,
           );
         });
@@ -74,10 +89,18 @@ export class ProductPageDetailComponent implements OnInit {
 
   loadComments(productId: string) {
     this.productService.getComments(productId).subscribe((comments) => {
-      this.comments = comments.map((comment) => ({
-        ...comment,
-        timestamp: (comment.date_created as Timestamp).toDate(),
-      }));
+      this.comments = comments.map((comment) => {
+        // Check if date_created is an instance of Timestamp before converting
+        const timestamp =
+          comment.date_created instanceof Timestamp
+            ? comment.date_created.toDate()
+            : comment.date_created;
+
+        return {
+          ...comment,
+          timestamp: timestamp,
+        };
+      });
       this.calculateAverageRating();
     });
   }
