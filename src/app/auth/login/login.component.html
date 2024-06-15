@@ -5,7 +5,11 @@
           class="margin__left--md margin__top--sm margin__bottom--md margin__right--md">
       <div>
         <label class="font-secondary" for="email">Email:</label>
-        <input matInput type="email" id="email" name="email" [(ngModel)]="email" required>
+        <input matInput type="email" id="email" name="email" [(ngModel)]="email" required email #emailField="ngModel">
+        <mat-error *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)">
+          <span *ngIf="emailField.errors?.['required']">Email is required.</span>
+          <span *ngIf="emailField.errors?.['email']">Please enter a valid email.</span>
+        </mat-error>
       </div>
       <div>
         <label for="password" class="margin__top--sm font-secondary">Password:</label>

@@ -5,6 +5,7 @@ import { ProductService } from '../../services/product.service';
 import { WishlistService } from '../../services/wishlist.service';
 import { CartService } from '../../services/cart.service';
 import { map, switchMap } from 'rxjs/operators';
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-product-card',
@@ -118,5 +119,27 @@ export class ProductCardComponent implements OnInit {
 
   onAddToCart(product: any) {
     this.cartService.addToCart(product);
+  }
+  sortByNewArrival(order: 'asc' | 'desc'): void {
+    this.paginatedProducts.sort((a, b) => {
+      const dateA = this.getDate(a.date_created);
+      const dateB = this.getDate(b.date_created);
+
+      if (order === 'desc') {
+        return dateB.getTime() - dateA.getTime();
+      } else {
+        return dateA.getTime() - dateB.getTime();
+      }
+    });
+  }
+
+  private getDate(date?: Timestamp | Date): Date {
+    if (date instanceof Timestamp) {
+      return date.toDate();
+    } else if (date instanceof Date) {
+      return date;
+    } else {
+      return new Date(0); // Fallback to epoch if date is undefined
+    }
   }
 }
