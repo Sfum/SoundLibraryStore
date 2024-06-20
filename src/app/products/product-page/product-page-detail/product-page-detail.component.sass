@@ -24,11 +24,11 @@
   display: grid
   grid-template-columns: 0.25fr 0.25fr 0.25fr 0.25fr
   &--table-one
-   grid-column: 1/2
-   height: 40px
-   display: flex
-   flex-direction: row
-   align-content: baseline
+    grid-column: 1/2
+    height: 40px
+    display: flex
+    flex-direction: row
+    align-content: baseline
   &--table-two
     grid-column: 2/3
     height: 40px
@@ -47,7 +47,41 @@
     display: flex
     flex-direction: row
     align-content: baseline
+div
 
+  img
+    max-width: 100%
+    height: auto
+
+  p
+    font-size: 16px
+form
+  display: flex
+  flex-direction: column
+
+.star
+  color: lightgray
+  cursor: pointer
+
+  &.filled
+    color: gold
+
+
+
+.average-rating
+  display: flex
+  align-items: center
+
+  .star
+    margin-right: 2px
+
+
+.rating
+  display: flex
+  align-items: center
+
+  .star
+    margin-right: 2px
 
 @media only screen and (max-width: 1200px)
   .product__page--badge
