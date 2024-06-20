@@ -4,7 +4,7 @@ export interface ProductComment {
   userId: string;
   userName: string;
   comment: string;
-  date_created?: Timestamp | Date;
+  date_created: Timestamp | Date | string;
   rating: number;
 }
 

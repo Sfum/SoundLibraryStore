@@ -95,15 +95,16 @@
     </div>
 
     <div *ngIf="paginatedComments.length > 0; else noComments">
-      <div *ngFor="let comment of paginatedComments" class="comment margin__bottom--sm">
-        <p><strong>{{ comment.userName }}:</strong></p>
+      <mat-card *ngFor="let comment of paginatedComments" class="comment padding-lg margin__bottom--sm">
+        <div><strong>{{ comment.userName }}:</strong></div>
+        <div class="font-small margin__bottom--md">{{comment.date_created}}</div>
         <p>{{ comment.comment }}</p>
         <div class="stars">
           <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
             <mat-icon class="star" [ngClass]="{'filled': i < comment.rating}">star</mat-icon>
           </ng-container>
         </div>
-      </div>
+      </mat-card>
       <mat-paginator [length]="comments.length" [pageSize]="pageSize" (page)="onPageChange($event)">
       </mat-paginator>
     </div>

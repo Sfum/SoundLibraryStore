@@ -99,9 +99,12 @@ export class ProductPageDetailComponent implements OnInit {
             ? comment.date_created.toDate()
             : comment.date_created;
 
+        // Format the date as needed
+        const formattedDate = timestamp.toLocaleString();
+
         return {
           ...comment,
-          timestamp: timestamp,
+          date_created: formattedDate,
         };
       });
       this.calculateAverageRating();
