@@ -18,11 +18,12 @@ export class ProductPageDetailComponent implements OnInit {
   relatedProductsByBrand: Product[] = [];
   comments: ProductComment[] = [];
   paginatedComments: ProductComment[] = [];
+
   pageSize: number = 5; // Number of comments per page
   currentPage: number = 0; // Current page index
 
-  product!: Product | undefined;
   commentForm!: FormGroup;
+  product!: Product | undefined;
   userId!: string;
   userName!: string;
   averageRating: number = 0;
@@ -39,8 +40,8 @@ export class ProductPageDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const productId = this.route.snapshot.params['id'];
+
     if (productId) {
-      // Load product details and related products
       this.productService
         .getProductSnapShot(productId)
         .subscribe((snapshot: DocumentSnapshot<any>) => {
@@ -49,22 +50,14 @@ export class ProductPageDetailComponent implements OnInit {
             this.product = { id: snapshot.id, ...productData } as Product;
             this.fetchRelatedProductsByGenre();
             this.fetchRelatedProductsByBrand();
-            this.loadComments(productId); // Load comments after product data is loaded
           }
         });
     }
-
-    this.commentForm = this.fb.group({
-      comment: ['', Validators.required],
-      rating: [5, Validators.required], // Default rating to 5 stars
-    });
 
     this.authService.user$.subscribe((user) => {
       this.userId = user?.uid ?? '';
       this.userName = user?.displayName ?? 'Anonymous';
     });
-
-    this.loadComments(productId);
   }
 
   fetchRelatedProductsByGenre(): void {
@@ -88,77 +81,6 @@ export class ProductPageDetailComponent implements OnInit {
           );
         });
     }
-  }
-
-  loadComments(productId: string) {
-    this.productService.getComments(productId).subscribe((comments) => {
-      this.comments = comments.map((comment) => {
-        // Check if date_created is an instance of Timestamp before converting
-        const timestamp =
-          comment.date_created instanceof Timestamp
-            ? comment.date_created.toDate()
-            : comment.date_created;
-
-        // Format the date as needed
-        const formattedDate = timestamp.toLocaleString();
-
-        return {
-          ...comment,
-          date_created: formattedDate,
-        };
-      });
-      this.calculateAverageRating();
-      this.updatePaginatedComments();
-    });
-  }
-
-  calculateAverageRating() {
-    if (this.comments.length === 0) {
-      this.averageRating = 0;
-      return;
-    }
-
-    const totalRating = this.comments.reduce(
-      (acc, comment) => acc + comment.rating,
-      0,
-    );
-    this.averageRating = totalRating / this.comments.length;
-  }
-
-  setRating(rating: number) {
-    this.commentForm.patchValue({ rating });
-  }
-
-  addComment(productId: string) {
-    if (this.commentForm.invalid) {
-      return;
-    }
-
-    const comment: ProductComment = {
-      userId: this.userId,
-      userName: this.userName,
-      comment: this.commentForm.value.comment,
-      rating: this.commentForm.value.rating,
-      date_created: new Date(),
-    };
-
-    this.productService.addComment(productId, comment).then(() => {
-      this.commentForm.reset();
-      this.loadComments(productId);
-    });
-  }
-
-  updatePaginatedComments() {
-    const startIndex = this.currentPage * this.pageSize;
-    this.paginatedComments = this.comments.slice(
-      startIndex,
-      startIndex + this.pageSize,
-    );
-  }
-
-  onPageChange(event: any) {
-    this.currentPage = event.pageIndex;
-    this.updatePaginatedComments();
   }
 
   addToWishlist(product: Product) {
