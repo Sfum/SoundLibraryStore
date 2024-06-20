@@ -17,6 +17,9 @@ export class ProductPageDetailComponent implements OnInit {
   relatedProductsByGenre: Product[] = [];
   relatedProductsByBrand: Product[] = [];
   comments: ProductComment[] = [];
+  paginatedComments: ProductComment[] = [];
+  pageSize: number = 5; // Number of comments per page
+  currentPage: number = 0; // Current page index
 
   product!: Product | undefined;
   commentForm!: FormGroup;
@@ -102,6 +105,7 @@ export class ProductPageDetailComponent implements OnInit {
         };
       });
       this.calculateAverageRating();
+      this.updatePaginatedComments();
     });
   }
 
@@ -137,7 +141,21 @@ export class ProductPageDetailComponent implements OnInit {
 
     this.productService.addComment(productId, comment).then(() => {
       this.commentForm.reset();
+      this.loadComments(productId);
     });
+  }
+
+  updatePaginatedComments() {
+    const startIndex = this.currentPage * this.pageSize;
+    this.paginatedComments = this.comments.slice(
+      startIndex,
+      startIndex + this.pageSize,
+    );
+  }
+
+  onPageChange(event: any) {
+    this.currentPage = event.pageIndex;
+    this.updatePaginatedComments();
   }
 
   addToWishlist(product: Product) {

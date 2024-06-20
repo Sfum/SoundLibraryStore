@@ -94,10 +94,8 @@
       </form>
     </div>
 
-
-
-    <div *ngIf="comments.length > 0; else noComments">
-      <div *ngFor="let comment of comments" class="comment margin__bottom--sm">
+    <div *ngIf="paginatedComments.length > 0; else noComments">
+      <div *ngFor="let comment of paginatedComments" class="comment margin__bottom--sm">
         <p><strong>{{ comment.userName }}:</strong></p>
         <p>{{ comment.comment }}</p>
         <div class="stars">
@@ -106,6 +104,8 @@
           </ng-container>
         </div>
       </div>
+      <mat-paginator [length]="comments.length" [pageSize]="pageSize" (page)="onPageChange($event)">
+      </mat-paginator>
     </div>
     <ng-template #noComments>
       <p>No comments yet. Be the first to comment!</p>
