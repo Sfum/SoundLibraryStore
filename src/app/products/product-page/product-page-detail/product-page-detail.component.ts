@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Product, ProductComment } from '../../../models/product';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
@@ -35,6 +35,7 @@ export class ProductPageDetailComponent implements OnInit {
     private productService: ProductService,
     private authService: AuthService,
     private fb: FormBuilder,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -167,5 +168,11 @@ export class ProductPageDetailComponent implements OnInit {
 
   addToCart(product: Product) {
     this.addCartEvent.emit(product);
+  }
+
+  navigateToProduct(productId: number): void {
+    this.router.navigateByUrl(`/products/${productId}`).then(() => {
+      window.location.reload();
+    });
   }
 }

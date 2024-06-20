@@ -6,10 +6,9 @@
         <img class="product-card__image margin__top--md" [src]="product.product_image" width="300px" height="300px" alt="">
       </div>
       <div class="product-card__right margin__left--md">
-        <span class="title-main margin__top--lg opacity--sm">{{ product.product_name }}...</span>
-        <hr class="product-card__line opacity--lg">
+        <span class="title-large margin__top--lg opacity--sm">{{ product.product_name }}</span>
         <!-- Average Rating Section -->
-        <div class="container__stars margin__bottom--sm" *ngIf="comments.length > 0">
+        <div class="container__stars margin__top--xsm margin__bottom--sm" *ngIf="comments.length > 0">
           <div class="stars">
             <mat-icon class="star" [ngClass]="{'filled': averageRating >= 1}">star</mat-icon>
             <mat-icon class="star" [ngClass]="{'filled': averageRating >= 2}">star</mat-icon>
@@ -47,8 +46,8 @@
         <div *ngIf="relatedProductsByGenre.length > 0">
           <h3 class="font-primary margin__top--md">More from this genre:</h3>
           <div class="related-products">
-            <a *ngFor="let relatedProduct of relatedProductsByGenre" class="related-product">
-              <img [src]="relatedProduct.product_image" alt="Product Image" width="150px">
+            <a *ngFor="let relatedProduct of relatedProductsByGenre" (click)="navigateToProduct(relatedProduct.id)" class="related-product">
+              <img [src]="relatedProduct.product_image"  alt="Product Image" width="150px">
             </a>
           </div>
         </div>
@@ -60,7 +59,7 @@
         <div *ngIf="relatedProductsByBrand.length > 0">
           <h3 class="font-primary">More from this brand:</h3>
           <div class="related-products">
-            <div *ngFor="let relatedProduct of relatedProductsByBrand" class="related-product">
+            <div *ngFor="let relatedProduct of relatedProductsByBrand" (click)="navigateToProduct(relatedProduct.id)" class="related-product">
               <img [src]="relatedProduct.product_image" alt="Product Image" width="150px">
             </div>
           </div>
