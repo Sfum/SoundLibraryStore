@@ -3,11 +3,22 @@
   <div class="margin__top--sm margin__right--lg margin__left--lg">
     <div class="product-card-bottom__wrapper">
       <div class="product-card__left">
-        <img class="product-card__image" [src]="product.product_image" width="300px" height="300px" alt="">
+        <img class="product-card__image margin__top--md" [src]="product.product_image" width="300px" height="300px" alt="">
       </div>
       <div class="product-card__right margin__left--md">
-        <span class="title-main margin__top--sm opacity--sm">{{ product.product_name }}...</span>
+        <span class="title-main margin__top--lg opacity--sm">{{ product.product_name }}...</span>
         <hr class="product-card__line opacity--lg">
+        <!-- Average Rating Section -->
+        <div class="container__stars margin__bottom--sm" *ngIf="comments.length > 0">
+          <div class="stars">
+            <mat-icon class="star" [ngClass]="{'filled': averageRating >= 1}">star</mat-icon>
+            <mat-icon class="star" [ngClass]="{'filled': averageRating >= 2}">star</mat-icon>
+            <mat-icon class="star" [ngClass]="{'filled': averageRating >= 3}">star</mat-icon>
+            <mat-icon class="star" [ngClass]="{'filled': averageRating >= 4}">star</mat-icon>
+            <mat-icon class="star" [ngClass]="{'filled': averageRating >= 5}">star</mat-icon>
+          </div>
+          <p class="rating-value margin__left--sm">{{ averageRating.toFixed(1) }}</p>
+        </div>
         <span class="text-primary opacity--lg">{{ product.product_title }}...</span>
         <hr class="product-card__line opacity--lg">
         <span class="text-secondary opacity--xlg">{{ product.product_description }}</span>
@@ -83,18 +94,7 @@
       </form>
     </div>
 
-    <!-- Average Rating Section -->
-    <div class="average-rating margin__left--lg margin__right--lg" *ngIf="comments.length > 0">
-      <h4>Average Rating</h4>
-      <div class="stars">
-        <mat-icon class="star" [ngClass]="{'filled': averageRating >= 1}">star</mat-icon>
-        <mat-icon class="star" [ngClass]="{'filled': averageRating >= 2}">star</mat-icon>
-        <mat-icon class="star" [ngClass]="{'filled': averageRating >= 3}">star</mat-icon>
-        <mat-icon class="star" [ngClass]="{'filled': averageRating >= 4}">star</mat-icon>
-        <mat-icon class="star" [ngClass]="{'filled': averageRating >= 5}">star</mat-icon>
-      </div>
-      <p class="rating-value">{{ averageRating.toFixed(1) }}</p>
-    </div>
+
 
     <div *ngIf="comments.length > 0; else noComments">
       <div *ngFor="let comment of comments" class="comment margin__bottom--sm">
