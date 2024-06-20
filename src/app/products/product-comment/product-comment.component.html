@@ -1,0 +1,38 @@
+
+<!-- Comments Section -->
+<div class="comments-section margin__left--lg margin__right--lg margin__bottom--lg">
+  <div *ngIf="product">
+    <form [formGroup]="commentForm" class="margin__top--md" (ngSubmit)="addComment(product.id.toString())">
+      <div class="rating">
+        <label class="margin__bottom--sm margin__right--sm">Your Rating</label>
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+          <mat-icon class="star margin__bottom--sm" [ngClass]="{'filled': i < commentForm.get('rating')?.value}"
+                    (click)="setRating(i + 1)">star
+          </mat-icon>
+        </ng-container>
+      </div>
+      <div>
+        <label for="comment" class="margin__right--md">Comment</label>
+        <input matInput id="comment" formControlName="comment">
+      </div>
+      <button mat-raised-button class="button-primary margin__top--md margin__bottom--md" type="submit">Submit
+      </button>
+    </form>
+  </div>
+
+
+  <div *ngIf="comments.length > 0; else noComments">
+    <div *ngFor="let comment of comments" class="comment margin__bottom--sm">
+      <p><strong>{{ comment.userName }}: {{comment.date_created}}</strong></p>
+      <p>{{ comment.comment }} </p>
+      <div class="stars">
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+          <mat-icon class="star" [ngClass]="{'filled': i < comment.rating}">star</mat-icon>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <ng-template #noComments>
+    <p>No comments yet. Be the first to comment!</p>
+  </ng-template>
+</div>

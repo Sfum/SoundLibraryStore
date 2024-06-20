@@ -2,12 +2,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Product, ProductComment } from '../../../models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../services/auth.service';
+
 // @ts-ignore
 import { DocumentSnapshot } from 'firebase/compat/firestore';
-import { Timestamp } from 'firebase/firestore';
-
 @Component({
   selector: 'app-product-page-detail',
   templateUrl: './product-page-detail.component.html',
@@ -16,13 +13,8 @@ import { Timestamp } from 'firebase/firestore';
 export class ProductPageDetailComponent implements OnInit {
   relatedProductsByGenre: Product[] = [];
   relatedProductsByBrand: Product[] = [];
-  comments: ProductComment[] = [];
-
   product!: Product | undefined;
-  commentForm!: FormGroup;
   userId!: string;
-  userName!: string;
-  averageRating: number = 0;
 
   @Output() addWishlistEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() addCartEvent: EventEmitter<any> = new EventEmitter<any>();
@@ -30,8 +22,6 @@ export class ProductPageDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private authService: AuthService,
-    private fb: FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -46,22 +36,9 @@ export class ProductPageDetailComponent implements OnInit {
             this.product = { id: snapshot.id, ...productData } as Product;
             this.fetchRelatedProductsByGenre();
             this.fetchRelatedProductsByBrand();
-            this.loadComments(productId); // Load comments after product data is loaded
           }
         });
     }
-
-    this.commentForm = this.fb.group({
-      comment: ['', Validators.required],
-      rating: [5, Validators.required], // Default rating to 5 stars
-    });
-
-    this.authService.user$.subscribe((user) => {
-      this.userId = user?.uid ?? '';
-      this.userName = user?.displayName ?? 'Anonymous';
-    });
-
-    this.loadComments(productId);
   }
 
   fetchRelatedProductsByGenre(): void {
@@ -85,59 +62,6 @@ export class ProductPageDetailComponent implements OnInit {
           );
         });
     }
-  }
-
-  loadComments(productId: string) {
-    this.productService.getComments(productId).subscribe((comments) => {
-      this.comments = comments.map((comment) => {
-        // Check if date_created is an instance of Timestamp before converting
-        const timestamp =
-          comment.date_created instanceof Timestamp
-            ? comment.date_created.toDate()
-            : comment.date_created;
-
-        return {
-          ...comment,
-          timestamp: timestamp,
-        };
-      });
-      this.calculateAverageRating();
-    });
-  }
-
-  calculateAverageRating() {
-    if (this.comments.length === 0) {
-      this.averageRating = 0;
-      return;
-    }
-
-    const totalRating = this.comments.reduce(
-      (acc, comment) => acc + comment.rating,
-      0,
-    );
-    this.averageRating = totalRating / this.comments.length;
-  }
-
-  setRating(rating: number) {
-    this.commentForm.patchValue({ rating });
-  }
-
-  addComment(productId: string) {
-    if (this.commentForm.invalid) {
-      return;
-    }
-
-    const comment: ProductComment = {
-      userId: this.userId,
-      userName: this.userName,
-      comment: this.commentForm.value.comment,
-      rating: this.commentForm.value.rating,
-      date_created: new Date(),
-    };
-
-    this.productService.addComment(productId, comment).then(() => {
-      this.commentForm.reset();
-    });
   }
 
   addToWishlist(product: Product) {

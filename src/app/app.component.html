@@ -3,9 +3,11 @@
     <app-logo-bar (click)="drawer.toggle(false)"></app-logo-bar>
   </mat-drawer>
   <div>
-    <div class="container">
+    <div>
       <app-navigation-bar (click)="drawer.toggle(false)"></app-navigation-bar>
+      <div class="container">
       <router-outlet (click)="drawer.toggle(false)"></router-outlet>
+      </div>
     </div>
   </div>
 </mat-drawer-container>
