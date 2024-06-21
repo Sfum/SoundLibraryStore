@@ -3,30 +3,30 @@
   <div class="margin__top--sm margin__right--lg margin__left--lg">
     <div class="product-card-bottom__wrapper">
       <div class="product-card__left">
-        <img class="product-card__image margin__top--md" [src]="product.product_image" width="300px" height="300px" alt="">
+        <img class="margin__top--md" [src]="product.product_image" width="300px" height="300px" alt="">
       </div>
       <div class="product-card__right margin__left--md">
         <span class="title-large margin__top--lg opacity--sm">{{ product.product_name }}</span>
         <!-- Average Rating Section -->
         <div class="container__stars margin__top--xsm margin__bottom--sm" *ngIf="comments.length > 0">
-          <div class="stars">
+          <div>
             <mat-icon class="star" [ngClass]="{'filled': averageRating >= 1}">star</mat-icon>
             <mat-icon class="star" [ngClass]="{'filled': averageRating >= 2}">star</mat-icon>
             <mat-icon class="star" [ngClass]="{'filled': averageRating >= 3}">star</mat-icon>
             <mat-icon class="star" [ngClass]="{'filled': averageRating >= 4}">star</mat-icon>
             <mat-icon class="star" [ngClass]="{'filled': averageRating >= 5}">star</mat-icon>
           </div>
-          <p class="rating-value margin__left--sm">{{ averageRating.toFixed(1) }}</p>
+          <p class="margin__left--sm">{{ averageRating.toFixed(1) }}</p>
         </div>
         <span class="text-primary opacity--lg">{{ product.product_title }}...</span>
-        <hr class="product-card__line opacity--lg">
+        <hr class="opacity--lg">
         <span class="text-secondary opacity--xlg">{{ product.product_description }}</span>
-        <hr class="product-card__line">
-        <div class="icon__list">
-          <mat-icon class="icon opacity--lg">shopping_cart</mat-icon>
-          <mat-icon class="icon opacity--lg">favorite</mat-icon>
-          <mat-icon class="icon opacity--lg">list</mat-icon>
-          <mat-icon class="icon opacity--lg">phone</mat-icon>
+        <hr>
+        <div>
+          <mat-icon class="opacity--lg">shopping_cart</mat-icon>
+          <mat-icon class="opacity--lg">favorite</mat-icon>
+          <mat-icon class="opacity--lg">list</mat-icon>
+          <mat-icon class="opacity--lg">phone</mat-icon>
         </div>
         <div class="button-group">
           <button mat-raised-button (click)="addToWishlist(product)"
@@ -37,8 +37,50 @@
             ${{ product.price }}
           </button>
         </div>
-        <hr class="product-card__line">
+        <hr>
       </div>
+    </div>
+    <hr class="margin-line opacity--xlg margin__bottom--md margin__top--md">
+    <div class="wrapper-banner">
+    <div class="container-banner opacity--md">
+      <div class="container-banner--table-one">
+        <div class="pi pi-download margin__auto align__items">
+          <div class="font-sm margin__left--xsm">Unlimited Usage
+          </div>
+        </div>
+        <div class="margin__auto">
+          100% Royalty Free
+        </div>
+
+      </div>
+      <div class="container-banner--table-two margin__left--md">
+        <div class="pi pi-history margin__auto align__items">
+          <div class="font-sm margin__left--xsm">24/7 Support
+          </div>
+        </div>
+        <div class="margin__auto">
+          0 800 3948 5922
+        </div>
+      </div>
+      <div class="container-banner--table-three">
+        <div class="pi pi-directions-alt margin__auto align__items">
+          <div class="font-sm margin__left--xsm">Product Returns
+          </div>
+        </div>
+        <div class="margin__auto">
+          File a return
+        </div>
+      </div>
+      <div class="container-banner--table-four">
+        <div class="pi pi-bolt margin__auto align__items">
+          <div class="font-sm margin__left--xsm">Fast Download
+          </div>
+        </div>
+        <div class="margin__auto">
+          up to 128MB/s
+        </div>
+      </div>
+    </div>
     </div>
     <hr class="product__page--badge margin-line opacity--xlg margin__bottom--md margin__top--md">
     <div>
@@ -50,9 +92,6 @@
               <img [src]="relatedProduct.product_image"  alt="Product Image" width="150px">
             </a>
           </div>
-        </div>
-        <div *ngIf="relatedProductsByGenre.length === 0">
-          <p>No related products found.</p>
         </div>
       </div>
       <div class="margin-primary">
@@ -70,9 +109,7 @@
       </div>
     </div>
   </div>
-  <hr class="margin-line opacity--md margin__top--md">
-
-  <!-- Comments Section -->
+  <hr class="product__page--badge margin-line opacity--xlg margin__bottom--md margin__top--md">
   <div class="comments-section margin__left--lg margin__right--lg margin__bottom--lg">
     <div *ngIf="product">
       <form [formGroup]="commentForm" class="margin__top--md" (ngSubmit)="addComment(product.id.toString())">
