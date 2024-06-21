@@ -1,15 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product, ProductComment } from '../../models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { AuthService } from '../../services/auth.service';
 import { Timestamp } from 'firebase/firestore';
+// @ts-ignore
+import { DocumentSnapshot } from 'firebase/compat/firestore';
 
 @Component({
   selector: 'app-product-comment',
@@ -18,11 +15,16 @@ import { Timestamp } from 'firebase/firestore';
 })
 export class ProductCommentComponent implements OnInit {
   comments: ProductComment[] = [];
+  paginatedComments: ProductComment[] = [];
 
-  product!: Product | undefined;
+  pageSize: number = 5; // Number of comments per page
+  currentPage: number = 0; // Current page index
+
   commentForm!: FormGroup;
+  product!: Product | undefined;
   userId!: string;
   userName!: string;
+  averageRating: number = 0;
 
   @Output() addWishlistEvent: EventEmitter<any> = new EventEmitter<any>();
   @Output() addCartEvent: EventEmitter<any> = new EventEmitter<any>();
@@ -38,6 +40,15 @@ export class ProductCommentComponent implements OnInit {
     const productId = this.route.snapshot.params['id'];
     if (productId) {
       // Load product details and related products
+      this.productService
+        .getProductSnapShot(productId)
+        .subscribe((snapshot: DocumentSnapshot<any>) => {
+          const productData = snapshot.data();
+          if (productData) {
+            this.product = { id: snapshot.id, ...productData } as Product;
+            this.loadComments(productId);
+          }
+        });
 
       this.commentForm = this.fb.group({
         comment: ['', Validators.required],
@@ -52,13 +63,6 @@ export class ProductCommentComponent implements OnInit {
       this.loadComments(productId);
     }
   }
-  formatDate(date: Date): string {
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-    const year = date.getFullYear();
-    return `${month}/${day}/${year}`;
-  }
-
   loadComments(productId: string) {
     this.productService.getComments(productId).subscribe((comments) => {
       this.comments = comments.map((comment) => {
@@ -68,12 +72,30 @@ export class ProductCommentComponent implements OnInit {
             ? comment.date_created.toDate()
             : comment.date_created;
 
+        // Format the date as needed
+        const formattedDate = timestamp.toLocaleString();
+
         return {
           ...comment,
-          date_created: timestamp,
+          date_created: formattedDate,
         };
       });
+      this.calculateAverageRating();
+      this.updatePaginatedComments();
     });
+  }
+
+  calculateAverageRating() {
+    if (this.comments.length === 0) {
+      this.averageRating = 0;
+      return;
+    }
+
+    const totalRating = this.comments.reduce(
+      (acc, comment) => acc + comment.rating,
+      0,
+    );
+    this.averageRating = totalRating / this.comments.length;
   }
 
   setRating(rating: number) {
@@ -95,6 +117,20 @@ export class ProductCommentComponent implements OnInit {
 
     this.productService.addComment(productId, comment).then(() => {
       this.commentForm.reset();
+      this.loadComments(productId);
     });
+  }
+
+  updatePaginatedComments() {
+    const startIndex = this.currentPage * this.pageSize;
+    this.paginatedComments = this.comments.slice(
+      startIndex,
+      startIndex + this.pageSize,
+    );
+  }
+
+  onPageChange(event: any) {
+    this.currentPage = event.pageIndex;
+    this.updatePaginatedComments();
   }
 }
