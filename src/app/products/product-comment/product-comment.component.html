@@ -1,4 +1,3 @@
-
 <!-- Comments Section -->
 <div class="comments-section margin__left--lg margin__right--lg margin__bottom--lg">
   <div *ngIf="product">
@@ -20,19 +19,22 @@
     </form>
   </div>
 
-
-  <div *ngIf="comments.length > 0; else noComments">
-    <div *ngFor="let comment of comments" class="comment margin__bottom--sm">
-      <p><strong>{{ comment.userName }}: {{comment.date_created}}</strong></p>
-      <p>{{ comment.comment }} </p>
+  <div *ngIf="paginatedComments.length > 0; else noComments">
+    <mat-card *ngFor="let comment of paginatedComments" class="comment padding-lg margin__bottom--sm">
+      <div><strong>{{ comment.userName }}:</strong></div>
+      <div class="font-small margin__bottom--md">{{comment.date_created}}</div>
+      <p>{{ comment.comment }}</p>
       <div class="stars">
         <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
           <mat-icon class="star" [ngClass]="{'filled': i < comment.rating}">star</mat-icon>
         </ng-container>
       </div>
-    </div>
+    </mat-card>
+    <mat-paginator [length]="comments.length" [pageSize]="pageSize" (page)="onPageChange($event)">
+    </mat-paginator>
   </div>
   <ng-template #noComments>
     <p>No comments yet. Be the first to comment!</p>
   </ng-template>
 </div>
+
