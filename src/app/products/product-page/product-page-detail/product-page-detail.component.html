@@ -3,8 +3,9 @@
   <div class="margin__top--sm margin__right--lg margin__left--lg">
     <div class="product-card-bottom__wrapper">
       <div class="product-card__left">
-        <img class="margin__top--md" [src]="product.product_image" width="300px" height="300px" alt="">
+        <img class="margin__top--md product-image" [src]="product.product_image" alt="">
       </div>
+
       <div class="product-card__right margin__left--md">
         <span class="title-large margin__top--lg opacity--sm">{{ product.product_name }}</span>
         <!-- Average Rating Section -->
@@ -19,12 +20,9 @@
           <p class="margin__left--sm">{{ averageRating.toFixed(1) }}</p>
         </div>
         <span class="text-primary opacity--lg">{{ product.product_title }}...</span>
-        <hr class="opacity--sm">
         <span class="text-secondary opacity--xlg">{{ product.product_description }}</span>
         <hr>
         <div>
-          <mat-icon class="opacity--lg">shopping_cart</mat-icon>
-          <mat-icon class="opacity--lg">favorite</mat-icon>
           <mat-icon class="opacity--lg">list</mat-icon>
           <mat-icon class="opacity--lg">phone</mat-icon>
         </div>
@@ -41,6 +39,10 @@
     </div>
 
     <hr class="margin-line opacity--xlg margin__bottom--md margin__top--md">
+    <div *ngIf="product">
+      <app-product-ticket [productId]="product.product_name"></app-product-ticket>
+    </div>
+    <hr class="product__page--badge margin-line opacity--xlg margin__bottom--md margin__top--md">
 
     <div class="wrapper-banner opacity--sm">
       <div class="container-banner opacity--md">
@@ -68,14 +70,11 @@
           </div>
           <div class="margin__auto"> up to 128MB/s</div>
         </div>
-      </div>
-    </div>
-    <hr class="product__page--badge margin-line opacity--xlg margin__bottom--md margin__top--md">
 
-    <div *ngIf="product">
-      <app-product-ticket [productId]="product.product_name"></app-product-ticket>
+      </div>
+      <hr class="product__page--badge margin-line opacity--xlg margin__bottom--md margin__top--md">
+
     </div>
-    <hr class="product__page--badge margin-line opacity--xlg margin__bottom--md margin__top--md">
 
     <div>
       <div class="margin-primary margin__bottom--md">
@@ -144,5 +143,4 @@
     </div>
     <ng-template #noComments><p>No comments yet. Be the first to comment!</p></ng-template>
   </div>
-
 </mat-card>

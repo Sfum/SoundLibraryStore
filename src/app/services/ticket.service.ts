@@ -18,8 +18,8 @@ export class TicketService {
   }
 
   // Method to create a ticket
-  createTicket(ticket: Ticket): Promise<void> {
-    return this.ticketsCollection.add(ticket).then(() => {});
+  async createTicket(ticket: Ticket): Promise<void> {
+    await this.ticketsCollection.add(ticket);
   }
 
   // Method to fetch all tickets
