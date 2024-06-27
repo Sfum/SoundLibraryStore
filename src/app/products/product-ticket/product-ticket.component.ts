@@ -8,6 +8,7 @@ import { Ticket } from '../../models/ticket';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 import { Timestamp } from 'firebase/firestore';
+import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-product-ticket',
@@ -23,6 +24,7 @@ export class ProductTicketComponent implements OnInit {
     private fb: FormBuilder,
     private ticketService: TicketService,
     private authService: AuthService,
+    private snackbarService: SnackbarService,
   ) {
     this.ticketForm = this.fb.group({
       subject: ['', Validators.required],
@@ -53,11 +55,13 @@ export class ProductTicketComponent implements OnInit {
             .createTicket(ticket)
             .then(() => {
               this.ticketForm.reset();
-              // Optionally show a success message to the user
+              this.snackbarService.showSnackbar(
+                'Ticket created successfully! We will be in touch shortly!',
+              );
             })
             .catch((error) => {
               console.error('Error creating ticket: ', error);
-              // Optionally show an error message to the user
+              this.snackbarService.showSnackbar('Error creating ticket!');
             });
         } else {
           console.error('No user is currently logged in');

@@ -1,5 +1,3 @@
-// admin-panel.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { ProductService } from '../../services/product.service';
@@ -44,5 +42,23 @@ export class AdminPanelComponent implements OnInit {
     this.ticketService.updateTicketStatus(ticketId, status).catch((error) => {
       console.error('Error updating ticket status:', error);
     });
+  }
+
+  openGmailCompose(
+    ticketId: string | undefined,
+    email: string | undefined,
+    subject: string | undefined,
+    message: string | undefined,
+  ): void {
+    if (!ticketId) {
+      console.error('Ticket ID is undefined');
+      return;
+    }
+
+    const recipientEmail = email || '';
+    const emailSubject = `Ticket ID: ${ticketId}; ${subject || ''}`;
+    const emailBody = `Ticket ID: ${ticketId}\n\n${message || ''}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipientEmail}&su=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    window.open(gmailUrl, '_blank');
   }
 }
