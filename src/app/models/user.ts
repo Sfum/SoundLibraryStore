@@ -1,3 +1,4 @@
+// src/app/models/user.ts
 import firebase from 'firebase/compat/app';
 
 export interface User extends firebase.User {
