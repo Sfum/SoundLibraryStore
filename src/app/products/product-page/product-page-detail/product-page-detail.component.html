@@ -71,6 +71,12 @@
       </div>
     </div>
     <hr class="product__page--badge margin-line opacity--xlg margin__bottom--md margin__top--md">
+
+    <div *ngIf="product">
+      <app-product-ticket [productId]="product.id.toString()"></app-product-ticket>
+    </div>
+    <hr class="product__page--badge margin-line opacity--xlg margin__bottom--md margin__top--md">
+
     <div>
       <div class="margin-primary margin__bottom--md">
         <div *ngIf="relatedProductsByGenre.length > 0">

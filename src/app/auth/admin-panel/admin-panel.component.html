@@ -10,7 +10,7 @@
       <thead>
       <tr>
         <th>Ticket ID</th>
-        <th>User ID</th>
+        <th>Email</th>
         <th>Product ID</th>
         <th>Subject</th>
         <th>Message</th>
@@ -21,15 +21,15 @@
       <tbody>
       <tr *ngFor="let ticket of tickets$ | async">
         <td>{{ ticket.id }}</td>
-        <td>{{ ticket.userId }}</td>
+        <td>{{ ticket.email }}</td>
         <td>{{ ticket.productId }}</td>
         <td>{{ ticket.subject }}</td>
         <td>{{ ticket.message }}</td>
         <td>{{ ticket.status }}</td>
         <td>
-          <button *ngIf="ticket.id" (click)="updateTicketStatus(ticket.id, 'open')">Mark as Open</button>
-          <button *ngIf="ticket.id" (click)="updateTicketStatus(ticket.id, 'pending')">Mark as Pending</button>
-          <button *ngIf="ticket.id" (click)="updateTicketStatus(ticket.id, 'completed')">Mark as Completed</button>
+          <button class="margin__bottom--sm margin__right--sm" mat-raised-button *ngIf="ticket.id" (click)="updateTicketStatus(ticket.id, 'open')">Open</button>
+          <button class="margin__bottom--sm margin__right--sm" mat-raised-button *ngIf="ticket.id" (click)="updateTicketStatus(ticket.id, 'pending')">Pending</button>
+          <button class="margin__bottom--sm" mat-raised-button *ngIf="ticket.id" (click)="updateTicketStatus(ticket.id, 'completed')">Completed</button>
         </td>
       </tr>
       </tbody>
