@@ -29,6 +29,7 @@ import { PaymentComponent } from './shopping-cart/payment/payment.component';
 import { AdminReportComponent } from './reports/admin-report/admin-report.component';
 import { ModeratorReportComponent } from './reports/moderator-report/moderator-report.component';
 import { DownloadReportComponent } from './reports/download-report/download-report.component';
+import { AdminPanelComponent } from './auth/admin-panel/admin-panel.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
@@ -89,6 +90,7 @@ const routes: Routes = [
   { path: 'moderator-report', component: ModeratorReportComponent },
   { path: 'downloads', component: DownloadReportComponent },
   { path: 'payment', component: PaymentComponent },
+  { path: 'admin/tickets', component: AdminPanelComponent },
 ];
 
 @NgModule({

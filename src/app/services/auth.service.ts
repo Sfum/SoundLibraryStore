@@ -18,16 +18,41 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
-    private router: Router,
     private wishlistService: WishlistService,
     private cartService: CartService,
     public snackbarService: SnackbarService,
   ) {
     this.user$ = afAuth.authState as Observable<User | null>;
+    this.user$ = afAuth.authState.pipe(
+      map((firebaseUser) => this.mapFirebaseUserToUser(firebaseUser)),
+    ) as Observable<User | null>;
   }
 
   user$: Observable<User | null> = this.afAuth
     .authState as Observable<User | null>;
+
+  private mapFirebaseUserToUser(
+    firebaseUser: firebase.User | null,
+  ): User | null {
+    if (!firebaseUser) {
+      return null;
+    }
+
+    return {
+      uid: firebaseUser.uid,
+      email: firebaseUser.email || '',
+      displayName: firebaseUser.displayName || '',
+      // @ts-ignore
+
+      photoUrl: firebaseUser.photoURL || '',
+      address: '', // Add default or fetch from another source if available
+      postcode: '', // Add default or fetch from another source if available
+      country: '', // Add default or fetch from another source if available
+      is_brand: false, // Add default or fetch from another source if available
+      role: '', // Add default or fetch from another source if available
+      brandId: 0, // Add default or fetch from another source if available
+    };
+  }
 
   getCurrentUser(): Observable<User | null> {
     return this.user$;
@@ -174,5 +199,9 @@ export class AuthService {
         }
       }),
     );
+  }
+
+  getAllUsers(): Observable<User[]> {
+    return this.firestore.collection<User>('users').valueChanges();
   }
 }

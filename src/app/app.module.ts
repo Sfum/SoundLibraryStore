@@ -145,6 +145,8 @@ import {
   MatButtonToggleGroup,
 } from '@angular/material/button-toggle';
 import { ProductCommentComponent } from './products/product-comment/product-comment.component';
+import { AdminPanelComponent } from './auth/admin-panel/admin-panel.component';
+import { ProductTicketComponent } from './products/product-ticket/product-ticket.component';
 
 @NgModule({
   declarations: [
@@ -202,6 +204,8 @@ import { ProductCommentComponent } from './products/product-comment/product-comm
     DownloadReportComponent,
     CommentComponent,
     ProductCommentComponent,
+    AdminPanelComponent,
+    ProductTicketComponent,
   ],
   imports: [
     CommonModule,

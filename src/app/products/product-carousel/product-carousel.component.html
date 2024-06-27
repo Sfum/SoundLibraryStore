@@ -1,0 +1,9 @@
+<div class="carousel-container">
+  <div class="carousel" [style.transform]="'translateX(-' + currentSlide * 100 + '%)'">
+    <div class="carousel-item" *ngFor="let slide of slides">
+      <img [src]="slide" alt="Carousel image">
+    </div>
+  </div>
+  <button class="prev" (click)="prevSlide()">&#10094;</button>
+  <button class="next" (click)="nextSlide()">&#10095;</button>
+</div>
