@@ -57,7 +57,7 @@ export class AdminPanelComponent implements OnInit {
 
     const recipientEmail = email || '';
     const emailSubject = `Ticket ID: ${ticketId}; ${subject || ''}`;
-    const emailBody = `Ticket ID: ${ticketId}\n\n${message || ''}`;
+    const emailBody = `Hello, and thank you for contacting us!\n\n\n\n\n\nKindest Regards,\n\nCustomer Support\n\n__________________\n\nTicket ID: ${ticketId}\n\nYou wrote to support:\n${message || ''}\n\n`;
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipientEmail}&su=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
     window.open(gmailUrl, '_blank');
   }
