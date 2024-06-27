@@ -1,5 +1,5 @@
-<div class="container margin__right--md">
-  <mat-form-field class="font-secondary margin__right--md" appearance="fill">
+<div class="container margin__right--md margin__top--md">
+  <mat-form-field class="form-field font-secondary margin__right--md" appearance="fill">
     <mat-select class="product__select screen__sm--hidden" (selectionChange)="optionGenreSelected($event.value)">
       <mat-option value="0">- All genres -</mat-option>
       <mat-option *ngFor="let genreItem of (filterGenreField$ | async)" [value]="genreItem.id">
@@ -27,3 +27,4 @@
     </mat-checkbox>
   </div>
 </div>
+

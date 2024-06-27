@@ -18,7 +18,6 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private firestore: AngularFirestore,
-    private router: Router,
     private wishlistService: WishlistService,
     private cartService: CartService,
     public snackbarService: SnackbarService,

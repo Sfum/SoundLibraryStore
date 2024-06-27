@@ -1,12 +1,34 @@
 
 <div class="sorting-bar margin__top--sm">
-  <button class="button__menu margin__right--sm margin__bottom--sm" mat-raised-button (click)="sortByPrice('asc')">Price (Low to High)</button>
-  <button class="button__menu margin__right--sm margin__bottom--sm" mat-raised-button (click)="sortByPrice('desc')">Price (High to Low)</button>
-  <button class="button__menu margin__right--sm margin__bottom--sm" mat-raised-button (click)="sortByPopularity()">Popularity</button>
-  <button class="button__menu margin__right--sm margin__bottom--sm" mat-raised-button (click)="sortByDiscount('desc')">Discount (High to Low)</button>
-  <button class="button__menu margin__right--sm margin__bottom--sm" mat-raised-button (click)="sortByNewArrival('desc')">New Arrivals</button>
+  <button mat-button [matMenuTriggerFor]="sortMenu" class="margin__right--sm margin__bottom--sm">
+    <mat-icon>sort</mat-icon>
+    Sort Options
+  </button>
 
+  <mat-menu #sortMenu="matMenu">
+    <button mat-menu-item (click)="sortByPrice('asc')">
+      <mat-icon>arrow_upward</mat-icon>
+      Price (Low to High)
+    </button>
+    <button mat-menu-item (click)="sortByPrice('desc')">
+      <mat-icon>arrow_downward</mat-icon>
+      Price (High to Low)
+    </button>
+    <button mat-menu-item (click)="sortByPopularity()">
+      <mat-icon>trending_up</mat-icon>
+      Popularity
+    </button>
+    <button mat-menu-item (click)="sortByDiscount('desc')">
+      <mat-icon>local_offer</mat-icon>
+      Discount (High to Low)
+    </button>
+    <button mat-menu-item (click)="sortByNewArrival('desc')">
+      <mat-icon>new_releases</mat-icon>
+      New Arrivals
+    </button>
+  </mat-menu>
 </div>
+
 
   <div class="product-card__container">
   <app-product-card-detail *ngFor="let product of paginatedProducts"
