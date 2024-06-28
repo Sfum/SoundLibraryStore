@@ -7,7 +7,6 @@
       <thead>
       <tr>
         <th>Ticket ID</th>
-        <th>Email</th>
         <th>Product ID</th>
         <th>Subject</th>
         <th>Message</th>
@@ -18,11 +17,6 @@
       <tbody>
       <tr *ngFor="let ticket of tickets$ | async">
         <td>{{ ticket.id }}</td>
-        <td>
-          <button mat-raised-button (click)="openGmailCompose(ticket.id, ticket.email, ticket.subject, ticket.message)">
-            {{ ticket.email }}
-          </button>
-        </td>
         <td>{{ ticket.productId }}</td>
         <td>{{ ticket.subject }}</td>
         <td>{{ ticket.message }}</td>
@@ -30,9 +24,13 @@
           <span class="status-label {{ ticket.status }}">{{ ticket.status }}</span>
         </td>
         <td>
-          <button class="margin__bottom--sm margin__right--sm open" mat-raised-button *ngIf="ticket.id" (click)="updateTicketStatus(ticket.id, 'open')">Open</button>
-          <button class="margin__bottom--sm margin__right--sm pending" mat-raised-button *ngIf="ticket.id" (click)="updateTicketStatus(ticket.id, 'pending')">Pending</button>
-          <button class="margin__bottom--sm completed" mat-raised-button *ngIf="ticket.id" (click)="updateTicketStatus(ticket.id, 'completed')">Completed</button>
+          <button class="margin__bottom--sm margin__right--sm open" mat-raised-button *ngIf="ticket.id"
+                  (click)="updateTicketStatus(ticket.id, 'open', ticket)"
+                  [disabled]="isOpenDisabled(ticket)">Open</button>
+          <button class="margin__bottom--sm margin__right--sm pending" mat-raised-button *ngIf="ticket.id"
+                  (click)="updateTicketStatus(ticket.id, 'pending', ticket)">Pending</button>
+          <button class="margin__bottom--sm completed" mat-raised-button *ngIf="ticket.id"
+                  (click)="updateTicketStatus(ticket.id, 'completed', ticket)">Completed</button>
         </td>
       </tr>
       </tbody>
