@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map, Observable, of, switchMap } from 'rxjs';
-import { Router } from '@angular/router';
 import { WishlistService } from './wishlist.service';
 import { CartService } from './cart.service';
-import User = firebase.User;
 import { SnackbarService } from './snackbar.service';
+import User = firebase.User;
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
@@ -43,7 +42,6 @@ export class AuthService {
       email: firebaseUser.email || '',
       displayName: firebaseUser.displayName || '',
       // @ts-ignore
-
       photoUrl: firebaseUser.photoURL || '',
       address: '', // Add default or fetch from another source if available
       postcode: '', // Add default or fetch from another source if available
@@ -98,10 +96,10 @@ export class AuthService {
             })
             .then(() => user); // Ensure user is returned for the next then() block
         })
-        // @ts-ignore
-
         .then((user) => {
           let userData: any = {
+            uid: user.uid,
+            user_email: email, // Copy email to user_email
             displayName: displayName,
             photoURL: photoURL,
             address: address,
@@ -142,13 +140,14 @@ export class AuthService {
                     .collection('brands')
                     .doc(ref.id)
                     .update({ _id: ref.id, id: randomId }),
-                ]);
+                ]).then(() => {}); // Ensure the final then() returns void
               });
           } else {
             return this.firestore
               .collection('users')
               .doc(user.uid) // Use user.uid to save under the user's UID
-              .set(userData);
+              .set(userData)
+              .then(() => {}); // Ensure the final then() returns void
           }
         })
         .then(() => {

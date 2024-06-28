@@ -42,6 +42,7 @@ export class ProductTicketComponent implements OnInit {
         if (currentUser) {
           const ticket: Ticket = {
             userId: currentUser.uid,
+            // @ts-ignore
             email: currentUser.email,
             productId: this.productId,
             subject: this.ticketForm.get('subject')?.value,

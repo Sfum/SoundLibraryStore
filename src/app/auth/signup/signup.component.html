@@ -31,12 +31,10 @@
         <label class="font-secondary">Country:</label>
         <input type="text" [(ngModel)]="country" name="country" required>
       </div>
-
       <div>
         <label class="font-secondary">Are you a content provider?</label>
         <input type="checkbox" [(ngModel)]="isContentProvider" name="isContentProvider">
       </div>
-
       <div *ngIf="isContentProvider">
         <div>
           <label class="font-secondary">Brand Name:</label>
@@ -47,7 +45,6 @@
           <input type="text" [(ngModel)]="brand_description" name="brand_description">
         </div>
       </div>
-
       <button mat-raised-button type="submit" class="margin__top--md">Sign Up</button>
     </form>
   </mat-card>
